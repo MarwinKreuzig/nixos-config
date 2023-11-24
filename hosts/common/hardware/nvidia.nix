@@ -16,4 +16,4 @@ if uses-nvidia then {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   services.xserver.videoDrivers = [ "nvidia" ];
-} else {}
+} else { }

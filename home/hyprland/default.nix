@@ -7,7 +7,10 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = builtins.readFile ./hyprland.conf;
+    extraConfig = (builtins.readFile ./hyprland.conf)
+    + ''
+      exec-once = ${./ff-start.sh}
+    '';
     package = inputs.hyprland.packages.${pkgs.system}.hyprland.override {
       enableNvidiaPatches = uses-nvidia;
     };

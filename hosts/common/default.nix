@@ -73,24 +73,26 @@
     noisetorch
 
     # run non-native binaries
-    (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
-    pkgs.buildFHSUserEnv (base // {
-      name = "fhs";
-      targetPkgs = pkgs: (base.targetPkgs pkgs) ++ [pkgs.pkg-config];
-      profile = "export FHS=1";
-      runScript = "fish";
-      extraOutputsToInstall = ["dev"];
-    }))
+    (
+      let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+      pkgs.buildFHSUserEnv (base // {
+        name = "fhs";
+        targetPkgs = pkgs: (base.targetPkgs pkgs) ++ [ pkgs.pkg-config ];
+        profile = "export FHS=1";
+        runScript = "fish";
+        extraOutputsToInstall = [ "dev" ];
+      })
+    )
   ];
 
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-    font-awesome
-    (nerdfonts.override { fonts = ["FiraCode"]; })
-    ubuntu_font_family
+      font-awesome
+      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      ubuntu_font_family
     ];
-};
+  };
 
 
   programs.noisetorch.enable = true;
