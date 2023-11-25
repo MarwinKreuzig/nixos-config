@@ -31,6 +31,12 @@
      enable = true;
      nix-direnv.enable = true;
    };
+
+   # enable command not found
+   programs.nix-index = {
+     enable = true;
+     enableFishIntegration = true;
+   };
    
    fonts.fontconfig.enable = true;
 }

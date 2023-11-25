@@ -9,7 +9,7 @@
     enable = true;
     extraConfig = (builtins.readFile ./hyprland.conf)
     + ''
-      exec-once = ${./ff-start.sh}
+      exec-once = sh ${./ff-start.sh}
     '';
     package = inputs.hyprland.packages.${pkgs.system}.hyprland.override {
       enableNvidiaPatches = uses-nvidia;
