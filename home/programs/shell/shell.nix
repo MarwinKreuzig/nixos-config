@@ -3,6 +3,7 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
+      fish_vi_key_bindings
       set fish_greeting
       if command -q nix-your-shell
         nix-your-shell fish | source

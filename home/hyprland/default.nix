@@ -9,11 +9,11 @@
     enable = true;
     extraConfig = (builtins.readFile ./hyprland.conf)
     + ''
-      exec-once = sh ${./ff-start.sh}
+     exec-once = swww init && swww img ${./wallpaper.jpg}
+     exec-once = sh ${./ff-start.sh}
+     exec-once = ${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
     '';
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland.override {
-      enableNvidiaPatches = uses-nvidia;
-    };
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
   home.shellAliases = {

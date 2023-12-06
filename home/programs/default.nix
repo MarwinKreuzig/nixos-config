@@ -3,6 +3,7 @@
 {
   imports = [
     ./common.nix
+    ./xdg.nix
     ./git.nix
     ./alacritty.nix
     ./ide.nix

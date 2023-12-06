@@ -6,6 +6,8 @@
     swww
     rofi
     xwaylandvideobridge
+    udiskie
+    polkit-kde-agent
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
     font-awesome
     # screenshots
@@ -25,18 +27,18 @@
     glfw-wayland-minecraft
     prismlauncher
     (firefox.override { nativeMessagingHosts = [ inputs.pipewire-screenaudio.packages.${pkgs.system}.default ]; })
-   ];
+  ];
 
-   programs.direnv = {
-     enable = true;
-     nix-direnv.enable = true;
-   };
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
-   # enable command not found
-   programs.nix-index = {
-     enable = true;
-     enableFishIntegration = true;
-   };
-   
-   fonts.fontconfig.enable = true;
+  # enable command not found
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  fonts.fontconfig.enable = true;
 }

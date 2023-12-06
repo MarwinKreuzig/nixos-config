@@ -22,6 +22,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+
+  # necessary to mount USB drives
+  services.udisks2.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -124,6 +130,7 @@
   };
   xdg.portal.wlr.enable = true;
   xdg.portal.enable = true;
+  xdg.portal.config.common.default = "*";
   services.dbus.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
