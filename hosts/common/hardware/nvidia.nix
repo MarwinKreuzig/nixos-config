@@ -7,7 +7,7 @@ if uses-nvidia then {
   hardware.opengl.driSupport = true;
   hardware.nvidia = {
     modesetting.enable = true; # this is required
-    powerManagement.enable = false; # this can cause issues if enabled
+    powerManagement.enable = true; # this can cause issues if enabled
 
     open = false;
 

@@ -1,14 +1,15 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   browser = [ "firefox.desktop" ];
 in
 {
+  home.packages = with pkgs; [ xdg-utils ];
   xdg = {
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";
     mimeApps = {
       enable = true;
-      defaultApplications = {
+      defaultApplications = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) {
         "application/x-extension-htm" = browser;
         "application/x-extension-html" = browser;
         "application/x-extension-shtml" = browser;

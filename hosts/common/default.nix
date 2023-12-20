@@ -115,6 +115,8 @@
     openFirewall = true;
   };
 
+  programs.steam.enable = true;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -128,9 +130,13 @@
     enable = true;
     startWhenNeeded = true;
   };
-  xdg.portal.wlr.enable = true;
-  xdg.portal.enable = true;
-  xdg.portal.config.common.default = "*";
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    # configPackages = [ pkgs.xdg-desktop-portal-hyprland ];
+    config.common.default = [ "gtk" ];
+  };
   services.dbus.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -150,10 +156,16 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPortRanges = [ 
+    # KDE Connect
+    { from = 1714; to = 1764; }
+  ];
+  networking.firewall.allowedUDPPortRanges = [
+    # KDE Connect
+    { from = 1714; to = 1764; }
+  ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

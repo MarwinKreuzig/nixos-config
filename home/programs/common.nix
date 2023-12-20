@@ -22,7 +22,6 @@
     nix-your-shell
     nixpkgs-fmt
 
-    steam
     discord
     glfw-wayland-minecraft
     prismlauncher

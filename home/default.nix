@@ -7,8 +7,9 @@
   xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
 
   imports = [
-    ./programs/default.nix
-    ./hyprland/default.nix
+    ./programs
+    ./hyprland
+    ./services
   ];
 
   # make home-manager manage fonts
