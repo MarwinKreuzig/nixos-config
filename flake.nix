@@ -54,6 +54,22 @@
           }
         ];
       };
+      "laptop0" = nixpkgs.lib.nixosSystem {
+      	system = "x86_64-linux";
+	specialArgs = { inherit inputs; uses-nvidia = false; display-mode = "laptop"; };
+	modules = [
+	  ./hosts/laptop0/default.nix
+
+	  home-manager.nixosModules.home-manager
+	  {
+	    home-manager = {
+	      useGlobalPkgs = true;
+	      useUserPackages = true;
+	      extraSpecialArgs = { inherit inputs self; uses-nvidia = false; display-mode = "laptop"; };
+	      users.marwin = import ./home/default.nix;
+	    };
+	  }
+	};
     };
   };
 }
