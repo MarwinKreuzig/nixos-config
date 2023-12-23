@@ -98,7 +98,7 @@
 	"$mod, F, fullscreen"
 	"$mod_SHIFT, F, fakefullscreen"
 	"$mod, T, exec, alacritty"
-	"$mod_CONTROL_SHIFT", Q, exit
+	"$mod_CONTROL_SHIFT, Q, exit"
 
 	"$mod, Space, exec, rofi -show drun"
 	"$mod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
