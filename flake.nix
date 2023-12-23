@@ -69,7 +69,7 @@
 	      users.marwin = import ./home/default.nix;
 	    };
 	  }
-	};
+	}
     };
   };
 }
