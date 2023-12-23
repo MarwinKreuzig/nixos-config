@@ -120,7 +120,6 @@
 	"${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
     } // import ./${display-mode}.nix;
-    extraConfig = (builtins.readFile ./hyprland.conf);
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
