@@ -42,7 +42,7 @@
 	"opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
 	"noanim,class:^(xwaylandvideobridge)$"
 	"nofocus,class:^(xwaylandvideobridge)$"
-	"noinitalfocus,class:^(xwaylandvideobridge)$"
+	"noinitialfocus,class:^(xwaylandvideobridge)$"
       ];
 
       misc = {
