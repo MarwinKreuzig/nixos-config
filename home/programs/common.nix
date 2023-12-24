@@ -25,6 +25,7 @@
     nix-your-shell
     nixpkgs-fmt
 
+    bitwarden
     discord
     glfw-wayland-minecraft
     prismlauncher
