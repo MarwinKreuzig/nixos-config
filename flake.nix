@@ -39,7 +39,7 @@
     nixosConfigurations = {
       "desktop" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; uses-nvidia = true; display-mode = "desktop"; };
+        specialArgs = { inherit inputs; uses-nvidia = true; de-config = "desktop"; };
         modules = [
           ./hosts/desktop/default.nix
 
@@ -48,28 +48,28 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit inputs self; uses-nvidia = true; display-mode = "desktop"; };
+              extraSpecialArgs = { inherit inputs self; uses-nvidia = true; de-config = "desktop"; };
               users.marwin = import ./home/default.nix;
             };
           }
         ];
       };
       "laptop0" = nixpkgs.lib.nixosSystem {
-      	system = "x86_64-linux";
-	specialArgs = { inherit inputs; uses-nvidia = false; display-mode = "laptop"; };
-	modules = [
-	  ./hosts/laptop0/default.nix
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; uses-nvidia = false; de-config = "laptop0"; };
+        modules = [
+          ./hosts/laptop0/default.nix
 
-	  home-manager.nixosModules.home-manager
-	  {
-	    home-manager = {
-	      useGlobalPkgs = true;
-	      useUserPackages = true;
-	      extraSpecialArgs = { inherit inputs self; uses-nvidia = false; display-mode = "laptop"; };
-	      users.marwin = import ./home/default.nix;
-	    };
-	  }
-	];
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs self; uses-nvidia = false; de-config = "laptop0"; };
+              users.marwin = import ./home/default.nix;
+            };
+          }
+        ];
       };
     };
   };

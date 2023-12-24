@@ -15,6 +15,9 @@
     # clipboard
     cliphist
     wl-clipboard
+    pavucontrol
+    # wifi
+    networkmanagerapplet
 
     eza
 

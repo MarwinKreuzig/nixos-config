@@ -10,11 +10,11 @@
     vimAlias = true;
     withPython3 = true;
     extraLuaConfig = ''
-    vim.loader.enable()
-    vim.opt.rtp:prepend("${./lsp.lua}")
+      vim.loader.enable()
+      vim.opt.rtp:prepend("${./lsp.lua}")
     '' + (builtins.readFile ./nvim/init.lua) +
     ''
-    vim.opt.rtp:append("${./nvim_append}")
+      vim.opt.rtp:append("${./nvim_append}")
     '';
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter.withAllGrammars

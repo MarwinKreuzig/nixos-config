@@ -32,7 +32,9 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  console.keyMap = "dvorak-programmer";
+  console = {
+    keyMap = "dvorak-programmer";
+  };
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_DE.UTF-8";
@@ -99,6 +101,29 @@
     ];
   };
 
+  services.kmscon = {
+    enable = false;
+    fonts = [
+      {
+        name = "Ubuntu Mono";
+        package = pkgs.ubuntu_font_family;
+      }
+      {
+        name = "FiraCode Nerd Font Mono";
+        package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+      }
+      {
+        name = "Source Code Pro";
+        package = pkgs.source-code-pro;
+      }
+    ];
+    extraConfig = ''
+      xkb-layout=us
+      xkb-variant=dvp
+      xkb-options=lv3:alt_switch,caps:escape
+    '';
+  };
+
 
   programs.noisetorch.enable = true;
 
@@ -156,7 +181,7 @@
 
   # Open ports in the firewall.
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPortRanges = [ 
+  networking.firewall.allowedTCPPortRanges = [
     # KDE Connect
     { from = 1714; to = 1764; }
   ];
