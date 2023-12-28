@@ -16,8 +16,9 @@
     cliphist
     wl-clipboard
     pavucontrol
-    # wifi
+    # system management guis
     networkmanagerapplet
+    pavucontrol
 
     eza
 

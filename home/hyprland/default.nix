@@ -62,10 +62,11 @@
 
         follow_mouse = 1;
         touchpad = {
-          natural_scroll = "no";
+          natural_scroll = "yes";
+          tap_button_map = "lmr";
         };
 
-        sensitivity = -0.93;
+        sensitivity = -0.93; #-0.93
         accel_profile = "flat";
       };
 
@@ -83,6 +84,8 @@
         "$mod_CONTROL, J, workspace, m-1"
         "$mod, code:26, togglespecialworkspace"
         "$mod_SHIFT, code:26, movetoworkspace, special"
+        "$mod_CONTROL, UP, movetoworkspace, r+1"
+        "$mod_CONTROL, DOWN, movetoworkspace, r-1"
 
         # layout manipulation
         "$mod, UP, resizeactive, 0 -50"
@@ -114,7 +117,7 @@
         "swaync"
         "udiskie &"
         "waybar"
-        "sleep 3; noisetorch" # for some reason noisetorch doesn't work when started immediately
+        "sleep 3; noisetorch -i" # for some reason noisetorch doesn't work when started immediately
         "wl-clip-persist --clipboard both"
         "wl-paste --watch cliphist store"
         "swww init; swww img ${./wallpaper.jpg}"
