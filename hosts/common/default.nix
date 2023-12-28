@@ -149,11 +149,6 @@
     pulse.enable = true;
     jack.enable = true;
   };
-  # music player daemon
-  services.mpd = {
-    enable = true;
-    startWhenNeeded = true;
-  };
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
