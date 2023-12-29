@@ -66,11 +66,14 @@
           tap_button_map = "lmr";
         };
 
-        sensitivity = -0.93; #-0.93
+        sensitivity = -0.93; 
         accel_profile = "flat";
       };
 
       "$mod" = "SUPER";
+      "$terminal" = "alacritty";
+      "$menu" = "tofi --terminal=\"$terminal -e\"";
+      "$menu-drun" = "tofi-drun --terminal=\"$terminal -e\"";
       bind = [
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
@@ -102,11 +105,11 @@
         "$mod, Q, killactive"
         "$mod, F, fullscreen"
         "$mod_SHIFT, F, fakefullscreen"
-        "$mod, T, exec, alacritty"
+        "$mod, T, exec, $terminal"
         "$mod_CONTROL_SHIFT, Q, exit"
 
-        "$mod, Space, exec, rofi -show drun"
-        "$mod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+        "$mod, Space, exec, $menu-drun | xargs hyprctl dispatch exec --"
+        "$mod, V, exec, cliphist list | $menu | cliphist decode | wl-copy"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"
@@ -122,6 +125,7 @@
         "wl-paste --watch cliphist store"
         "swww init; swww img ${./wallpaper.jpg}"
         "sh ${./ff-start.sh}"
+        # This is horribly hacky, search.nixos.org doesn't even know that package, wtf is even going on
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
     };
