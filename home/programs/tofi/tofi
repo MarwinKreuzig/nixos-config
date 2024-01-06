@@ -5,6 +5,12 @@ outline-width = 0
 padding-left = 10%
 padding-top = 5%
 result-spacing = 6
-font = monospace
 font-size = 14
-background-color = #000A
+text-color = #000000
+background-color = #ffffffea
+
+hide-cursor=true
+text-cursor=true
+fuzzy-match=true
+
+hint-font = false

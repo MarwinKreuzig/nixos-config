@@ -141,6 +141,9 @@
 
   programs.steam.enable = true;
 
+  # make swaylock work, see https://nixos.wiki/wiki/Hyprland
+  security.pam.services.swaylock = {};
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -152,9 +155,9 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-    # configPackages = [ pkgs.xdg-desktop-portal-hyprland ];
-    config.common.default = [ "gtk" ];
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
+    configPackages = [ pkgs.xdg-desktop-portal-gtk ];
+    wlr.enable = true;
   };
   services.dbus.enable = true;
 

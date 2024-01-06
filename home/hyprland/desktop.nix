@@ -22,6 +22,7 @@ if de-config == "desktop" then {
       "\$mod,O,focuswindow,ff_secondary"
       "\$mod,code:25,focuswindow,discord"
     ];
+    exec-once = [ "sh ${./ff-start.sh}" ];
   };
 } else { }
 

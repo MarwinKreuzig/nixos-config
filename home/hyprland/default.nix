@@ -9,12 +9,15 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
     settings = {
       general = {
         layout = "master";
         border_size = 2;
         "col.active_border" = "rgb(f00040) rgb(4000f0)";
       };
+      # get rid of xwayland pixelated look
+      xwayland.force_zero_scaling = true;
 
       master = {
         new_is_master = false;
@@ -57,7 +60,7 @@
         kb_layout = "us";
         kb_variant = "dvp";
         kb_model = "";
-        kb_options = "lv3:alt_switch,caps:escape";
+        kb_options = "lv3:ralt_switch,caps:escape";
         kb_rules = "";
 
         follow_mouse = 1;
@@ -77,6 +80,9 @@
       bind = [
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+
+        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
 
         # navigation
         "$mod, K, layoutmsg, cycleprev"
@@ -124,7 +130,6 @@
         "wl-clip-persist --clipboard both"
         "wl-paste --watch cliphist store"
         "swww init; swww img ${./wallpaper.jpg}"
-        "sh ${./ff-start.sh}"
         # This is horribly hacky, search.nixos.org doesn't even know that package, wtf is even going on
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
@@ -139,7 +144,21 @@
   home.sessionVariables = {
     # make firefox run on wayland
     MOZ_ENABLE_WAYLAND = 1;
+    # make QT run on wayland (might be unnecessary)
+    QT_QPA_PLATFORM = "wayland;xcb";
+    # make GTK run on wayland
+    GDK_BACKEND = "wayland,x11";
+    # make SDL2 run on wayland
+    SDL_VIDEODRIVER = "wayland";
+    # make clutter applications (whatever that even is) run on wayland
+    CLUTTER_BACKEND = "wayland";
     # make chromium work on wayland
     NIXOS_OZONE_WL = 1;
+
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
   };
 }

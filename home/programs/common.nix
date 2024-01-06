@@ -19,6 +19,8 @@
     # system management guis
     networkmanagerapplet
     pavucontrol
+    # system management clis
+    brightnessctl
 
     eza
 

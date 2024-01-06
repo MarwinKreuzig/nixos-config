@@ -15,6 +15,11 @@
 
   hardware.opentabletdriver.enable = true;
 
+  services.logind.extraConfig = ''
+    # hibernate instead of shutting down
+    HandlePowerKey=hibernate
+    '';
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Gnome 40 introduced a new way of managing power, without tlp.
