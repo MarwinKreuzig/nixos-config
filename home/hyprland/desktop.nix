@@ -19,7 +19,7 @@ if de-config == "desktop" then {
     ];
     bind = [
       "\$mod,U,focusmonitor,DP-1"
-      "\$mod,O,focuswindow,ff_secondary"
+      "\$mod,O,focusmonitor,HDMI-A-1"
       "\$mod,code:25,focuswindow,discord"
     ];
     exec-once = [ "sh ${./ff-start.sh}" ];

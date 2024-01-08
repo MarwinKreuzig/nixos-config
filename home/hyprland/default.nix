@@ -69,7 +69,7 @@
           tap_button_map = "lmr";
         };
 
-        sensitivity = -0.93; 
+        sensitivity = -0.95; 
         accel_profile = "flat";
       };
 

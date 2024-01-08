@@ -29,6 +29,7 @@
     nixpkgs-fmt
 
     bitwarden
+    krita
     discord
     glfw-wayland-minecraft
     prismlauncher
