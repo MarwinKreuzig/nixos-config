@@ -18,7 +18,7 @@
   services.logind.extraConfig = ''
     # hibernate instead of shutting down
     HandlePowerKey=hibernate
-    '';
+  '';
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

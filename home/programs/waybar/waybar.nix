@@ -14,6 +14,9 @@
         position = "top";
         height = 30;
         spacing = 4;
+        "hyprland/workspaces" = {
+          "sort-by" = "id";
+        };
         backlight = {
           format = "{percent}% {icon}";
           format-icons = [ "" "" "" "" "" "" "" "" "" ];

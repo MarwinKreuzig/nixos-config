@@ -41,7 +41,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; uses-nvidia = true; de-config = "desktop"; };
         modules = [
-          ./hosts/desktop/default.nix
+          ./hosts/desktop
+          ./hosts/common
 
           home-manager.nixosModules.home-manager
           {
@@ -58,7 +59,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; uses-nvidia = false; de-config = "laptop0"; };
         modules = [
-          ./hosts/laptop0/default.nix
+          ./hosts/laptop0
+          ./hosts/common
 
           home-manager.nixosModules.home-manager
           {

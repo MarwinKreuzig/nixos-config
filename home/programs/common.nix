@@ -28,6 +28,7 @@
     nix-your-shell
     nixpkgs-fmt
 
+    zoom-us
     bitwarden
     krita
     discord

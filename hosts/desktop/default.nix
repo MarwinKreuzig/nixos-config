@@ -8,7 +8,6 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./../common/default.nix
     ];
 
   services.hardware.openrgb.enable = true;
