@@ -93,7 +93,7 @@
         "$mod_CONTROL, J, workspace, m+1"
         "$mod, code:26, togglespecialworkspace"
         "$mod_SHIFT, code:26, movetoworkspace, special"
-        "$mod_CONTROL, UP, movetoworkspace, r-1"
+        "$mod_CONTROL, UP, movetoworkspace, m-1"
         "$mod_CONTROL, DOWN, movetoworkspace, r+1"
 
         # layout manipulation
