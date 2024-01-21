@@ -6,6 +6,7 @@ in
   home.packages = with pkgs; [ xdg-utils ];
   xdg = {
     enable = true;
+    configFile."mimeapps.list".force = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";
     mimeApps = {
       enable = true;
