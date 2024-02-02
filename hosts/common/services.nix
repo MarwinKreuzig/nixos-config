@@ -11,9 +11,9 @@
   services.dbus.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "dvp";
+    variant = "dvp";
   };
 
   services.mullvad-vpn.enable = true;
