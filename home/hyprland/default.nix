@@ -109,6 +109,7 @@
         # utils
         "$mod_SHIFT, S, exec, grimblast copy area"
         "$mod, Q, killactive"
+        "$mod, S, togglefloating, active"
         "$mod, F, fullscreen"
         "$mod_SHIFT, F, fakefullscreen"
         "$mod, T, exec, $terminal"
