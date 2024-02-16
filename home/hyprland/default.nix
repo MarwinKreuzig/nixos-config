@@ -69,7 +69,7 @@
           tap_button_map = "lmr";
         };
 
-        sensitivity = -0.95;
+        sensitivity = -0.939;
         accel_profile = "flat";
       };
 
@@ -89,7 +89,7 @@
         "$mod, J, layoutmsg, cyclenext"
 
         # workspaces
-        "$mod_CONTROL, K, workspace, r+1"
+        "$mod_CONTROL, K, workspace, m+1"
         "$mod_CONTROL, J, workspace, m-1"
         "$mod, code:26, togglespecialworkspace"
         "$mod_SHIFT, code:26, movetoworkspace, special"
@@ -109,7 +109,6 @@
         # utils
         "$mod_SHIFT, S, exec, grimblast copy area"
         "$mod, Q, killactive"
-        "$mod, S, togglefloating, active"
         "$mod, F, fullscreen"
         "$mod_SHIFT, F, fakefullscreen"
         "$mod, T, exec, $terminal"
