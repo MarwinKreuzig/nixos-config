@@ -89,7 +89,7 @@
         "$mod, J, layoutmsg, cyclenext"
 
         # workspaces
-        "$mod_CONTROL, K, workspace, m+1"
+        "$mod_CONTROL, K, workspace, r+1"
         "$mod_CONTROL, J, workspace, m-1"
         "$mod, code:26, togglespecialworkspace"
         "$mod_SHIFT, code:26, movetoworkspace, special"
