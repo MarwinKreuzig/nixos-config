@@ -23,6 +23,7 @@
     brightnessctl
 
     eza
+    unzip
 
     direnv
     nix-your-shell
