@@ -48,6 +48,8 @@
     defaultEditor = true;
   };
 
+  programs.partition-manager.enable = true;
+
   programs.ausweisapp = {
     enable = true;
     openFirewall = true;
