@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 {
-  imports = [ ./hardware ./boot.nix ./networking.nix ./services.nix ./packages.nix ./security.nix ./xdg.nix];
+  imports = [ ./hardware ./boot.nix ./networking.nix ./services.nix ./packages.nix ./security.nix ./xdg.nix ./nix-ld.nix ];
 
   nix = {
     gc = {
