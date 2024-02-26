@@ -21,6 +21,8 @@
     pavucontrol
     # system management clis
     brightnessctl
+    # file manager
+    dolphin
 
     eza
     unzip
