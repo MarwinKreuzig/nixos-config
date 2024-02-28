@@ -28,6 +28,11 @@
     )
   ];
 
+  qt = {
+    enable = true;
+    style = "breeze";
+  };
+  
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
