@@ -22,7 +22,7 @@
     # system management clis
     brightnessctl
     # file manager
-    dolphin
+    nnn
 
     eza
     unzip
