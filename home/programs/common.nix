@@ -34,7 +34,7 @@
     zoom-us
     bitwarden
     krita
-    discord
+    discord-screenaudio
     glfw-wayland-minecraft
     prismlauncher
     (firefox.override { nativeMessagingHosts = [ inputs.pipewire-screenaudio.packages.${pkgs.system}.default ]; })
