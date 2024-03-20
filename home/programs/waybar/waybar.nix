@@ -1,10 +1,11 @@
-{ config
+{ nixpkgs-stable
 , inputs
 , ...
 }:
 {
   programs.waybar = {
-    enable = true;
+    enable = false;
+    package = nixpkgs-stable.waybar;
     settings.mainbar =
       {
         modules-center = [ "clock" ];
