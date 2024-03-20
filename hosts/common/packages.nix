@@ -9,6 +9,7 @@
     curl
     killall
     btop
+    ripgrep
 
     nix-output-monitor
 
