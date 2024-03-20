@@ -21,6 +21,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixstable.url = "nixpkgs/nixos-23.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,44 +36,34 @@
     ironbar.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nixstable, home-manager, ... }@inputs: 
+    let mkSystem = { de-config, uses-nvidia, module }: 
+    let system =  "x86_64-linux"; 
+        nixpkgs-stable = import nixstable { inherit system; };
+    in nixpkgs.lib.nixosSystem 
+        {
+        inherit system;
+        specialArgs = { inherit inputs nixpkgs-stable; uses-nvidia = true; de-config = "desktop"; };
+        modules = [
+          ./hosts/common
+          module
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs self nixpkgs-stable; uses-nvidia = true; de-config = "desktop"; };
+              users.marwin = import ./home/default.nix;
+            };
+          }
+        ];
+      };
+
+  in {
     nixosConfigurations = {
-      "desktop" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; uses-nvidia = true; de-config = "desktop"; };
-        modules = [
-          ./hosts/desktop
-          ./hosts/common
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs self; uses-nvidia = true; de-config = "desktop"; };
-              users.marwin = import ./home/default.nix;
-            };
-          }
-        ];
-      };
-      "laptop0" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; uses-nvidia = false; de-config = "laptop0"; };
-        modules = [
-          ./hosts/laptop0
-          ./hosts/common
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs self; uses-nvidia = false; de-config = "laptop0"; };
-              users.marwin = import ./home/default.nix;
-            };
-          }
-        ];
-      };
+      "desktop" = mkSystem { de-config = "desktop"; uses-nvidia = true; module = import ./hosts/desktop; };
+      "laptop0" = mkSystem { de-config = "laptop0"; uses-nvidia = false; module = import ./hosts/laptop0; };
     };
   };
 }
