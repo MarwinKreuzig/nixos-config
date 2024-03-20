@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     swaynotificationcenter
-    waybar
     swww
     rofi
     xwaylandvideobridge
