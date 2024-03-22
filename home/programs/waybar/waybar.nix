@@ -4,8 +4,7 @@
 }:
 {
   programs.waybar = {
-    enable = false;
-    package = nixpkgs-stable.waybar;
+    enable = true;
     settings.mainbar =
       {
         modules-center = [ "clock" ];
