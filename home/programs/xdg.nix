@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  browser = [ "firefox.desktop" ];
+  browser = [ "firefox" ];
 in
 {
   home.packages = with pkgs; [ xdg-utils ];
@@ -25,8 +25,8 @@ in
         "x-scheme-handler/unknown" = browser;
         "application/json" = browser;
         "application/pdf" = browser;
-        "x-scheme-handler/discord" = [ "discord.desktop" ];
-        "x-scheme-handler/jetbrains-gateway" = [ "jetbrains-gateway.desktop" ];
+        "x-scheme-handler/discord" = [ "discord" ];
+        "x-scheme-handler/jetbrains-gateway" = [ "jetbrains-gateway" ];
       };
     };
 

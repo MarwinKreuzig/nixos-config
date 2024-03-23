@@ -128,7 +128,6 @@
         "udiskie &"
         "waybar"
         "xwaylandvideobridge"
-        "sleep 3; noisetorch -i" # for some reason noisetorch doesn't work when started immediately
         "wl-clip-persist --clipboard both"
         "wl-paste --watch cliphist store"
         "swww init; swww img ${./wallpaper.jpg}"

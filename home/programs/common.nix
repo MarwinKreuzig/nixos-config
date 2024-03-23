@@ -34,6 +34,7 @@
     bitwarden
     krita
     discord-screenaudio
+    webcord
     glfw-wayland-minecraft
     prismlauncher
     (firefox.override { nativeMessagingHosts = [ inputs.pipewire-screenaudio.packages.${pkgs.system}.default ]; })
@@ -43,6 +44,8 @@
     enable = true;
     nix-direnv.enable = true;
   };
+
+  gtk.enable = true;
 
   # enable command not found
   programs.nix-index = {

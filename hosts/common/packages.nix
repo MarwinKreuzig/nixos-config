@@ -13,9 +13,6 @@
 
     nix-output-monitor
 
-    # needs to be a system package for some reason
-    noisetorch
-
     # run non-native binaries
     (
       let base = pkgs.appimageTools.defaultFhsEnvArgs; in
@@ -63,6 +60,9 @@
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
+
+  # GTK configuration
+  programs.dconf.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
