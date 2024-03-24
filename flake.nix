@@ -37,35 +37,39 @@
     ironbar.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixstable, nixmaster, home-manager, ... }@inputs: 
-    let mkSystem = { de-config, uses-nvidia, module }: 
-    let system =  "x86_64-linux"; 
-        nixpkgs-stable = import nixstable { inherit system; config.allowUnfree = true; };
-        nixpkgs-master = import nixmaster { inherit system; config.allowUnfree = true; };
-    in nixpkgs.lib.nixosSystem 
-        {
-        inherit system;
-        specialArgs = { inherit inputs nixpkgs-stable nixpkgs-master; uses-nvidia = true; de-config = "desktop"; };
-        modules = [
-          ./hosts/common
-          module
-
-          home-manager.nixosModules.home-manager
+  outputs = { self, nixpkgs, nixstable, nixmaster, home-manager, ... }@inputs:
+    let
+      mkSystem = { de-config, uses-nvidia, module }:
+        let
+          system = "x86_64-linux";
+          nixpkgs-stable = import nixstable { inherit system; config.allowUnfree = true; };
+          nixpkgs-master = import nixmaster { inherit system; config.allowUnfree = true; };
+        in
+        nixpkgs.lib.nixosSystem
           {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs self nixpkgs-stable nixpkgs-master; uses-nvidia = true; de-config = "desktop"; };
-              users.marwin = import ./home/default.nix;
-            };
-          }
-        ];
-      };
+            inherit system;
+            specialArgs = { inherit inputs nixpkgs-stable nixpkgs-master; uses-nvidia = true; de-config = "desktop"; };
+            modules = [
+              ./hosts/common
+              module
 
-  in {
-    nixosConfigurations = {
-      "desktop" = mkSystem { de-config = "desktop"; uses-nvidia = true; module = import ./hosts/desktop; };
-      "laptop0" = mkSystem { de-config = "laptop0"; uses-nvidia = false; module = import ./hosts/laptop0; };
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = { inherit inputs self nixpkgs-stable nixpkgs-master; uses-nvidia = true; de-config = "desktop"; };
+                  users.marwin = import ./home/default.nix;
+                };
+              }
+            ];
+          };
+
+    in
+    {
+      nixosConfigurations = {
+        "desktop" = mkSystem { de-config = "desktop"; uses-nvidia = true; module = import ./hosts/desktop; };
+        "laptop0" = mkSystem { de-config = "laptop0"; uses-nvidia = false; module = import ./hosts/laptop0; };
+      };
     };
-  };
 }
