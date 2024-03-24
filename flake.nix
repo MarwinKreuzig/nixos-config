@@ -22,6 +22,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixstable.url = "nixpkgs/nixos-23.11";
+    nixmaster.url = "nixpkgs/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,14 +37,15 @@
     ironbar.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixstable, home-manager, ... }@inputs: 
+  outputs = { self, nixpkgs, nixstable, nixmaster, home-manager, ... }@inputs: 
     let mkSystem = { de-config, uses-nvidia, module }: 
     let system =  "x86_64-linux"; 
-        nixpkgs-stable = import nixstable { inherit system; };
+        nixpkgs-stable = import nixstable { inherit system; config.allowUnfree = true; };
+        nixpkgs-master = import nixmaster { inherit system; config.allowUnfree = true; };
     in nixpkgs.lib.nixosSystem 
         {
         inherit system;
-        specialArgs = { inherit inputs nixpkgs-stable; uses-nvidia = true; de-config = "desktop"; };
+        specialArgs = { inherit inputs nixpkgs-stable nixpkgs-master; uses-nvidia = true; de-config = "desktop"; };
         modules = [
           ./hosts/common
           module
@@ -53,7 +55,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit inputs self nixpkgs-stable; uses-nvidia = true; de-config = "desktop"; };
+              extraSpecialArgs = { inherit inputs self nixpkgs-stable nixpkgs-master; uses-nvidia = true; de-config = "desktop"; };
               users.marwin = import ./home/default.nix;
             };
           }

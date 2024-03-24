@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, nixpkgs-master, ... }:
 {
   home.packages = with pkgs; [
     jetbrains.clion
-    jetbrains.rust-rover
+    nixpkgs-master.jetbrains.rust-rover
     jetbrains.idea-ultimate
     jetbrains.gateway
     jetbrains-toolbox
