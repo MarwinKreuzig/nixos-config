@@ -33,8 +33,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
-    ironbar.url = "github:JakeStanger/ironbar";
-    ironbar.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixstable, nixmaster, home-manager, ... }@inputs:

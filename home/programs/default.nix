@@ -11,6 +11,5 @@
     ./shell/shell.nix
     ./waybar/waybar.nix
     ./tofi/tofi.nix
-    ./ironbar/ironbar.nix
   ];
 }
