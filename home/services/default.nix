@@ -2,7 +2,6 @@
 {
   imports = [ ./kdeconnect.nix ];
 
-
   xdg.configFile."pipewire/pipewire.conf.d/99-rnnoise.conf" = {
     text = builtins.toJSON {
       "context.properties" = {

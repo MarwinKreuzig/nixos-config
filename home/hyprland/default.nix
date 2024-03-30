@@ -5,6 +5,7 @@
     ./nvidia.nix
     ./desktop.nix
     ./laptop0.nix
+    ./hyprlock
   ];
 
   wayland.windowManager.hyprland = {

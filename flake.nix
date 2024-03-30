@@ -46,7 +46,7 @@
         nixpkgs.lib.nixosSystem
           {
             inherit system;
-            specialArgs = { inherit inputs nixpkgs-stable nixpkgs-master; uses-nvidia = true; de-config = "desktop"; };
+            specialArgs = { inherit inputs nixpkgs-stable nixpkgs-master de-config uses-nvidia; };
             modules = [
               ./hosts/common
               module
@@ -56,7 +56,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs self nixpkgs-stable nixpkgs-master; uses-nvidia = true; de-config = "desktop"; };
+                  extraSpecialArgs = { inherit inputs self nixpkgs-stable nixpkgs-master uses-nvidia de-config; };
                   users.marwin = import ./home/default.nix;
                 };
               }
