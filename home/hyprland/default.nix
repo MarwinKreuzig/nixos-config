@@ -79,6 +79,8 @@
       "$menu" = "tofi --terminal=\"$terminal -e\"";
       "$menu-drun" = "tofi-drun --terminal=\"$terminal -e\"";
       bind = [
+        "$mod, F1, exec, ${./gamemode.sh}"
+
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 
