@@ -16,6 +16,7 @@
         layout = "master";
         border_size = 2;
         "col.active_border" = "rgb(f00040) rgb(4000f0)";
+        gaps_out = 5;
       };
       # get rid of xwayland pixelated look
       xwayland.force_zero_scaling = true;
