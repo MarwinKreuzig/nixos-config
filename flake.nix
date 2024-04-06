@@ -20,8 +20,7 @@
   };
 
   inputs = {
-    # https://nixpk.gs/pr-tracker.html?pr=300028, then back to nixos-unstable
-    nixpkgs.url = "github:NixOS/nixpkgs/staging-next";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixstable.url = "nixpkgs/nixos-23.11";
     nixmaster.url = "nixpkgs/master";
     home-manager = {
