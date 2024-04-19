@@ -1,7 +1,7 @@
 { pkgs, nixpkgs-master, ... }:
 {
   home.packages = with pkgs; [
-    jetbrains.clion
+    zed-editor
     nixpkgs-master.jetbrains.rust-rover
     jetbrains.idea-ultimate
     jetbrains.gateway

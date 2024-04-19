@@ -134,7 +134,7 @@
         "xwaylandvideobridge"
         "wl-clip-persist --clipboard both"
         "wl-paste --watch cliphist store"
-        "swww init; swww img ${./wallpaper.jpg}"
+        "swww init; swww img ${./wallpaper_dredge.jpg}"
         # This is horribly hacky, search.nixos.org doesn't even know that package, wtf is even going on
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];

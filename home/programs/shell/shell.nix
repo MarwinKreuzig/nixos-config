@@ -11,6 +11,9 @@
     '';
     shellAliases = {
       ls = "eza";
+      # TODO: make these not host specific, then they can be used
+      # upgrade-switch = "sudo -v; sudo nixos-rebuild switch --flake ~/nixos#desktop &| nom";
+      # upgrade-boot = "sudo -v; sudo nixos-rebuild boot --flake ~/nixos#desktop &| nom";
     };
   };
   programs.starship = {

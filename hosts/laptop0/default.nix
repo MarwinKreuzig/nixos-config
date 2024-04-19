@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
     ];
 
-  networking.hostName = "marwin_laptop0_nixos";
+  networking.hostName = "marwinlaptop0nixos";
 
   hardware.opentabletdriver.enable = true;
 

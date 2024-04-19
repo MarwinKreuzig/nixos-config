@@ -25,6 +25,7 @@ in
         "x-scheme-handler/unknown" = browser;
         "application/json" = browser;
         "application/pdf" = browser;
+        "inode/directory" = [ "nnn" ];
         "x-scheme-handler/discord" = [ "discord" ];
         "x-scheme-handler/jetbrains-gateway" = [ "jetbrains-gateway" ];
       };

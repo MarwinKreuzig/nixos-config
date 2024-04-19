@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, flakename, ... }:
 {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -40,9 +40,10 @@
     ];
   };
 
-
-
-  programs.noisetorch.enable = true;
+  programs.nh = {
+    enable = true;
+    flake = "/home/marwin/nixos";
+  };
 
   programs.fish.enable = true;
 
