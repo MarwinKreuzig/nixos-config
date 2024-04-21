@@ -35,17 +35,18 @@
         blur = {
           enabled = true;
           size = 10;
-          passes = 3;
+          passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
           noise = 0;
-          brightness = 0.9;
+          brightness = 2.0;
+          vibrancy = 2.0;
         };
       };
       windowrulev2 = [
         "opacity 1.0 override 0.9 override,noblur,class:^(firefox)$"
         "opacity 1.0 override 0.9 override,noblur,class:^(ff).*$"
-        "opacity 0.8 override 1.0,class:^(Alacritty)$"
+        # "opacity 0.7 override 1.0,class:^(Alacritty)$"
         "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
         "noanim,class:^(xwaylandvideobridge)$"
         "nofocus,class:^(xwaylandvideobridge)$"
