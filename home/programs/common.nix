@@ -30,6 +30,8 @@
     nix-your-shell
     nixpkgs-fmt
 
+    mkv
+    feh
     zoom-us
     bitwarden
     krita

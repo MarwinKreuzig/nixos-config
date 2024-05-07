@@ -11,6 +11,8 @@ in
     mimeApps = {
       enable = true;
       defaultApplications = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) {
+        "image/*" = [ "feh.desktop" ];
+        "video/*" = [ "mpv.desktop" ];
         "application/x-extension-htm" = browser;
         "application/x-extension-html" = browser;
         "application/x-extension-shtml" = browser;
