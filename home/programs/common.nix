@@ -30,7 +30,7 @@
     nix-your-shell
     nixpkgs-fmt
 
-    mkv
+    mpv
     feh
     zoom-us
     bitwarden
