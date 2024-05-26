@@ -1,7 +1,7 @@
 { pkgs, inputs, de-config, ... }:
 {
   imports = [
-    inputs.hyprland.homeManagerModules.default
+    # inputs.hyprland.homeManagerModules.default
     ./nvidia.nix
     ./desktop.nix
     ./laptop0.nix
@@ -140,7 +140,7 @@
         "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
     };
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
   home.shellAliases = {
