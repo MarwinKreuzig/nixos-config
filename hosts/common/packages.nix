@@ -1,7 +1,9 @@
-{ pkgs, flakename, ... }:
+{ pkgs, inputs, ... }:
 {
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  nixpkgs.overlays = [
+    inputs.nvim-nix-config.overlays.default
+  ];
+
   environment.systemPackages = with pkgs; [
     # basic stuff
     git
