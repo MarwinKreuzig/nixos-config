@@ -38,7 +38,7 @@
 
   outputs = { self, nixpkgs, nixstable, nixmaster, home-manager, ... }@inputs:
     let
-      mkSystem = { de-config, uses-nvidia, module }:
+      mkSystem = { host, uses-nvidia, module }:
         let
           system = "x86_64-linux";
           nixpkgs-stable = import nixstable { inherit system; config.allowUnfree = true; };
@@ -47,7 +47,7 @@
         nixpkgs.lib.nixosSystem
           {
             inherit system;
-            specialArgs = { inherit inputs nixpkgs-stable nixpkgs-master de-config uses-nvidia; };
+            specialArgs = { inherit inputs nixpkgs-stable nixpkgs-master host uses-nvidia; };
             modules = [
               ./hosts/common
               module
@@ -57,8 +57,8 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs self nixpkgs-stable nixpkgs-master uses-nvidia de-config; };
-                  users.marwin = import ./home/default.nix;
+                  extraSpecialArgs = { inherit inputs self nixpkgs-stable nixpkgs-master uses-nvidia host; };
+                  users.marwin = ./marwin;
                 };
               }
             ];
@@ -67,8 +67,8 @@
     in
     {
       nixosConfigurations = {
-        "marwindesktopnixos" = mkSystem { de-config = "desktop"; uses-nvidia = true; module = import ./hosts/desktop; };
-        "marwinlaptop0nixos" = mkSystem { de-config = "laptop0"; uses-nvidia = false; module = import ./hosts/laptop0; };
+        "marwindesktopnixos" = mkSystem { host = "desktop"; uses-nvidia = true; module = import ./hosts/desktop; };
+        "marwinlaptop0nixos" = mkSystem { host = "laptop0"; uses-nvidia = false; module = import ./hosts/laptop0; };
       };
     };
 }

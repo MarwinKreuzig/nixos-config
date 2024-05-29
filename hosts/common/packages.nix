@@ -29,10 +29,11 @@
     )
   ];
 
-  qt = {
-    enable = true;
-    style = "breeze";
-  };
+  # qt = {
+    # enable = true;
+    # platformTheme = "breeze";
+    # style = "breeze";
+  # };
 
   fonts = {
     enableDefaultPackages = true;
