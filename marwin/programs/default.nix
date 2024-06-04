@@ -37,6 +37,10 @@
 
     nixpkgs-fmt
 
+    # necessary for thumbnails in dolphin to work
+    kdePackages.kio-extras-kf5
+    dolphin
+
     mpv
     feh
     zoom-us

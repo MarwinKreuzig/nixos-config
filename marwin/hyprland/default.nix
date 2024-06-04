@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.home.hyprland; 
-in {
+  cfg = config.home.hyprland;
+in
+{
   imports = [
     # inputs.hyprland.homeManagerModules.default
     ./nvidia.nix

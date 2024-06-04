@@ -8,8 +8,8 @@
     };
 
     iconTheme = {
-      package = pkgs.pop-icon-theme;
-      name = "Adwaita";
+      package = pkgs.flat-remix-icon-theme;
+      name = "Flat-Remix-Red-Light";
     };
 
     font = {
@@ -20,7 +20,15 @@
 
   qt = {
     enable = true;
-    platformTheme = "gtk3";
-    style.name = "Flat-Remix-GTK-Red-Light";
+    platformTheme.name = "gtk";
+    style.name = "adwaita";
+    style.package = pkgs.adwaita-qt;
+  };
+
+  home.pointerCursor = {
+    name = "phinger-cursors-dark";
+    package = pkgs.phinger-cursors;
+    size = 32;
+    gtk.enable = true;
   };
 }

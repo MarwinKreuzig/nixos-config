@@ -30,9 +30,9 @@
   ];
 
   # qt = {
-    # enable = true;
-    # platformTheme = "breeze";
-    # style = "breeze";
+  # enable = true;
+  # platformTheme = "breeze";
+  # style = "breeze";
   # };
 
   fonts = {
