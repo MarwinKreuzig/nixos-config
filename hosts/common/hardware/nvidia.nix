@@ -4,7 +4,6 @@ if uses-nvidia then {
 
   hardware.opengl = {
     enable = true;
-    driSupport = true;
     driSupport32Bit = true;
     extraPackages = [ pkgs.libvdpau-va-gl ];
   };
