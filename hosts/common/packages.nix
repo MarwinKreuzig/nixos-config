@@ -12,6 +12,7 @@
     killall
     btop
     ripgrep
+    fd
     trashy
 
     nix-output-monitor
