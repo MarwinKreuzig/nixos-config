@@ -37,10 +37,6 @@ in
         # get rid of xwayland pixelated look
         xwayland.force_zero_scaling = true;
 
-        master = {
-          new_is_master = false;
-        };
-
         decoration = {
           rounding = 10;
           inactive_opacity = 0.6;
