@@ -54,6 +54,5 @@
     # games
     glfw-wayland-minecraft
     prismlauncher
-    mindustry-wayland
   ];
 }
