@@ -84,7 +84,7 @@ in
             tap_button_map = "lmr";
           };
 
-          sensitivity = -0.939;
+          sensitivity = -0.88; # -0.939 for 3600 dpi
           accel_profile = "flat";
         };
 
