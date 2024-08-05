@@ -2,11 +2,7 @@
 if uses-nvidia then {
   boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-    extraPackages = [ pkgs.libvdpau-va-gl ];
-  };
+  hardware.graphics.extraPackages = [ pkgs.libvdpau-va-gl ];
   environment.variables.VDPAU_DRIVER = "va_gl";
   environment.variables.LIBVA_DRIVER_NAME = "nvidia";
 
