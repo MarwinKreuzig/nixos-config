@@ -1,9 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, options, ... }:
 {
   programs.nix-ld = {
     enable = true;
-    libraries = with pkgs; [
+    libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [
       # dynamic libraries for nix-ld
-    ];
+      libGL
+    ]);
   };
 }
