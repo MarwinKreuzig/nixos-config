@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./mcsr
     ./git.nix
     ./alacritty.nix
     ./ide.nix
