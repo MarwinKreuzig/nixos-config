@@ -1,4 +1,11 @@
 { pkgs, ... }: {
+  # workaround for https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/2669 and https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/4115
+  xdg.configFile."wireplumber/wireplumber.conf.d/10-disable-camera.conf" = {
+    text = ''
+      wireplumber.profiles = { main = { monitor.libcamera = disabled } }
+    '';
+  };
+
   xdg.configFile."pipewire/pipewire.conf.d/99-rnnoise.conf" = {
     text = builtins.toJSON {
       "context.properties" = {
