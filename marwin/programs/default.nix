@@ -24,10 +24,11 @@
     # clipboard
     cliphist
     wl-clipboard
-    pavucontrol
     # system management guis
     networkmanagerapplet
     pavucontrol
+    # screen keyboard
+    onboard
     # system management clis
     brightnessctl
     # file manager
