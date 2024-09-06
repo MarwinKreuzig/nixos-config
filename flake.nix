@@ -21,6 +21,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs_hyprland.url = "github:NixOS/nixpkgs/0e5c272e42d223ff7a82ace92a11b17fd92aace9";
     nixstable.url = "nixpkgs/nixos-23.11";
     nixmaster.url = "nixpkgs/master";
     home-manager = {
@@ -36,12 +37,13 @@
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
   };
 
-  outputs = { self, nixpkgs, nixstable, nixmaster, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs_hyprland, nixstable, nixmaster, home-manager, ... }@inputs:
     let
       mkSystem = { host, uses-nvidia, module }:
         let
           system = "x86_64-linux";
           nixpkgs-stable = import nixstable { inherit system; config.allowUnfree = true; };
+          pkgs-hyprland = import nixpkgs_hyprland { inherit system; config.allowUnfree = true; };
           nixpkgs-master = import nixmaster { inherit system; config.allowUnfree = true; };
         in
         nixpkgs.lib.nixosSystem
@@ -57,7 +59,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs self nixpkgs-stable nixpkgs-master uses-nvidia host; };
+                  extraSpecialArgs = { inherit inputs self pkgs-hyprland nixpkgs-stable nixpkgs-master uses-nvidia host; };
                   users.marwin = ./marwin;
                 };
               }
