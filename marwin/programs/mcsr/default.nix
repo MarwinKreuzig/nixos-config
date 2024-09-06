@@ -3,8 +3,11 @@
   # This is probably a terrible idea, but I'm bored.
   # Setup for Minecraft Speedrunning on NixOS
   home.packages = with pkgs; [
+    jre8
     # record your speedruns
     obs-studio
+    # modcheck
+    (callPackage ./modcheck/default.nix {})
     # wall resetting macro
     (callPackage buildGoModule rec {
       pname = "resetti";

@@ -3,8 +3,8 @@
   config = lib.mkIf (config.home.hyprland.enable && config.home.hyprland.setup == "desktop") {
     wayland.windowManager.hyprland.settings = {
       monitor = [
-        "DP-1,1920x1080@144,1920x0,1"
-        "HDMI-A-1,1920x1080@74.97300,0x0,1"
+        "DP-1,1920x1080@144,0x0,1"
+        "HDMI-A-1,1920x1080@74.97300,-1920x0,1"
       ];
       workspace = [
         "name:secondary,monitor:HDMI-A-1"

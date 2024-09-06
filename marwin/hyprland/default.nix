@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, pkgs-hyprland, ... }:
 let
   cfg = config.home.hyprland;
 in
@@ -26,6 +26,7 @@ in
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       enable = true;
+      package = pkgs-hyprland.hyprland;
       xwayland.enable = true;
       settings = {
         general = {
@@ -36,6 +37,7 @@ in
         };
         # get rid of xwayland pixelated look
         xwayland.force_zero_scaling = true;
+        # render.explicit_sync = true;
 
         decoration = {
           rounding = 10;
@@ -63,6 +65,7 @@ in
           "noanim,class:^(xwaylandvideobridge)$"
           "nofocus,class:^(xwaylandvideobridge)$"
           "noinitialfocus,class:^(xwaylandvideobridge)$"
+          "float,title:^(Windowed Projector).*$,class:^(com\\.obsproject\\.Studio)$"
         ];
 
         misc = {
@@ -128,12 +131,14 @@ in
           "$mod, Q, killactive"
           "$mod, S, togglefloating, active"
           "$mod, F, fullscreen"
-          "$mod_SHIFT, F, fakefullscreen"
+          "$mod_SHIFT, F, fullscreen" # should be fakefullscreen but hyprland is broken
           "$mod, T, exec, $terminal"
           "$mod_CONTROL_SHIFT, Q, exit"
 
           "$mod, Space, exec, $menu-drun | xargs hyprctl dispatch exec --"
           "$mod, V, exec, cliphist list | $menu | cliphist decode | wl-copy"
+
+          "$mod, F8, submap, mcsr"
         ];
         bindm = [
           "$mod, mouse:272, movewindow"
@@ -151,6 +156,15 @@ in
           "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
         ];
       };
+      extraConfig = ''
+        submap = mcsr
+
+        bind = , code:49, exec, sh ${./eyes.sh}
+        bindr = ALT, Alt_L, exec, sh ${./mapless.sh}
+
+        bind = $mod, ESCAPE, submap, reset
+        submap = reset
+      '';
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
