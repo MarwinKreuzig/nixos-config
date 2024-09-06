@@ -50,11 +50,12 @@
     krita
     discord-screenaudio
     webcord
+    signal-desktop
     alsa-oss
     (firefox.override { nativeMessagingHosts = [ inputs.pipewire-screenaudio.packages.${pkgs.system}.default ]; })
 
     # games
-    glfw-wayland-minecraft
+    # glfw-wayland-minecraft
     prismlauncher
   ];
 }

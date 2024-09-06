@@ -68,6 +68,8 @@
   programs.steam.gamescopeSession.enable = true;
   programs.steam.extraCompatPackages = [ pkgs.proton-ge-bin ];
 
+  programs.gamemode.enable = true;
+
   # GTK configuration
   programs.dconf.enable = true;
 
