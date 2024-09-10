@@ -97,11 +97,11 @@
     },
     "nixmaster": {
       "locked": {
-        "lastModified": 1725970396,
-        "narHash": "sha256-yAl4hvfRF/qvPEoDNeufxp4llMY7/fWpZadTvDIZagc=",
+        "lastModified": 1725973111,
+        "narHash": "sha256-/t1ixTn/TaNQcyvesoGy0KRkf686wYaOrxeRRKJnAqM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "61be0d8e27c71537bb543ee8ffb15863f7afae40",
+        "rev": "227e0b3b0c9a1118540f58da93f020780815786f",
         "type": "github"
       },
       "original": {
@@ -192,22 +192,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_hyprland": {
-      "locked": {
-        "lastModified": 1720829923,
-        "narHash": "sha256-i6GbEOttAHcLB5wFphvkIwcEy5smYkI2qLUL0hG7+Oc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "0e5c272e42d223ff7a82ace92a11b17fd92aace9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "0e5c272e42d223ff7a82ace92a11b17fd92aace9",
-        "type": "github"
-      }
-    },
     "nixstable": {
       "locked": {
         "lastModified": 1720535198,
@@ -267,7 +251,6 @@
         "hyprland-contrib": "hyprland-contrib",
         "nixmaster": "nixmaster",
         "nixpkgs": "nixpkgs",
-        "nixpkgs_hyprland": "nixpkgs_hyprland",
         "nixstable": "nixstable",
         "nvim-nix-config": "nvim-nix-config",
         "pipewire-screenaudio": "pipewire-screenaudio"

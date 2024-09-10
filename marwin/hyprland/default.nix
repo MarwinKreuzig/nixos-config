@@ -1,4 +1,4 @@
-{ config, pkgs, lib, pkgs-hyprland, ... }:
+{ config, pkgs, lib, ... }:
 let
   cfg = config.home.hyprland;
 in
@@ -26,7 +26,6 @@ in
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       enable = true;
-      package = pkgs-hyprland.hyprland;
       xwayland.enable = true;
       settings = {
         general = {
