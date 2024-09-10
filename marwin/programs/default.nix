@@ -53,6 +53,7 @@
     signal-desktop
     alsa-oss
     (firefox.override { nativeMessagingHosts = [ inputs.pipewire-screenaudio.packages.${pkgs.system}.default ]; })
+    obsidian
 
     # games
     # glfw-wayland-minecraft
