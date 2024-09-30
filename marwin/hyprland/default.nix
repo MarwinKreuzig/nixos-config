@@ -4,7 +4,6 @@ let
 in
 {
   imports = [
-    # inputs.hyprland.homeManagerModules.default
     ./nvidia.nix
     ./desktop.nix
     ./laptop0.nix
@@ -36,7 +35,9 @@ in
         };
         # get rid of xwayland pixelated look
         xwayland.force_zero_scaling = true;
-        # render.explicit_sync = true;
+        # hyprlands explicit sync is bugged
+        render.explicit_sync = true;
+        monitor = [ ", preferred, auto, 1" ];
 
         decoration = {
           rounding = 10;
@@ -64,6 +65,8 @@ in
           "noanim,class:^(xwaylandvideobridge)$"
           "nofocus,class:^(xwaylandvideobridge)$"
           "noinitialfocus,class:^(xwaylandvideobridge)$"
+          "maxsize 1 1, class:^(xwaylandvideobridge)$"
+          "noblur, class:^(xwaylandvideobridge)$"
           "float,title:^(Windowed Projector).*$,class:^(com\\.obsproject\\.Studio)$"
         ];
 
@@ -153,6 +156,9 @@ in
           "wl-paste --watch cliphist store"
           "swww init; swww img ${./wallpaper_dredge.jpg}"
           "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+
+          "[workspace 1] firefox"
+          "[workspace special silent] webcord"
         ];
       };
       extraConfig = ''
@@ -164,7 +170,6 @@ in
         bind = $mod, ESCAPE, submap, reset
         submap = reset
       '';
-      # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
     home.shellAliases = {
