@@ -5,7 +5,7 @@
     settings.mainbar =
       {
         modules-center = [ "clock" ];
-        modules-left = [ "custom/media" "hyprland/workspaces" ];
+        modules-left = [ "custom/media" "niri/workspaces" ];
         modules-right = [ "pulseaudio" "network" "tray" "battery" ];
         layer = "top";
         position = "top";

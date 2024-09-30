@@ -10,6 +10,7 @@
     ./xdg.nix
     ./programs
     ./hyprland
+    ./niri
     ./services
     ./theme
   ];
@@ -17,6 +18,12 @@
   home.hyprland.enable = true;
   home.hyprland.setup = host;
   home.hyprland.nvidia = uses-nvidia;
+
+  home.niri = {
+    enable = true;
+    setup = host;
+    nvidia = uses-nvidia;
+  };
 
   # make home-manager manage fonts
   fonts.fontconfig.enable = true;
