@@ -112,7 +112,7 @@ in
 
             // Focus windows and outputs automatically when moving the mouse into them.
             // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-            focus-follows-mouse max-scroll-amount="100%"
+            focus-follows-mouse max-scroll-amount="99%"
 
             workspace-auto-back-and-forth
         }
@@ -318,8 +318,8 @@ in
 
             // Example volume keys mappings for PipeWire & WirePlumber.
             // The allow-when-locked=true property makes them work even when the session is locked.
-            XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-            XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+            XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+            XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
             XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
             XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
             XF86MonBrightnessUp   { spawn "brightnessctl" "set" "5%+"; }
