@@ -307,6 +307,8 @@ in
             //
             // Most actions that you can bind here can also be invoked programmatically with
             // `niri msg action do-something`.
+            Mod+Tab { spawn "sh" "-c" "${./mapless.sh}"; };
+            Mod+F1 { spawn "sh" "-c" "${./eyes.sh}"; };
 
             Mod+T { spawn "alacritty"; }
             Mod+Space { spawn "fuzzel"; }
