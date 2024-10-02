@@ -15,7 +15,7 @@
     ./theme
   ];
 
-  home.hyprland.enable = true;
+  home.hyprland.enable = false;
   home.hyprland.setup = host;
   home.hyprland.nvidia = uses-nvidia;
 
