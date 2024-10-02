@@ -109,7 +109,7 @@
           tooltip-format = "{ifname} via {gwaddr} ";
         };
         pulseaudio = {
-          format = "{volume}% {icon} {format_source}";
+          format = "{volume}% {icon}  {format_source}";
           format-bluetooth = "{volume}% {icon} {format_source}";
           format-bluetooth-muted = " {icon} {format_source}";
           format-icons = {
