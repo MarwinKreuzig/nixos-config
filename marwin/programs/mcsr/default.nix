@@ -29,14 +29,14 @@
     (
       callPackage maven.buildMavenPackage rec {
         pname = "ninjabrainbot";
-        version = "1.4.3";
+        version = "1.5.1";
         src = pkgs.fetchFromGitHub {
           owner = "Ninjabrain1";
           repo = "Ninjabrain-Bot";
           rev = version;
-          hash = "sha256-d2vfAPUMXwqwSLL76WwWd//JxUKmBGW2b+BHrpCREig=";
+          hash = "sha256-r8TpL3VLf2QHwFS+DdjxgxyuZu167fP6/lN7a8e9opM=";
         };
-        mvnHash = "sha256-GFMBUvJSvcfC8OwpjJ0Ee9Z/IrvObcWl6RJqs2NcKhQ=";
+        mvnHash = "sha256-zAVPH5a7ut21Ipz5BUY6cnRLT52bM8Yo2r8ClFon1p0=";
 
         desktopItems = [
           (makeDesktopItem {
