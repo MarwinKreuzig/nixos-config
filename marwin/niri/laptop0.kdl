@@ -1,0 +1,7 @@
+output "eDP-1" {
+  mode "1920x1080"
+  scale 1.25
+  position x=0 y=0
+}
+
+spawn-at-startup "nm-applet"

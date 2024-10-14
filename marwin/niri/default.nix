@@ -408,6 +408,7 @@ in
         }
       ''
       (lib.mkIf (cfg.setup == "desktop") (builtins.readFile ./desktop.kdl))
+      (lib.mkIf (cfg.setup == "laptop0") (builtins.readFile ./laptop0.kdl))
     ]
     ;
 
