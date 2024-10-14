@@ -59,6 +59,7 @@
                   useUserPackages = true;
                   extraSpecialArgs = { inherit inputs self nixpkgs-stable nixpkgs-master uses-nvidia host; };
                   users.marwin = ./marwin;
+                  backupFileExtension = ".hm-auto-backup";
                 };
               }
             ];
