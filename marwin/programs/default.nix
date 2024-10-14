@@ -19,8 +19,6 @@
     udiskie
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
     font-awesome
-    # screenshots
-    inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     # clipboard
     cliphist
     wl-clipboard

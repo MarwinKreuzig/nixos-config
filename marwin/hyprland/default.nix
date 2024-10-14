@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   cfg = config.home.hyprland;
 in
@@ -171,6 +171,9 @@ in
         submap = reset
       '';
     };
+    home.packages = [
+      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+    ];
 
     home.shellAliases = {
       hyprland = "Hyprland";
