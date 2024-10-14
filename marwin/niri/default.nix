@@ -72,8 +72,8 @@ in
         input {
             keyboard {
                 xkb {
-                  layout "us"
-                  variant "dvp"
+                  layout "us,de"
+                  variant "dvp,"
                   options "lv3:ralt_switch,caps:escape"
                     // You can set rules, model, layout, variant and options.
                     // For more information, see xkeyboard-config(7).
@@ -112,7 +112,7 @@ in
 
             // Focus windows and outputs automatically when moving the mouse into them.
             // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-            focus-follows-mouse max-scroll-amount="99%"
+            focus-follows-mouse max-scroll-amount="90%"
 
             workspace-auto-back-and-forth
         }
