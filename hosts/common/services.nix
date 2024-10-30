@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   services.pipewire = {
     enable = true;
@@ -21,6 +21,14 @@
 
   # auto mount USB drives
   services.udisks2.enable = true;
+
+  services.greetd = {
+    enable = true;
+    settings.default_session = { 
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --user-menu --power-shutdown 'systemctl poweroff' --power-reboot 'systemctl reboot' --cmd \"dbus-run-session niri --session\"";
+      user = "marwin";
+    };
+  };
 
   services.kmscon = {
     enable = false;
