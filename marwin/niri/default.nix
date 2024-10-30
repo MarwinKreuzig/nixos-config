@@ -112,7 +112,7 @@ in
 
             // Focus windows and outputs automatically when moving the mouse into them.
             // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-            focus-follows-mouse max-scroll-amount="90%"
+            focus-follows-mouse max-scroll-amount="1%"
 
             workspace-auto-back-and-forth
         }
@@ -232,11 +232,12 @@ in
         spawn-at-startup "udiskie"
         spawn-at-startup "waybar"
         spawn-at-startup "xwaylandvideobridge"
-        spawn-at-startup "wl-clip-persist" "--clipboard" "both"
+        spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
         spawn-at-startup "sh" "-c" "swww init; swww img ${../../assets/wallpaper_dredge.jpg}"
         spawn-at-startup "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
         spawn-at-startup "webcord"
+        spawn-at-startup "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"
 
         // Uncomment this line to ask the clients to omit their client-side decorations if possible.
         // If the client will specifically ask for CSD, the request will be honored.
