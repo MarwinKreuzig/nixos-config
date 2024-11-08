@@ -18,7 +18,7 @@ in
       default = false;
     };
     extraConfig = lib.mkOption {
-      default = {};
+      default = { };
     };
   };
 

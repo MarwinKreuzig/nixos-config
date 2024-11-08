@@ -3,6 +3,7 @@
 {
   imports = [
     ./mcsr
+    ./wlogout.nix
     ./git.nix
     ./alacritty.nix
     ./ide.nix

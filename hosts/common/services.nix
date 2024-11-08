@@ -24,7 +24,7 @@
 
   services.greetd = {
     enable = true;
-    settings.default_session = { 
+    settings.default_session = {
       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --user-menu --power-shutdown 'systemctl poweroff' --power-reboot 'systemctl reboot' --cmd \"dbus-run-session niri --session\"";
       user = "marwin";
     };

@@ -7,7 +7,7 @@
     # record your speedruns
     obs-studio
     # modcheck
-    (callPackage ./modcheck/default.nix {})
+    (callPackage ./modcheck/default.nix { })
     # wall resetting macro
     (callPackage buildGoModule rec {
       pname = "resetti";
