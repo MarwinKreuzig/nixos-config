@@ -28,7 +28,9 @@ in
       xwayland-satellite
       fuzzel
     ];
+
     services.gnome-keyring.enable = true;
+
     xdg.configFile."niri/config.kdl.test".text =
       let
         config = {
@@ -231,13 +233,14 @@ in
         spawn-at-startup "swaync"
         spawn-at-startup "udiskie"
         spawn-at-startup "waybar"
-        spawn-at-startup "xwaylandvideobridge"
+        // spawn-at-startup "xwaylandvideobridge"
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
         spawn-at-startup "sh" "-c" "swww init; swww img ${../../assets/wallpaper_dredge.jpg}"
         spawn-at-startup "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
         spawn-at-startup "webcord"
-        spawn-at-startup "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"
+        spawn-at-startup "uwsm" "finalize"
+        // spawn-at-startup "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"
 
         // Uncomment this line to ask the clients to omit their client-side decorations if possible.
         // If the client will specifically ask for CSD, the request will be honored.

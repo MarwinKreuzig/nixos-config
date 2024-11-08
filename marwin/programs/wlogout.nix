@@ -31,16 +31,17 @@
   };
   home.packages =
     let
-      scriptName = "logout";
+      logoutScriptName = "logout";
       wlogoutScript =
-        (pkgs.writeScriptBin scriptName "wlogout -b 2");
+        (pkgs.writeScriptBin logoutScriptName "wlogout -b 2");
     in
     [
+      pkgs.swaylock-effects
       wlogoutScript
       (pkgs.makeDesktopItem {
         name = "wlogout";
         desktopName = "wlogout";
-        exec = "${wlogoutScript}/bin/${scriptName}";
+        exec = "${wlogoutScript}/bin/${logoutScriptName}";
         terminal = true;
       })
     ];

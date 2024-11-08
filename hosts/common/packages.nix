@@ -45,6 +45,17 @@
     ];
   };
 
+  programs.uwsm = {
+    enable = true;
+    waylandCompositors = {
+      niri = {
+        prettyName = "Niri";
+        comment = "Niri compositor managed by UWSM";
+        binPath = "/run/current-system/sw/bin/niri-session";
+      };
+    };
+  };
+
   programs.nh = {
     enable = true;
     flake = "/home/marwin/nixos";
@@ -64,9 +75,11 @@
     openFirewall = true;
   };
 
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-  programs.steam.extraCompatPackages = [ pkgs.proton-ge-bin ];
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+  };
 
   programs.gamemode.enable = true;
 
