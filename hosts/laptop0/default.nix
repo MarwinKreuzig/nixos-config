@@ -12,11 +12,6 @@
 
   networking.hostName = "marwinlaptop0nixos";
 
-  hardware.opentabletdriver = {
-    enable = true;
-    daemon.enable = true;
-  };
-
   services.logind.extraConfig = ''
     # hibernate instead of shutting down
     HandlePowerKey=hibernate
