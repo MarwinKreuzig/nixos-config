@@ -8,23 +8,6 @@
     obs-studio
     # modcheck
     (callPackage ./modcheck/default.nix { })
-    # wall resetting macro
-    (callPackage buildGoModule rec {
-      pname = "resetti";
-      version = "0.6.0";
-      src = fetchFromGitHub {
-        owner = "tesselslate";
-        repo = "resetti";
-        rev = "v${version}";
-        hash = "sha256-wST5vGEhQvO2YBYydYKPb22qotS2NWlgySE1Z9Dx2TU=";
-      };
-      vendorHash = "sha256-syCGAlmiXXrubmPdipi3pJP1mXgpPFVr8N7Tgu16d+E=";
-      meta = {
-        description = "resetti is a Linux-compatible reset macro for Minecraft speedruns. It supports a variety of different resetting styles, categories, and Minecraft versions.";
-        homepage = "https://github.com/tesselslate/resetti";
-        license = lib.licenses.gpl3Only;
-      };
-    })
     # ninjabrain bot
     (
       callPackage maven.buildMavenPackage rec {
