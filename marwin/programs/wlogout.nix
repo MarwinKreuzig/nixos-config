@@ -52,5 +52,6 @@
       (makeScript { name = "suspend"; desktopName = "Suspend"; content = "systemctl suspend"; })
       (makeScript { name = "poweroff"; desktopName = "Poweroff"; content = "systemctl poweroff"; })
       (makeScript { name = "reboot"; desktopName = "Reboot"; content = "systemctl reboot"; })
+      (makeScript { name = "hibernate"; desktopName = "Hibernate"; content = "systemctl hibernate"; })
     ];
 }
