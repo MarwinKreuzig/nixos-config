@@ -34,6 +34,11 @@
       logoutScriptName = "logout";
       wlogoutScript =
         (pkgs.writeScriptBin logoutScriptName "wlogout -b 2");
+      makeScript = { name, desktopName, content }: (pkgs.makeDesktopItem {
+        inherit name desktopName;
+        exec = "${pkgs.writeScriptBin name content}/bin/${name}";
+        terminal = true;
+      });
     in
     [
       pkgs.swaylock-effects
@@ -44,5 +49,8 @@
         exec = "${wlogoutScript}/bin/${logoutScriptName}";
         terminal = true;
       })
+      (makeScript { name = "suspend"; desktopName = "Suspend"; content = "systemctl suspend"; })
+      (makeScript { name = "poweroff"; desktopName = "Poweroff"; content = "systemctl poweroff"; })
+      (makeScript { name = "reboot"; desktopName = "Reboot"; content = "systemctl reboot"; })
     ];
 }
