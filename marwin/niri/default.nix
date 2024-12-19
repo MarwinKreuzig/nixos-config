@@ -238,7 +238,7 @@ in
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
         spawn-at-startup "sh" "-c" "swww init; swww img ${../../assets/wallpaper_dredge.jpg}"
         spawn-at-startup "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
-        spawn-at-startup "webcord"
+        spawn-at-startup "vesktop"
         spawn-at-startup "uwsm" "finalize"
         // spawn-at-startup "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"
 

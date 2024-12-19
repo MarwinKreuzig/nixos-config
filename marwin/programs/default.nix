@@ -18,7 +18,7 @@
     swww
     xwaylandvideobridge
     udiskie
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    nerd-fonts.fira-code
     font-awesome
     # clipboard
     cliphist
@@ -48,7 +48,7 @@
     bitwarden
     krita
     discord-screenaudio
-    webcord
+    vesktop
     signal-desktop
     alsa-oss
     (firefox.override { nativeMessagingHosts = [ inputs.pipewire-screenaudio.packages.${pkgs.system}.default ]; })
