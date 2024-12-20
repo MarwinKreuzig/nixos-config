@@ -13,7 +13,8 @@
       };
       niri = {
         default = [
-          "gnome" "gtk"
+          "gnome"
+          "gtk"
         ];
         "org.freedesktop.impl.portal.Access" = [ "gtk" ];
         "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
