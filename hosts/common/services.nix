@@ -8,6 +8,14 @@
     jack.enable = true;
   };
 
+  # printing
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   services.dbus.enable = true;
 
   # Configure keymap in X11
