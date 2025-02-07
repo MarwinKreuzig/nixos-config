@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./firefox.nix
     ./mcsr
     ./wlogout.nix
     ./git.nix
@@ -49,13 +50,20 @@
     krita
     discord-screenaudio
     vesktop
+    discord-canary
     signal-desktop
     alsa-oss
-    (firefox.override { nativeMessagingHosts = [ inputs.pipewire-screenaudio.packages.${pkgs.system}.default ]; })
     obsidian
 
     # games
     # glfw-wayland-minecraft
     prismlauncher
   ];
+
+  programs.thunderbird = {
+    enable = true;
+    profiles."Marwin Kreuzig" = {
+      isDefault = true;
+    };
+  };
 }
