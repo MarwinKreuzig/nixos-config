@@ -237,7 +237,7 @@ in
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
         spawn-at-startup "sh" "-c" "swww init; swww img ${../../assets/wallpaper_dredge.jpg}"
-        spawn-at-startup "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+        spawn-at-startup "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
         spawn-at-startup "${config.home.settings.discord}"
         spawn-at-startup "uwsm" "finalize"
         // spawn-at-startup "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"

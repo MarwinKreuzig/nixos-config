@@ -155,7 +155,7 @@ in
           "wl-clip-persist --clipboard both"
           "wl-paste --watch cliphist store"
           "swww init; swww img ${./wallpaper_dredge.jpg}"
-          "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+          "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
 
           "[workspace 1] firefox"
           "[workspace special silent] webcord"

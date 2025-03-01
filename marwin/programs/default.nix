@@ -17,7 +17,7 @@
   home.packages = with pkgs; [
     swaynotificationcenter
     swww
-    xwaylandvideobridge
+    kdePackages.xwaylandvideobridge
     udiskie
     nerd-fonts.fira-code
     font-awesome
@@ -41,7 +41,7 @@
 
     # necessary for thumbnails in dolphin to work
     kdePackages.kio-extras-kf5
-    dolphin
+    kdePackages.dolphin
 
     mpv
     feh
