@@ -239,6 +239,7 @@ in
         spawn-at-startup "sh" "-c" "swww init; swww img ${../../assets/wallpaper_dredge.jpg}"
         spawn-at-startup "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
         spawn-at-startup "${config.home.settings.discord}"
+        spawn-at-startup "signal-desktop"
         spawn-at-startup "uwsm" "finalize"
         // spawn-at-startup "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"
 
