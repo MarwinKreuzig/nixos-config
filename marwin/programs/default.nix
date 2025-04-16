@@ -21,6 +21,8 @@
     udiskie
     nerd-fonts.fira-code
     font-awesome
+    liberation-sans-narrow
+
     # clipboard
     cliphist
     wl-clipboard
@@ -54,6 +56,7 @@
     signal-desktop
     alsa-oss
     obsidian
+    libreoffice
 
     # games
     # glfw-wayland-minecraft
