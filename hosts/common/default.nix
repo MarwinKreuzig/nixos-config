@@ -8,7 +8,10 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    optimise.automatic = true;
+    optimise = {
+      automatic = true;
+      dates = ["weekly"];
+    };
     settings.trusted-users = [ "marwin" ];
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
