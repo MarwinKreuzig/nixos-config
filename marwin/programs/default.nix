@@ -53,7 +53,7 @@
     discord-screenaudio
     vesktop
     discord-canary
-    signal-desktop
+    signal-desktop-bin
     alsa-oss
     obsidian
     libreoffice
@@ -61,6 +61,7 @@
     # games
     # glfw-wayland-minecraft
     prismlauncher
+    lutris
   ];
 
   programs.thunderbird = {
