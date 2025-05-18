@@ -10,7 +10,7 @@
     };
     optimise = {
       automatic = true;
-      dates = ["weekly"];
+      dates = [ "weekly" ];
     };
     settings.trusted-users = [ "marwin" ];
     settings.experimental-features = [ "nix-command" "flakes" ];

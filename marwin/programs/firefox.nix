@@ -1,9 +1,11 @@
 { pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
-    (firefox.override { nativeMessagingHosts = [ 
-      inputs.pipewire-screenaudio.packages.${pkgs.system}.default
-    ]; })
+    (firefox.override {
+      nativeMessagingHosts = [
+        inputs.pipewire-screenaudio.packages.${pkgs.system}.default
+      ];
+    })
     (pkgs.makeDesktopItem {
       name = "firefox-p";
       desktopName = "Firefox Profile";
