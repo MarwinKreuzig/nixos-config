@@ -270,6 +270,9 @@ in
             window-movement {
               off
             }
+            window-resize {
+              // off
+            }
         }
 
         // Window rules let you adjust behavior for individual windows.
@@ -317,8 +320,9 @@ in
             //
             // Most actions that you can bind here can also be invoked programmatically with
             // `niri msg action do-something`.
-            Mod+Tab { spawn "sh" "-c" "${./mapless.sh}"; };
-            Mod+F1 { spawn "sh" "-c" "${./eyes.sh}"; };
+            Ctrl+MouseBack { spawn "sh" "-c" "${./mapless.sh}"; };
+            Mod+MouseBack { spawn "sh" "-c" "${./eyes.sh}"; };
+            Alt+MouseBack { fullscreen-window; }
 
             Mod+T { spawn "alacritty"; }
             Mod+Space { spawn "fuzzel"; }
