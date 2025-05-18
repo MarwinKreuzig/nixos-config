@@ -41,9 +41,8 @@
 
     nixpkgs-fmt
 
-    # necessary for thumbnails in dolphin to work
-    kdePackages.kio-extras-kf5
-    kdePackages.dolphin
+    # file manager
+    nemo
 
     mpv
     feh

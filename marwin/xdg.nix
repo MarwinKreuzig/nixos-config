@@ -46,7 +46,7 @@ let
     "application/json" = browser;
     "application/pdf" = browser;
 
-    "inode/directory" = [ "org.kde.dolphin" ];
+    "inode/directory" = [ "nemo" ];
 
     "x-scheme-handler/discord" = [ "discord" ];
     "x-scheme-handler/jetbrains-gateway" = [ "jetbrains-gateway" ];
