@@ -10,7 +10,6 @@
   imports = [
     ./xdg.nix
     ./programs
-    ./hyprland
     ./niri
     ./services
     ./theme
@@ -21,10 +20,6 @@
 
     xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
 
-    home.hyprland.enable = false;
-    home.hyprland.setup = host;
-    home.hyprland.nvidia = uses-nvidia;
-
     home.niri = {
       enable = true;
       setup = host;
@@ -32,7 +27,7 @@
     };
 
     home.settings.discord = "discord-canary";
-    
+
     # make home-manager manage fonts
     fonts.fontconfig.enable = true;
 
