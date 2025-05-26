@@ -8,6 +8,8 @@
     obs-studio
     # modcheck
     (callPackage ./modcheck/default.nix { })
+    # size change macro
+    waywall
     # ninjabrain bot
     (
       callPackage maven.buildMavenPackage rec {

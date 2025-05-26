@@ -30,14 +30,7 @@
   # auto mount USB drives
   services.udisks2.enable = true;
 
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --user-menu --power-shutdown 'systemctl poweroff' --power-reboot 'systemctl reboot' --cmd \"uwsm start -S -F niri-uwsm.desktop\"";
-      user = "marwin";
-    };
-  };
-
   # Enable the OpenSSH daemon.
+
   # services.openssh.enable = true;
 }

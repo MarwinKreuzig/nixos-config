@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 {
-  imports = [ ./hardware ./boot.nix ./networking.nix ./services.nix ./packages.nix ./security.nix ./xdg.nix ./nix-ld.nix ];
+  imports = [ ./hardware ./boot.nix ./networking.nix ./services.nix ./packages.nix ./security.nix ./xdg.nix ./nix-ld.nix ./session.nix ];
 
   nix = {
     gc = {
@@ -45,7 +45,7 @@
     isNormalUser = true;
     description = "Marwin Kreuzig";
     extraGroups = [ "networkmanager" "wheel" "tty" "audio" "video" ];
-    packages = with pkgs; [ ];
+    packages = [ ];
     shell = pkgs.fish;
   };
 

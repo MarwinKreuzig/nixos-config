@@ -25,9 +25,28 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       niri
-      xwayland-satellite
       fuzzel
     ];
+
+    systemd.user.services."xwayland-satellite" = {
+      Unit = {
+        Description = "Xwayland outside your Wayland";
+        Restart = "on-failure";
+        BindsTo = "graphical-session.target";
+        PartOf = "graphical-session.target";
+        After = "graphical-session.target";
+        Requisite = "graphical-session.target";
+      };
+      Service = {
+        Type = "notify";
+        NotifyAccess = "all";
+        ExecStart = lib.getExe pkgs.xwayland-satellite;
+        StandardOutput = "journal";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
 
     services.gnome-keyring.enable = true;
 
@@ -73,6 +92,8 @@ in
         // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
         input {
             keyboard {
+                // numlock
+
                 xkb {
                   layout "us,de"
                   variant "dvp,"
@@ -229,7 +250,6 @@ in
         // Note that running niri as a session supports xdg-desktop-autostart,
         // which may be more convenient to use.
         // See the binds section below for more spawn examples.
-        spawn-at-startup "xwayland-satellite"
         spawn-at-startup "swaync"
         spawn-at-startup "udiskie"
         spawn-at-startup "waybar"
@@ -413,10 +433,11 @@ in
         environment {
           MOZ_ENABLE_WAYLAND "1"
           QT_QPA_PLATFORM "wayland;xcb"
-          GDK_BACKEND "wayland,x11"
+          // GDK_BACKEND "wayland,x11"
           SDL_VIDEODRIVER "wayland"
           CLUTTER_BACKEND "wayland"
           NIXOS_OZONE_WL "1"
+          ELECTRON_OZONE_PLATFORM_HINT "wayland"
           QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
           DISPLAY ":0"
         }
@@ -429,11 +450,12 @@ in
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       QT_QPA_PLATFORM = "wayland;xcb";
-      GDK_BACKEND = "wayland,x11";
+      # GDK_BACKEND = "wayland,x11";
       SDL_VIDEODRIVER = "wayland";
       CLUTTER_BACKEND = "wayland";
       NIXOS_OZONE_WL = 1;
       QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
+      ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
   };
 }

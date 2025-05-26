@@ -18,12 +18,6 @@
     nix-output-monitor
   ];
 
-  # qt = {
-  # enable = true;
-  # platformTheme = "breeze";
-  # style = "breeze";
-  # };
-
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -31,17 +25,6 @@
       nerd-fonts.fira-code
       ubuntu_font_family
     ];
-  };
-
-  programs.uwsm = {
-    enable = true;
-    waylandCompositors = {
-      niri = {
-        prettyName = "Niri";
-        comment = "Niri compositor managed by UWSM";
-        binPath = "/run/current-system/sw/bin/niri-session";
-      };
-    };
   };
 
   programs.nh = {

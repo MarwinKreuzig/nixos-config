@@ -18,27 +18,30 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixmaster.url = "nixpkgs/master";
+    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      # use the line with the branch when you are getting an error because of a version mismatch
+      # url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/d31710fb2cd536b1966fee2af74e99a0816a61a8";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvim-nix-config.url = "github:MarwinKreuzig/nvim-nix-config";
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
   };
 
-  outputs = { self, nixpkgs, nixmaster, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       mkSystem = { host, uses-nvidia, module }:
         let
           system = "x86_64-linux";
-          nixpkgs-master = import nixmaster { inherit system; config.allowUnfree = true; };
+          # pkgs-master = import nixpkgs-master { inherit system; config.allowUnfree = true; };
+          specialArgs = { inherit inputs host uses-nvidia; };
         in
         nixpkgs.lib.nixosSystem
           {
-            inherit system;
-            specialArgs = { inherit inputs nixpkgs-master host uses-nvidia; };
+            inherit system specialArgs;
             modules = [
               ./hosts/common
               module
@@ -48,7 +51,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs self nixpkgs-master uses-nvidia host; };
+                  extraSpecialArgs = specialArgs;
                   users.marwin = ./marwin;
                   backupFileExtension = ".hm-auto-backup";
                 };

@@ -4,18 +4,14 @@
     enable = true;
     xdgOpenUsePortal = true;
     configPackages = with pkgs; [ niri ];
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
-    config = {
-      common = {
-        default = [
-          "gtk"
-        ];
-      };
+    extraPortals = with pkgs; [ xdg-desktop-portal-gnome xdg-desktop-portal-gtk ];
+    config = rec {
+      common = niri;
       niri = {
         default = [
           "gnome"
           "gtk"
-        ];
+         ];
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
         "org.freedesktop.impl.portal.Access" = [ "gtk" ];
         "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
