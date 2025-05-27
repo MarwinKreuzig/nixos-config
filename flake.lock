@@ -63,10 +63,10 @@
       },
       "locked": {
         "lastModified": 1748227609,
-        "narHash": "sha256-TwbdiH28QK7Da2JQTqFHdb+UCJq6QbF2mtf+RxHVzEA=",
+        "narHash": "sha256-SaSdslyo6UGDpPUlmrPA4dWOEuxCy2ihRN9K6BnqYsA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d31710fb2cd536b1966fee2af74e99a0816a61a8",
+        "rev": "d23d20f55d49d8818ac1f1b2783671e8a6725022",
         "type": "github"
       },
       "original": {
@@ -75,13 +75,33 @@
         "type": "github"
       }
     },
+    "mcsr": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748303624,
+        "narHash": "sha256-/clj+on9SD590M5RzWHLG9JCVZrULBTOiQlMr/GQlSA=",
+        "owner": "MarwinKreuzig",
+        "repo": "mcsr-flake",
+        "rev": "1d3eb0f85362be46324e155b3ecf4ac22d2db1ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MarwinKreuzig",
+        "repo": "mcsr-flake",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1748026106,
-        "narHash": "sha256-sPwcCYuiEopaafePqlG826tBhctuJsLx/mhKKM5Fmjo=",
+        "lastModified": 1748190013,
+        "narHash": "sha256-R5HJFflOfsP5FBtk+zE8FpL8uqE7n62jqOsADvVshhE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+        "rev": "62b852f6c6742134ade1abdd2a21685fd617a291",
         "type": "github"
       },
       "original": {
@@ -143,11 +163,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1748026106,
-        "narHash": "sha256-sPwcCYuiEopaafePqlG826tBhctuJsLx/mhKKM5Fmjo=",
+        "lastModified": 1748190013,
+        "narHash": "sha256-R5HJFflOfsP5FBtk+zE8FpL8uqE7n62jqOsADvVshhE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+        "rev": "62b852f6c6742134ade1abdd2a21685fd617a291",
         "type": "github"
       },
       "original": {
@@ -198,6 +218,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "mcsr": "mcsr",
         "nixpkgs": "nixpkgs",
         "nvim-nix-config": "nvim-nix-config",
         "pipewire-screenaudio": "pipewire-screenaudio"

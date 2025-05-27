@@ -20,14 +20,16 @@
   inputs = {
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       # use the line with the branch when you are getting an error because of a version mismatch
       # url = "github:nix-community/home-manager/release-25.11";
-      url = "github:nix-community/home-manager/d31710fb2cd536b1966fee2af74e99a0816a61a8";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvim-nix-config.url = "github:MarwinKreuzig/nvim-nix-config";
+    mcsr.url = "github:MarwinKreuzig/mcsr-flake";
+    mcsr.inputs.nixpkgs.follows = "nixpkgs";
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
   };
 

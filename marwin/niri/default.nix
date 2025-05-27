@@ -92,7 +92,7 @@ in
         // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
         input {
             keyboard {
-                // numlock
+                numlock
 
                 xkb {
                   layout "us,de"
@@ -285,14 +285,6 @@ in
 
             // Slow down all animations by this factor. Values below 1 speed them up instead.
             // slowdown 3.0
-
-            // tragically, this is necessary for optimal minecraft speedrunning
-            window-movement {
-              off
-            }
-            window-resize {
-              // off
-            }
         }
 
         // Window rules let you adjust behavior for individual windows.

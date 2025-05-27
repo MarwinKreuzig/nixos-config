@@ -2,8 +2,8 @@
 
 {
   imports = [
+    ./mcsr.nix
     ./firefox.nix
-    ./mcsr
     ./wlogout.nix
     ./git.nix
     ./alacritty.nix
@@ -59,7 +59,7 @@
 
     # games
     # glfw-wayland-minecraft
-    prismlauncher
+    # prismlauncher
     lutris
   ];
 

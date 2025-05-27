@@ -1,4 +1,4 @@
-{ lib, host, uses-nvidia, pkgs, ... }:
+{ lib, host, uses-nvidia, inputs, ... }:
 {
   options.home.settings = {
     discord = lib.mkOption {
