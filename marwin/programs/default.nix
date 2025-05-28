@@ -2,13 +2,13 @@
 
 {
   imports = [
-    ./mcsr.nix
     ./firefox.nix
     ./wlogout.nix
     ./git.nix
     ./alacritty.nix
     ./ide.nix
     ./nvim.nix
+    ./mcsr
     ./shell
     ./waybar
     ./tofi
