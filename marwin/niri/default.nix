@@ -87,6 +87,10 @@ in
         // Check the wiki for a full description of the configuration:
         // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
+        debug {
+            wait-for-frame-completion-in-pipewire
+        }
+
         // Input device configuration.
         // Find the full list of options on the wiki:
         // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
@@ -256,7 +260,7 @@ in
         // spawn-at-startup "xwaylandvideobridge"
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-        spawn-at-startup "sh" "-c" "swww init; swww img ${../../assets/wallpaper_dredge.jpg}"
+        spawn-at-startup "sh" "-c" "swww-daemon; swww img ${../../assets/wallpaper_dredge.jpg}"
         spawn-at-startup "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
         spawn-at-startup "${config.home.settings.discord}"
         spawn-at-startup "signal-desktop"
@@ -332,9 +336,6 @@ in
             //
             // Most actions that you can bind here can also be invoked programmatically with
             // `niri msg action do-something`.
-            Ctrl+MouseBack { spawn "sh" "-c" "${./mapless.sh}"; };
-            Mod+MouseBack { spawn "sh" "-c" "${./eyes.sh}"; };
-            Alt+MouseBack { fullscreen-window; }
 
             Mod+T { spawn "alacritty"; }
             Mod+Space { spawn "fuzzel"; }
