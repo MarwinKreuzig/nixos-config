@@ -100,7 +100,7 @@ local config = {
 		confine_pointer = true,
 
 		remaps = {
-			["3"] = "RIGHTSHIFT",
+			["102ND"] = "RIGHTSHIFT",
 		},
 	},
 	theme = {
@@ -116,13 +116,16 @@ local config = {
 			helpers.toggle_floating()
 		end,
 		-- resolution macros
-		["*-ctrl-J"] = function()
+		["m5"] = function()
 			(helpers.toggle_res(bt_res.w, bt_res.h))()
 		end,
-		["*-ctrl-K"] = function()
+		["mod2-m5"] = function()
+			(helpers.toggle_res(bt_res.w, bt_res.h))()
+		end,
+		["*-ctrl-m5"] = function()
 			(helpers.toggle_res(eye_res.w, eye_res.h))()
 		end,
-		["*-ctrl-X"] = function()
+		["*-m4"] = function()
 			(helpers.toggle_res(1920, 300))()
 		end,
 	},
