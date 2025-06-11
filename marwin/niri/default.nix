@@ -260,7 +260,7 @@ in
         // spawn-at-startup "xwaylandvideobridge"
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-        spawn-at-startup "sh" "-c" "swww-daemon; swww img ${../../assets/wallpaper_dredge.jpg}"
+        spawn-at-startup "sh" "-c" "swww-daemon; swww img ${../../assets/ViktoriaLuiseWallpaper.jpg}}"
         spawn-at-startup "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
         spawn-at-startup "${config.home.settings.discord}"
         spawn-at-startup "signal-desktop"
