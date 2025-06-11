@@ -38,6 +38,7 @@
 
     eza
     unzip
+    unrar
 
     nixpkgs-fmt
 
@@ -58,9 +59,8 @@
     libreoffice
 
     # games
-    # glfw-wayland-minecraft
-    # prismlauncher
     lutris
+    wineWowPackages.waylandFull
   ];
 
   programs.thunderbird = {
