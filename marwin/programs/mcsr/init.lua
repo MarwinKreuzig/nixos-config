@@ -99,8 +99,19 @@ local config = {
 		sensitivity = 1.0,
 		confine_pointer = true,
 
+    -- get keycode like this:
+    -- execute sudo showkey
+    -- find keycode in https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h
+    -- (might be in decimal or in hex)
 		remaps = {
+      -- use right shift to access pie chart without crouching
 			["102ND"] = "RIGHTSHIFT",
+      -- use to navigate pie chart with left hand only
+			["Z"] = "0",
+      -- training wheels to get me stop pressing normal F3
+      ["F3"] = "ESC",
+      -- easier F3
+      ["X"] = "F3",
 		},
 	},
 	theme = {
