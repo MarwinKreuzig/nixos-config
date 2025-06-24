@@ -389,6 +389,7 @@ in
             Mod+M { maximize-column; }
             Mod+F { fullscreen-window; }
             Mod+C { center-column; }
+            Mod+Shift+T { toggle-column-tabbed-display; }
 
 
 
