@@ -65,6 +65,7 @@
     {
       nixosConfigurations = {
         "marwindesktopnixos" = mkSystem { host = "desktop"; uses-nvidia = true; module = import ./hosts/desktop; };
+        "marwindesktop1nixos" = mkSystem { host = "desktop"; uses-nvidia = true; module = import ./hosts/desktop1; };
         "marwinlaptop0nixos" = mkSystem { host = "laptop0"; uses-nvidia = false; module = import ./hosts/laptop0; };
       };
     };
