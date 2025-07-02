@@ -127,17 +127,17 @@ local config = {
 			helpers.toggle_floating()
 		end,
 		-- resolution macros
-		["m5"] = function()
+		["m4"] = function()
 			(helpers.toggle_res(bt_res.w, bt_res.h))()
 		end,
-		["mod2-m5"] = function()
+		["mod2-m4"] = function()
 			(helpers.toggle_res(bt_res.w, bt_res.h))()
+		end,
+		["*-ctrl-m4"] = function()
+			(helpers.toggle_res(1920, 300))()
 		end,
 		["*-ctrl-m5"] = function()
 			(helpers.toggle_res(eye_res.w, eye_res.h))()
-		end,
-		["*-m4"] = function()
-			(helpers.toggle_res(1920, 300))()
 		end,
 	},
 }
