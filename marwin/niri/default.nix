@@ -48,6 +48,26 @@ in
       };
     };
 
+    systemd.user.services."polkit-kde-agent" = {
+      Unit = {
+        Description = "Polkit Agent";
+        Restart = "on-failure";
+        BindsTo = "graphical-session.target";
+        PartOf = "graphical-session.target";
+        After = "graphical-session.target";
+        Requisite = "graphical-session.target";
+      };
+      Service = {
+        Type = "simple";
+        NotifyAccess = "all";
+        ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+        StandardOutput = "journal";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+
     services.gnome-keyring.enable = true;
 
     xdg.configFile."niri/config.kdl.test".text =
@@ -261,7 +281,6 @@ in
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
         spawn-at-startup "sh" "-c" "swww-daemon; swww img ${../../assets/ViktoriaLuiseWallpaper.jpg}}"
-        spawn-at-startup "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
         spawn-at-startup "${config.home.settings.discord}"
         spawn-at-startup "signal-desktop"
         spawn-at-startup "uwsm" "finalize"
