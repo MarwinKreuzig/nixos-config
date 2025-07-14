@@ -30,6 +30,11 @@
   # auto mount USB drives
   services.udisks2.enable = true;
 
+  services.earlyoom = {
+    enable = true;
+    enableNotifications = true;
+  };
+
   # Enable the OpenSSH daemon.
 
   # services.openssh.enable = true;
