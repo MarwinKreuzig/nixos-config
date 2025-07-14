@@ -342,7 +342,7 @@ in
         }
 
         workspace "scratch" {
-          open-on-output "DP-1"
+          open-on-output "DP-2"
         }
 
         binds {
