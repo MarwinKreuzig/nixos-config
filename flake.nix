@@ -19,7 +19,6 @@
 
   inputs = {
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       # use the line with the branch when you are getting an error because of a version mismatch
@@ -33,40 +32,51 @@
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let
-      mkSystem = { host, uses-nvidia, module }:
-        let
-          system = "x86_64-linux";
-          # pkgs-master = import nixpkgs-master { inherit system; config.allowUnfree = true; };
-          specialArgs = { inherit inputs host uses-nvidia; };
-        in
-        nixpkgs.lib.nixosSystem
+      mkSystem = { users, host, }: nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./modules/host-modules.nix
+          home-manager.nixosModules.home-manager
           {
-            inherit system specialArgs;
-            modules = [
-              ./hosts/common
-              module
-
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = specialArgs;
-                  users.marwin = ./marwin;
-                  backupFileExtension = ".hm-auto-backup";
-                };
-              }
-            ];
-          };
-
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
+              backupFileExtension = ".hm-auto-backup";
+              users = nixpkgs.lib.mapAttrs
+                (username: userConfig:
+                  {
+                    imports = [
+                      ./modules/home-modules.nix
+                      userConfig
+                    ];
+                    config = {
+                      home = {
+                        inherit username;
+                        homeDirectory = "/home/${username}";
+                      };
+                      programs.home-manager.enable = true;
+                    };
+                  }
+                )
+                users;
+            };
+          }
+          host
+        ];
+      };
     in
     {
       nixosConfigurations = {
-        "marwindesktopnixos" = mkSystem { host = "desktop"; uses-nvidia = true; module = import ./hosts/desktop; };
-        "marwindesktop1nixos" = mkSystem { host = "desktop"; uses-nvidia = true; module = import ./hosts/desktop1; };
-        "marwinlaptop0nixos" = mkSystem { host = "laptop0"; uses-nvidia = false; module = import ./hosts/laptop0; };
+        "marwindesktop0nixos" = mkSystem { };
+        "marwindesktop1nixos" = mkSystem {
+          users.marwin = ./hosts/desktop1/users/marwin;
+          host = ./hosts/desktop1;
+        };
+        "marwinlaptop0nixos" = mkSystem { };
       };
     };
 }
