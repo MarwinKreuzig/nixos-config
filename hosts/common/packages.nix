@@ -2,6 +2,13 @@
 {
   nixpkgs.overlays = [
     inputs.nvim-nix-config.overlays.default
+    # FIX for nixpkgs build failure
+    (final: prev: {
+      jdk8 = prev.jdk8.overrideAttrs {
+        separateDebugInfo = false;
+        __structuredAttrs = false;
+      };
+    })
   ];
 
   environment.systemPackages = with pkgs; [
