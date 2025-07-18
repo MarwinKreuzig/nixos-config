@@ -232,7 +232,6 @@
         // which may be more convenient to use.
         // See the binds section below for more spawn examples.
         spawn-at-startup "swaync"
-        spawn-at-startup "udiskie"
         spawn-at-startup "waybar"
         // spawn-at-startup "xwaylandvideobridge"
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
