@@ -20,4 +20,7 @@
     layout = "us";
     variant = "dvp";
   };
+  console = {
+    keyMap = "dvorak-programmer";
+  };
 }
