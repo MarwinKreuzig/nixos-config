@@ -47,7 +47,8 @@
       end
     '';
     shellAliases = {
-      ls = "eza";
+      ls = "lsd";
+      cat = "bat";
     };
   };
 
