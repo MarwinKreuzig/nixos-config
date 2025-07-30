@@ -23,8 +23,8 @@
       ];
     # FIXME: these just don't work, idk why
     timeouts = [
-      { timeout = 300; command = "niri msg action power-off-monitors"; }
-      { timeout = 600; command = "systemctl suspend"; }
+      { timeout = 300; command = "'niri msg action power-off-monitors'"; }
+      { timeout = 600; command = "'systemctl suspend'"; }
     ];
   };
 }
