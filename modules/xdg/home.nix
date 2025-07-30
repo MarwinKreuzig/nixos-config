@@ -42,6 +42,7 @@ let
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
     "x-scheme-handler/chrome" = browser;
+    "x-scheme-handler/terminal" = [ "alacritty" ];
 
     "application/json" = browser;
     "application/pdf" = browser;
