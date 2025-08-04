@@ -129,6 +129,8 @@
         },
         theme = {
           background = "#303030ff",
+          ninb_anchor = "topright",
+          ninb_opacity = 0.9
         },
         actions = {
           -- ninjabrainbot
