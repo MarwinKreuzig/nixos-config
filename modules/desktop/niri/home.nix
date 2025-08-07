@@ -55,6 +55,7 @@
       NIXOS_OZONE_WL = 1;
       QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+      XDG_SESSION_TYPE = "wayland";
     };
 
     xdg.configFile."niri/config.kdl".text =
