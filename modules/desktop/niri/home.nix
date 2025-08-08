@@ -10,7 +10,6 @@
 
   config = lib.mkIf config.modules.desktops.niri.enable {
     home.packages = with pkgs; [
-      swaynotificationcenter
       swww
       cliphist
       wl-clipboard
