@@ -18,7 +18,7 @@
     enable = true;
     settings.default_session = {
       command =
-        "${pkgs.greetd.tuigreet}/bin/tuigreet " +
+        "${pkgs.tuigreet}/bin/tuigreet " +
         "--time --remember --user-menu " +
         "--power-shutdown 'systemctl poweroff'" +
         "--power-reboot 'systemctl reboot' " +
