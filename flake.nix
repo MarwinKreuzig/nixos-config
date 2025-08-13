@@ -76,7 +76,7 @@
           users.marwin = ./hosts/desktop1/users/marwin;
           host = ./hosts/desktop1;
         };
-        "marwinlaptop0nixos" = mkSystem { 
+        "marwinlaptop0nixos" = mkSystem {
           users.marwin = ./hosts/laptop0/users/marwin;
           host = ./hosts/laptop0;
         };
