@@ -1,0 +1,6 @@
+{ ... }:
+{
+  modules = {
+    laptop.enable = true;
+  };
+}
