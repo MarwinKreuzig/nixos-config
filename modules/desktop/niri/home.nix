@@ -236,7 +236,7 @@
         // spawn-at-startup "xwaylandvideobridge"
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-        spawn-at-startup "sh" "-c" "swww-daemon; swww img ${../../../assets/ViktoriaLuiseWallpaper.jpg}}"
+        spawn-at-startup "sh" "-c" "swww-daemon; swww img ${../../../assets/ViktoriaLuiseWallpaper.jpg}"
         spawn-at-startup "discord-canary"
         spawn-at-startup "signal-desktop"
         spawn-at-startup "uwsm" "finalize"
