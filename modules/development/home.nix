@@ -14,6 +14,10 @@
     zed-editor
   ];
 
+  programs.helix = {
+    enable = true;
+  };
+
   # create a path to global install npm binaries to
   # use with `npm set prefix ~/.npm-global`
   # see also https://nixos.wiki/wiki/Node.js
