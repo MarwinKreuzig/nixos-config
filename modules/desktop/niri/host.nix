@@ -22,7 +22,7 @@
         "--time --remember --user-menu " +
         "--power-shutdown 'systemctl poweroff'" +
         "--power-reboot 'systemctl reboot' " +
-        "--cmd \"uwsm start -S -F niri-uwsm.desktop\"";
+        "--cmd \"uwsm start niri-uwsm.desktop\"";
       user = "marwin";
     };
   };
