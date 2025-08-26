@@ -16,7 +16,8 @@
 
       nvidiaSettings = true;
 
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      # we use config.boot to always get the packages belonging to the current kernel
+      package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.latest;
     };
 
     services.xserver.videoDrivers = [ "nvidia" ];

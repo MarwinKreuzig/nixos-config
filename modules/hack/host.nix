@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, config, ... }:
 {
   # nixpkgs.overlays = [
   #   (final: prev: {
@@ -9,13 +9,4 @@
   #     };
   #   })
   # ];
-  
-  
-  
-  # see
-  # https://github.com/ErikReider/SwayNotificationCenter/issues/619
-  environment.sessionVariables = {
-    GSK_RENDERER = "gl";
-    GTK_DISABLE_VULKAN = 1;
-  };
 }
