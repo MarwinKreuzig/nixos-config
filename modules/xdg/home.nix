@@ -47,7 +47,7 @@ let
     "application/json" = browser;
     "application/pdf" = browser;
 
-    "inode/directory" = [ "nemo" ];
+    "inode/directory" = [ "pcmanfm" ];
 
     "x-scheme-handler/discord" = [ "discord" ];
     "x-scheme-handler/jetbrains-gateway" = [ "jetbrains-gateway" ];
