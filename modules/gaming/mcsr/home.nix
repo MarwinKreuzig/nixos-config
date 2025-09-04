@@ -121,8 +121,6 @@
             ["102ND"] = "RIGHTSHIFT",
             -- use to navigate pie chart with left hand only
             ["Z"] = "0",
-            -- training wheels to get me stop pressing normal F3
-            ["F3"] = "ESC",
             -- easier F3
             ["X"] = "F3",
           },
