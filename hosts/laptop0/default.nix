@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "marwinlaptop0nixos";
+  networking.hostName = "laptop0";
 
   users.users.marwin = {
     isNormalUser = true;

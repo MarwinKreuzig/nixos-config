@@ -71,12 +71,12 @@
     in
     {
       nixosConfigurations = {
-        "marwindesktop0nixos" = mkSystem { };
-        "marwindesktop1nixos" = mkSystem {
+        "desktop0" = mkSystem { };
+        "desktop1" = mkSystem {
           users.marwin = ./hosts/desktop1/users/marwin;
           host = ./hosts/desktop1;
         };
-        "marwinlaptop0nixos" = mkSystem {
+        "laptop0" = mkSystem {
           users.marwin = ./hosts/laptop0/users/marwin;
           host = ./hosts/laptop0;
         };
