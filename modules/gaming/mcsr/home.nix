@@ -7,6 +7,7 @@
 
   home.packages = [
     pkgs.xwayland
+    pkgs.kdePackages.kdenlive
   ];
   programs.mcsr = {
     enable = true;
