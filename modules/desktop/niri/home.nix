@@ -18,10 +18,11 @@
       pavucontrol
       brightnessctl
 
+      xwayland-satellite
       niri
     ];
 
-    modules.xwayland.xwayland-satellite = true;
+    modules.xwayland.xwayland-satellite = false;
 
     services.gnome-keyring.enable = true;
 
@@ -63,10 +64,6 @@
         // "/-" comments out the following node.
         // Check the wiki for a full description of the configuration:
         // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
-
-        debug {
-            wait-for-frame-completion-in-pipewire
-        }
 
         // Input device configuration.
         // Find the full list of options on the wiki:
@@ -231,9 +228,7 @@
         // Note that running niri as a session supports xdg-desktop-autostart,
         // which may be more convenient to use.
         // See the binds section below for more spawn examples.
-        spawn-at-startup "swaync"
         spawn-at-startup "waybar"
-        // spawn-at-startup "xwaylandvideobridge"
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
         spawn-at-startup "sh" "-c" "swww-daemon; swww img ${../../../assets/ViktoriaLuiseWallpaper.jpg}"
