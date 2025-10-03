@@ -1,6 +1,6 @@
-{ pkgs, graal-pkgs, ... }:
-
+{ lib, osConfig, pkgs, graal-pkgs, ... }:
 {
+  config = lib.mkIf osConfig.modules.gaming.enable {
   home.packages = with pkgs; [
     xwayland
     graal-pkgs.graalvm-ce
@@ -190,4 +190,5 @@
 
       return config
     '';
+};
 }
