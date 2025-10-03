@@ -3,10 +3,10 @@
   options.modules.laptop.enable = lib.mkEnableOption "laptop specific configuration";
 
   config = lib.mkIf config.modules.laptop.enable {
-    services.logind.extraConfig = ''
+    services.logind.settings.Login = {
       # hibernate instead of shutting down
-      HandlePowerKey=hibernate
-    '';
+      HandlePowerKey = "hibernate";
+    };
 
     # Gnome 40 introduced a new way of managing power, without tlp.
     # However, these 2 services clash when enabled simultaneously.
