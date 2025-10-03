@@ -121,13 +121,13 @@
         },
       }, eye_res.w, eye_res.h)
 
-      -- bt macro
-      local bt_res = {
+      -- thin macro
+      local thin_res = {
         w = 300,
         h = 1080,
       }
-      -- bt entity counter
-      setup_entity_counter(bt_res.w, bt_res.h)
+      -- thin entity counter
+      setup_entity_counter(thin_res.w, thin_res.h)
 
       local config = {
         input = {
@@ -148,9 +148,6 @@
           remaps = {
             -- use right shift to access pie chart without crouching
             ["102ND"] = "RIGHTSHIFT",
-            -- use to navigate pie chart with left hand only
-            -- TODO: How to output 0 with programmer dvorak?? it just inputs ] which is what the 0 key on my keyboard does
-            -- ["Z"] = "0",
             -- easier F3
             ["X"] = "F3",
           },
@@ -172,10 +169,10 @@
           end,
           -- resolution macros
           ["m4"] = function()
-            (helpers.toggle_res(bt_res.w, bt_res.h))()
+            (helpers.toggle_res(thin_res.w, thin_res.h))()
           end,
           ["mod2-m4"] = function()
-            (helpers.toggle_res(bt_res.w, bt_res.h))()
+            (helpers.toggle_res(thin_res.w, thin_res.h))()
           end,
           ["*-ctrl-m4"] = function()
             (helpers.toggle_res(1920, 300))()
@@ -183,6 +180,8 @@
           ["*-ctrl-m5"] = function()
             (helpers.toggle_res(eye_res.w, eye_res.h))()
           end,
+          -- use to navigate pie chart with left hand only
+          -- can't be a regular rebind because of the way programmer dvorak handles number keys
           ["*-apostrophe"] = function()
             waywall.press_key("0")
           end,
@@ -191,7 +190,4 @@
 
       return config
     '';
-
-  # xdg.configFile."waywall/overlay.png".source = ../../../assets/mcsr/overlay.png;
-  # xdg.configFile."waywall/init.lua".source = ./init.lua; 
 }
