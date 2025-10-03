@@ -27,16 +27,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvim-nix-config.url = "github:MarwinKreuzig/nvim-nix-config";
-    mcsr.url = "github:MarwinKreuzig/mcsr-flake";
-    mcsr.inputs.nixpkgs.follows = "nixpkgs";
+    pinned-graal-nixpkgs.url = "github:nixos/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269";
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
   };
 
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
-      mkSystem = { users, host, }: nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+      mkSystem = { users, host, }: 
+        let specialArgs = { inherit inputs;
+          graal-pkgs = import inputs.pinned-graal-nixpkgs { system = "x86_64-linux"; };
+        }; in
+      nixpkgs.lib.nixosSystem {
+        inherit specialArgs;
         modules = [
           ./modules/host-modules.nix
           home-manager.nixosModules.home-manager
@@ -44,7 +47,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = specialArgs;
               backupFileExtension = ".hm-auto-backup";
               users = nixpkgs.lib.mapAttrs
                 (username: userConfig:

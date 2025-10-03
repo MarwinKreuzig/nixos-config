@@ -62,47 +62,26 @@
         ]
       },
       "locked": {
-        "lastModified": 1758928860,
-        "narHash": "sha256-ZqaRdd+KoR54dNJPtd7UX4O0X+02YItnTpQVu28lSVI=",
+        "lastModified": 1759337100,
+        "narHash": "sha256-CcT3QvZ74NGfM+lSOILcCEeU+SnqXRvl1XCRHenZ0Us=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "bc2afee55bc5d3b825287829d6592b9cc1405aad",
+        "rev": "004753ae6b04c4b18aa07192c1106800aaacf6c3",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "mcsr": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "pinned-graal-nixpkgs": "pinned-graal-nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1756150690,
-        "narHash": "sha256-mAzi/Dgq8bg01J1VbydBxcjt8pi3N515yUuMqx+hbeg=",
-        "owner": "MarwinKreuzig",
-        "repo": "mcsr-flake",
-        "rev": "fe3caaf4c72f44c7790a5e6845fc060a89893cd4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MarwinKreuzig",
-        "repo": "mcsr-flake",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1758690382,
-        "narHash": "sha256-NY3kSorgqE5LMm1LqNwGne3ZLMF2/ILgLpFr1fS4X3o=",
+        "lastModified": 1759036355,
+        "narHash": "sha256-0m27AKv6ka+q270dw48KflE0LwQYrO7Fm4/2//KCVWg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e643668fd71b949c53f8626614b21ff71a07379d",
+        "rev": "e9f00bd893984bc8ce46c895c3bf7cac95331127",
         "type": "github"
       },
       "original": {
@@ -164,11 +143,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1758690382,
-        "narHash": "sha256-NY3kSorgqE5LMm1LqNwGne3ZLMF2/ILgLpFr1fS4X3o=",
+        "lastModified": 1759036355,
+        "narHash": "sha256-0m27AKv6ka+q270dw48KflE0LwQYrO7Fm4/2//KCVWg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e643668fd71b949c53f8626614b21ff71a07379d",
+        "rev": "e9f00bd893984bc8ce46c895c3bf7cac95331127",
         "type": "github"
       },
       "original": {
@@ -235,9 +214,9 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "mcsr": "mcsr",
         "nixpkgs": "nixpkgs",
         "nvim-nix-config": "nvim-nix-config",
+        "pinned-graal-nixpkgs": "pinned-graal-nixpkgs",
         "pipewire-screenaudio": "pipewire-screenaudio"
       }
     },

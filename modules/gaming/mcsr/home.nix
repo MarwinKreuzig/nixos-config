@@ -1,17 +1,43 @@
-{ pkgs, inputs, ... }:
+{ pkgs, graal-pkgs, ... }:
 
 {
-  imports = [
-    inputs.mcsr.homeModules.mcsr
-  ];
+  home.packages = with pkgs; [
+    xwayland
+    graal-pkgs.graalvm-ce
 
-  home.packages = [
-    pkgs.xwayland
-    pkgs.kdePackages.kdenlive
+    (obs-studio.override {
+      cudaSupport = true;
+    })
+    kdePackages.kdenlive
+
+    (pkgs.prismlauncher.override {
+      glfw3-minecraft =
+        (pkgs.glfw.overrideAttrs (finalAttrs: previousAttrs: {
+          pname = "glfw-mcsr";
+          patches = previousAttrs.patches ++ [
+            (pkgs.fetchpatch
+              {
+                url = "https://raw.githubusercontent.com/tesselslate/waywall/be3e018bb5f7c25610da73cc320233a26dfce948/contrib/glfw.patch";
+                sha256 = "sha256-8Sho5Yoj/FpV7utWz3aCXNvJKwwJ3ZA3qf1m2WNxm5M=";
+              })
+          ];
+        }))
+      ;
+    })
+    (pkgs.callPackage ./packages/modcheck/default.nix { })
+    (pkgs.callPackage ./packages/ninjabrainbot/default.nix { })
+    (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
+      version = "0-unstable-2025-08-24";
+      src = pkgs.fetchFromGitHub {
+        owner = "tesselslate";
+        repo = "waywall";
+        rev = "ad569de1ddae6b034c7095795a42f044746a55a7";
+        hash = "sha256-CzP6PFYC6yVxUAxkJ4Zhm4Zf4Qt8u4WjXUYfkgc6nyU=";
+      };
+      patches = [ ./0001-nvidia-fix.patch ];
+    }))
   ];
-  programs.mcsr = {
-    enable = true;
-    waywall.config = ''
+    xdg.configFile."waywall/init.lua".text = ''
       local waywall = require("waywall")
       local helpers = require("waywall.helpers")
 
@@ -105,7 +131,9 @@
 
       local config = {
         input = {
-          layout = "de,",
+          layout = "us,de",
+          variant = "dvp",
+          model = "pc105",
           options = "lv3:ralt_switch",
           repeat_rate = -1,
           repeat_delay = -1,
@@ -121,7 +149,8 @@
             -- use right shift to access pie chart without crouching
             ["102ND"] = "RIGHTSHIFT",
             -- use to navigate pie chart with left hand only
-            ["Z"] = "0",
+            -- TODO: How to output 0 with programmer dvorak?? it just inputs ] which is what the 0 key on my keyboard does
+            -- ["Z"] = "0",
             -- easier F3
             ["X"] = "F3",
           },
@@ -139,6 +168,7 @@
           end,
           ["*-D"] = function()
             helpers.toggle_floating()
+            return false
           end,
           -- resolution macros
           ["m4"] = function()
@@ -153,12 +183,14 @@
           ["*-ctrl-m5"] = function()
             (helpers.toggle_res(eye_res.w, eye_res.h))()
           end,
+          ["*-apostrophe"] = function()
+            waywall.press_key("0")
+          end,
         },
       }
 
       return config
     '';
-  };
 
   # xdg.configFile."waywall/overlay.png".source = ../../../assets/mcsr/overlay.png;
   # xdg.configFile."waywall/init.lua".source = ./init.lua; 
