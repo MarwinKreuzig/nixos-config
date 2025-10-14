@@ -27,12 +27,12 @@
     (pkgs.callPackage ./packages/modcheck/default.nix { })
     (pkgs.callPackage ./packages/ninjabrainbot/default.nix { })
     (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
-      version = "0-unstable-2025-08-24";
+      version = "0-unstable-2025-11-07";
       src = pkgs.fetchFromGitHub {
         owner = "tesselslate";
         repo = "waywall";
-        rev = "ad569de1ddae6b034c7095795a42f044746a55a7";
-        hash = "sha256-CzP6PFYC6yVxUAxkJ4Zhm4Zf4Qt8u4WjXUYfkgc6nyU=";
+        rev = "ed76c2b605d19905617d9060536e980fd49410bf";
+        hash = "sha256-bLIoGLXnBrn46EVk0PkGePslKYL7V/h1mnI+s9GFSnY=";
       };
       patches = [ ./0001-nvidia-fix.patch ];
     }))
@@ -76,6 +76,7 @@
       local eye_res = {
         w = 300,
         h = 16384,
+        sens = 0.56,
       }
       local proj_dst = {
         x = 0,
@@ -138,8 +139,8 @@
           repeat_rate = -1,
           repeat_delay = -1,
 
-          sensitivity = 1.0,
-          confine_pointer = true,
+          sensitivity = 8.25,
+          confine_pointer = false,
 
           -- get keycode like this:
           -- execute sudo showkey
@@ -178,7 +179,7 @@
             (helpers.toggle_res(1920, 300))()
           end,
           ["*-ctrl-m5"] = function()
-            (helpers.toggle_res(eye_res.w, eye_res.h))()
+            (helpers.toggle_res(eye_res.w, eye_res.h, eye_res.sens))()
           end,
           -- use to navigate pie chart with left hand only
           -- can't be a regular rebind because of the way programmer dvorak handles number keys
