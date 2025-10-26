@@ -3,10 +3,6 @@
   options.modules.xwayland.xwayland-satellite = lib.mkEnableOption "run xwayland-satellite";
 
   config = {
-    home.packages = with pkgs; [
-      kdePackages.xwaylandvideobridge
-    ];
-
     systemd.user.services."xwayland-satellite" = lib.mkIf config.modules.xwayland.xwayland-satellite {
       Unit = {
         Description = "Xwayland outside your Wayland";
