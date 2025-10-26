@@ -34,43 +34,46 @@
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
-      mkSystem = { users, host, }: 
-        let specialArgs = { inherit inputs;
-          graal-pkgs = import inputs.pinned-graal-nixpkgs { system = "x86_64-linux"; };
-        }; in
-      nixpkgs.lib.nixosSystem {
-        inherit specialArgs;
-        modules = [
-          ./modules/host-modules.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = specialArgs;
-              backupFileExtension = ".hm-auto-backup";
-              users = nixpkgs.lib.mapAttrs
-                (username: userConfig:
-                  {
-                    imports = [
-                      ./modules/home-modules.nix
-                      userConfig
-                    ];
-                    config = {
-                      home = {
-                        inherit username;
-                        homeDirectory = "/home/${username}";
+      mkSystem = { users, host, }:
+        let
+          specialArgs = {
+            inherit inputs;
+            graal-pkgs = import inputs.pinned-graal-nixpkgs { system = "x86_64-linux"; };
+          };
+        in
+        nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = [
+            ./modules/host-modules.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = specialArgs;
+                backupFileExtension = ".hm-auto-backup";
+                users = nixpkgs.lib.mapAttrs
+                  (username: userConfig:
+                    {
+                      imports = [
+                        ./modules/home-modules.nix
+                        userConfig
+                      ];
+                      config = {
+                        home = {
+                          inherit username;
+                          homeDirectory = "/home/${username}";
+                        };
+                        programs.home-manager.enable = true;
                       };
-                      programs.home-manager.enable = true;
-                    };
-                  }
-                )
-                users;
-            };
-          }
-          host
-        ];
-      };
+                    }
+                  )
+                  users;
+              };
+            }
+            host
+          ];
+        };
     in
     {
       nixosConfigurations = {
