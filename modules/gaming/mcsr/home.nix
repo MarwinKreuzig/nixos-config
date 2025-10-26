@@ -1,42 +1,59 @@
 { lib, osConfig, pkgs, graal-pkgs, ... }:
 {
   config = lib.mkIf osConfig.modules.gaming.enable {
-  home.packages = with pkgs; [
-    xwayland
-    graal-pkgs.graalvm-ce
+    home.packages = with pkgs; [
+      xwayland
 
-    (obs-studio.override {
-      cudaSupport = true;
-    })
-    kdePackages.kdenlive
+      kdePackages.kdenlive
 
-    (pkgs.prismlauncher.override {
-      glfw3-minecraft =
-        (pkgs.glfw.overrideAttrs (finalAttrs: previousAttrs: {
-          pname = "glfw-mcsr";
-          patches = previousAttrs.patches ++ [
-            (pkgs.fetchpatch
-              {
-                url = "https://raw.githubusercontent.com/tesselslate/waywall/be3e018bb5f7c25610da73cc320233a26dfce948/contrib/glfw.patch";
-                sha256 = "sha256-8Sho5Yoj/FpV7utWz3aCXNvJKwwJ3ZA3qf1m2WNxm5M=";
-              })
-          ];
-        }))
-      ;
-    })
-    (pkgs.callPackage ./packages/modcheck/default.nix { })
-    (pkgs.callPackage ./packages/ninjabrainbot/default.nix { })
-    (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
-      version = "0-unstable-2025-11-07";
-      src = pkgs.fetchFromGitHub {
-        owner = "tesselslate";
-        repo = "waywall";
-        rev = "ed76c2b605d19905617d9060536e980fd49410bf";
-        hash = "sha256-bLIoGLXnBrn46EVk0PkGePslKYL7V/h1mnI+s9GFSnY=";
-      };
-      patches = [ ./0001-nvidia-fix.patch ];
-    }))
-  ];
+      (pkgs.prismlauncher.override (previous: {
+        glfw3-minecraft =
+          (pkgs.glfw.overrideAttrs (finalAttrs: previousAttrs: {
+            pname = "glfw-mcsr";
+            patches = previousAttrs.patches ++ [
+              (pkgs.fetchpatch
+                {
+                  url = "https://raw.githubusercontent.com/tesselslate/waywall/be3e018bb5f7c25610da73cc320233a26dfce948/contrib/glfw.patch";
+                  sha256 = "sha256-8Sho5Yoj/FpV7utWz3aCXNvJKwwJ3ZA3qf1m2WNxm5M=";
+                })
+            ];
+          }));
+        jdks = [
+          graal-pkgs.graalvm-ce
+          jdk21
+          jdk17
+          jdk8
+        ];
+        # runtime dependencies necessary for mcsr fairplay mod
+        additionalLibs = [
+          openssl
+          xorg.libXtst
+          xorg.libXt
+          libxkbcommon
+        ];
+      }))
+      (pkgs.callPackage ./packages/modcheck/default.nix { })
+      (pkgs.callPackage ./packages/ninjabrainbot/default.nix { })
+      (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
+        version = "0-unstable-2025-11-07";
+        src = pkgs.fetchFromGitHub {
+          owner = "tesselslate";
+          repo = "waywall";
+          rev = "ed76c2b605d19905617d9060536e980fd49410bf";
+          hash = "sha256-bLIoGLXnBrn46EVk0PkGePslKYL7V/h1mnI+s9GFSnY=";
+        };
+        patches = [ ./0001-nvidia-fix.patch ];
+      }))
+    ];
+    programs.obs-studio = {
+      enable = true;
+      package = (pkgs.obs-studio.override {
+        cudaSupport = true;
+      });
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-pipewire-audio-capture
+      ];
+    };
     xdg.configFile."waywall/init.lua".text = ''
       local waywall = require("waywall")
       local helpers = require("waywall.helpers")
@@ -191,5 +208,5 @@
 
       return config
     '';
-};
+  };
 }

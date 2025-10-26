@@ -34,7 +34,14 @@ pkgs.maven.buildMavenPackage rec {
     install -Dm644 target/ninjabrainbot-${version}-jar-with-dependencies.jar $out/share/ninjabrainbot
 
     makeWrapper ${pkgs.jre}/bin/java $out/bin/ninjabrainbot \
-      --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath [ pkgs.libxkbcommon pkgs.xorg.libX11 pkgs.xorg.libXt ]}" \
+      --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath (with pkgs; [ 
+        libxkbcommon 
+        xorg.libX11 
+        xorg.libXt 
+        xorg.libXtst
+        xorg.libXinerama
+        xorg.libxcb
+      ])}" \
       --add-flags "-DSwing.aatext=TRUE -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dawt.useSystemAAFontSettings=on -jar $out/share/ninjabrainbot/ninjabrainbot-${version}-jar-with-dependencies.jar"
 
     runHook postInstall
