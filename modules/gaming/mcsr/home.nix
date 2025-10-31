@@ -52,6 +52,7 @@
       });
       plugins = with pkgs.obs-studio-plugins; [
         obs-pipewire-audio-capture
+        input-overlay
       ];
     };
     xdg.configFile."waywall/init.lua".text = ''
@@ -90,54 +91,56 @@
       end
 
       -- eye zoom projection
-      local eye_res = {
-        w = 300,
-        h = 16384,
+      local eye = {
         sens = 0.56,
-      }
-      local proj_dst = {
-        x = 0,
-        y = 312,
-        w = 810,
-        h = 456,
-      }
-      local eye_src = {
-        w = 60,
-        h = 580,
+        res = {
+          w = 300,
+          h = 16384,
+        },
+        proj = {
+          x = 0,
+          y = 312,
+          w = 810,
+          h = 456,
+        },
+        src = {
+          w = 60,
+          h = 580,
+        },
       }
       helpers.res_mirror(
         {
-          dst = proj_dst,
+          dst = eye.proj,
           src = {
-            x = (eye_res.w - eye_src.w) / 2,
-            y = (eye_res.h - eye_src.h) / 2,
-            w = eye_src.w,
-            h = eye_src.h,
+            x = (eye.res.w - eye.src.w) / 2,
+            y = (eye.res.h - eye.src.h) / 2,
+            w = eye.src.w,
+            h = eye.src.h,
           },
         },
-        eye_res.w,
-        eye_res.h
+        eye.res.w,
+        eye.res.h
       )
-      helpers.res_image("${../../../assets/mcsr/overlay.png}", { dst = proj_dst }, eye_res.w, eye_res.h)
+      helpers.res_image("${../../../assets/mcsr/overlay.png}", { dst = eye.proj }, eye.res.w, eye.res.h)
       -- eye zoom entity counter
-      setup_entity_counter(eye_res.w, eye_res.h)
+      setup_entity_counter(eye.res.w, eye.res.h)
       -- eye zoom pie chart
       local pie_height = 320
       local dst_height = (1080 - counter_dst_size.h) / 2
       helpers.res_mirror({
         src = {
           x = 0,
-          y = eye_res.h - 420,
-          w = eye_res.w,
+          y = eye.res.h - 420,
+          w = eye.res.w,
           h = pie_height,
         },
         dst = {
-          x = (1920 + eye_res.w) / 2,
+          x = (1920 + eye.res.w) / 2,
           y = (1080 + counter_dst_size.h) / 2,
-          w = (dst_height / pie_height) * eye_res.w,
+          w = (dst_height / pie_height) * eye.res.w,
           h = dst_height,
         },
-      }, eye_res.w, eye_res.h)
+      }, eye.res.w, eye.res.h)
 
       -- thin macro
       local thin_res = {
@@ -196,7 +199,7 @@
             (helpers.toggle_res(1920, 300))()
           end,
           ["*-ctrl-m5"] = function()
-            (helpers.toggle_res(eye_res.w, eye_res.h, eye_res.sens))()
+            (helpers.toggle_res(eye.res.w, eye.res.h, eye.sens))()
           end,
           -- use to navigate pie chart with left hand only
           -- can't be a regular rebind because of the way programmer dvorak handles number keys
