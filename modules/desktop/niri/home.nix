@@ -65,6 +65,52 @@
         // Check the wiki for a full description of the configuration:
         // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
+
+        window-rule {
+          match is-window-cast-target=true
+
+          focus-ring {
+              width 1
+              active-color "#f38ba8"
+              inactive-color "#7d0d2d"
+          }
+
+          border {
+              on
+              width 3
+              active-color "#f38ba8"
+              inactive-color "#f38ba8"
+          }
+
+          shadow {
+              on
+              softness 30 
+              spread 8 
+              offset x=0 y=0
+              color "#7d0d2d70"
+          }
+
+          tab-indicator {
+              active-color "#f38ba8"
+              inactive-color "#7d0d2d"
+          }
+        }
+
+        window-rule {
+            match app-id=r#"^Bitwarden$"#
+            match app-id=r#"^thunderbird$"#
+            match app-id=r#"^signal$"#
+            match app-id=r#"^discord$"#
+
+            block-out-from "screencast"
+        }
+
+        layer-rule {
+            match namespace="^swaync-.*$"
+
+            block-out-from "screencast"
+        }
+
         // Input device configuration.
         // Find the full list of options on the wiki:
         // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
