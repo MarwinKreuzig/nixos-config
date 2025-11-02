@@ -10,7 +10,19 @@ with pkgs; (
     };
     dontUnpack = true;
 
-    nativeBuildInputs = [ makeWrapper ];
+    nativeBuildInputs = [ copyDesktopItems makeWrapper ];
+
+    desktopItems = [
+      (pkgs.makeDesktopItem {
+        name = "modcheck";
+        type = "Application";
+        exec = "modcheck";
+        comment = "Minecraft SpeedRun Mods Auto Installer/Updater";
+        desktopName = "ModCheck";
+        genericName = "Minecraft SpeedRun Mods Auto Installer/Updater";
+        categories = [ "Game" ];
+      })
+    ];
 
     buildPhase = "true";
 
@@ -19,6 +31,8 @@ with pkgs; (
 
       makeWrapper ${jre}/bin/java $out/bin/modcheck \
         --add-flags "-jar $out/share/modcheck/modcheck-${version}.jar"
+
+      runHook postInstall
     '';
 
     meta.sourceProvenance = with lib.sourceTypes; [

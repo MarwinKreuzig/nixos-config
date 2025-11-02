@@ -29,11 +29,15 @@
           openssl
           xorg.libXtst
           xorg.libXt
+          xorg.libxcb
+          xorg.libXinerama
           libxkbcommon
         ];
       }))
       (pkgs.callPackage ./packages/modcheck/default.nix { })
       (pkgs.callPackage ./packages/ninjabrainbot/default.nix { })
+      (pkgs.callPackage ./packages/paceman/default.nix { })
+      (pkgs.callPackage ./packages/lingle/default.nix { })
       (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
         version = "0-unstable-2025-11-07";
         src = pkgs.fetchFromGitHub {
@@ -58,6 +62,13 @@
     xdg.configFile."waywall/init.lua".text = ''
       local waywall = require("waywall")
       local helpers = require("waywall.helpers")
+
+      local is_process_running = function(name)     
+        local handle = io.popen("pgrep -f '" .. name  .. "'")
+        local result = handle:read("*l")
+        handle:close()
+        return result ~= nil
+      end
 
       -- entity counter location and projection size
       local counter_src = {
@@ -179,20 +190,21 @@
           ninb_opacity = 0.9
         },
         actions = {
-          -- ninjabrainbot
+          -- toggle ninjabrainbot
           ["*-ctrl-S"] = function()
-            waywall.exec("ninjabrainbot")
             waywall.show_floating(true)
           end,
           ["*-D"] = function()
-            helpers.toggle_floating()
+            if is_process_running("ninjabrain") then
+              os.execute("pkill -f ninjabrain")
+            else
+              waywall.show_floating(true)
+              waywall.exec("ninjabrainbot")
+            end
             return false
           end,
           -- resolution macros
-          ["m4"] = function()
-            (helpers.toggle_res(thin_res.w, thin_res.h))()
-          end,
-          ["mod2-m4"] = function()
+          ["m3"] = function()
             (helpers.toggle_res(thin_res.w, thin_res.h))()
           end,
           ["*-ctrl-m4"] = function()
@@ -211,5 +223,7 @@
 
       return config
     '';
+
+    xdg.configFile."java/.java/.userPrefs/ninjabrainbot/prefs.xml".source = ./ninjabrainbot.xml;
   };
 }

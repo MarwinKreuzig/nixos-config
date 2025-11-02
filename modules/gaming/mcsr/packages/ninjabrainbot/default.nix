@@ -42,7 +42,7 @@ pkgs.maven.buildMavenPackage rec {
         xorg.libXinerama
         xorg.libxcb
       ])}" \
-      --add-flags "-DSwing.aatext=TRUE -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dawt.useSystemAAFontSettings=on -jar $out/share/ninjabrainbot/ninjabrainbot-${version}-jar-with-dependencies.jar"
+      --add-flags "-DSwing.aatext=TRUE -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dawt.useSystemAAFontSettings=on -jar $out/share/ninjabrainbot/ninjabrainbot-${version}-jar-with-dependencies.jar -Djava.util.prefs.userRoot=$HOME/.config/ninjabrainbot"
 
     runHook postInstall
   '';
