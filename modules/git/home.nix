@@ -2,9 +2,11 @@
 {
   programs.git = {
     enable = true;
-    userName = "Marwin Kreuzig";
-    userEmail = "marwin@kreuzig.info";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Marwin Kreuzig";
+        email = "marwin@kreuzig.info";
+      };
       init.defaultBranch = "main";
     };
   };

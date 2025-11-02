@@ -6,7 +6,7 @@
       font-awesome
       nerd-fonts.fira-code
       jetbrains-mono
-      ubuntu_font_family
+      ubuntu-classic
       roboto
       roboto-mono
       inter
