@@ -70,6 +70,12 @@
         return result ~= nil
       end
 
+      local bg_images = {
+        initialized = false,
+        thin1 = nil,
+        thin2 = nil,
+      }
+
       -- entity counter location and projection size
       local counter_src = {
         x = 0,
@@ -185,14 +191,31 @@
           },
         },
         theme = {
-          background = "#303030ff",
+          background = "#1b0e1fff",
           ninb_anchor = "topright",
           ninb_opacity = 0.9
         },
         actions = {
           -- toggle ninjabrainbot
           ["*-ctrl-S"] = function()
-            waywall.show_floating(true)
+            if not bg_images.initialized then
+              bg_images.initialized = true
+              bg_images.thin0 = waywall.image(
+                "${../../../assets/mcsr/bg.png}", 
+                {
+                  dst = { x = 0, y = 0, w = 823, h = 1080, }, 
+                  depth = -1,
+                }
+              )
+              bg_images.thin1 = waywall.image(
+                "${../../../assets/mcsr/bg.png}", 
+                {
+                  dst = { x = 1920 - 823, y = 0, w = 823, h = 1080, }, 
+                  depth = -1,
+                }
+              )
+              waywall.show_floating(true)
+            end
           end,
           ["*-D"] = function()
             if is_process_running("ninjabrain") then
