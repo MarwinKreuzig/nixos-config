@@ -173,8 +173,8 @@
           variant = "dvp",
           model = "pc105",
           options = "lv3:ralt_switch",
-          repeat_rate = -1,
-          repeat_delay = -1,
+          repeat_rate = 40,
+          repeat_delay = 200,
 
           sensitivity = 8.25,
           confine_pointer = false,
@@ -188,6 +188,7 @@
             ["102ND"] = "RIGHTSHIFT",
             -- easier F3
             ["X"] = "F3",
+            ["T"] = "BackSpace",
           },
         },
         theme = {
