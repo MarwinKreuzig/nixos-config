@@ -63,6 +63,10 @@
       local waywall = require("waywall")
       local helpers = require("waywall.helpers")
 
+ 
+-- ################################################################################################
+-- HELPERS
+-- ################################################################################################
       local is_process_running = function(name)     
         local handle = io.popen("pgrep -f '" .. name  .. "'")
         local result = handle:read("*l")
@@ -70,12 +74,42 @@
         return result ~= nil
       end
 
+-- ################################################################################################
+-- WAYWALL STARTUP
+-- ################################################################################################
+      local ran_first_setup = false
       local bg_images = {
-        initialized = false,
         thin1 = nil,
         thin2 = nil,
       }
+      local setup = function()
+        ran_first_setup = true
+        bg_images.thin0 = waywall.image(
+          "${../../../assets/mcsr/bg.png}", 
+          {
+            dst = { x = 0, y = 0, w = 823, h = 1080, }, 
+            depth = -1,
+          }
+        )
+        bg_images.thin1 = waywall.image(
+          "${../../../assets/mcsr/bg.png}", 
+          {
+            dst = { x = 1920 - 823, y = 0, w = 823, h = 1080, }, 
+            depth = -1,
+          }
+        )
+        waywall.show_floating(true)
+      end
 
+      waywall.listen("state", function()
+        if not ran_first_setup then
+          setup()
+        end
+      end)
+
+-- ################################################################################################
+-- PROJECTOR SETUP
+-- ################################################################################################
       -- entity counter location and projection size
       local counter_src = {
         x = 0,
@@ -88,26 +122,28 @@
         h = 40,
       }
       local function setup_entity_counter(width, height)
-          return helpers.res_mirror(
-            {
-              src = counter_src,
-              dst = {
-                x = (1920 + width) / 2,
-                y = (1080 - counter_dst_size.h) / 2,
-                w = counter_dst_size.w,
-                h = counter_dst_size.h,
-              },
-              color_key = {
-                input = "#dddddd",
-                output = "#ffffff",
-              },
+        return helpers.res_mirror(
+          {
+            src = counter_src,
+            dst = {
+              x = (1920 + width) / 2,
+              y = (1080 - counter_dst_size.h) / 2,
+              w = counter_dst_size.w,
+              h = counter_dst_size.h,
             },
-            width,
-            height
-          )
+            color_key = {
+              input = "#dddddd",
+              output = "#ffffff",
+            },
+          },
+          width,
+          height
+        )
       end
 
-      -- eye zoom projection
+  -- ##############################################################################################
+  -- EYE ZOOM
+
       local eye = {
         sens = 0.56,
         res = {
@@ -125,6 +161,7 @@
           h = 580,
         },
       }
+
       helpers.res_mirror(
         {
           dst = eye.proj,
@@ -138,10 +175,11 @@
         eye.res.w,
         eye.res.h
       )
+
       helpers.res_image("${../../../assets/mcsr/overlay.png}", { dst = eye.proj }, eye.res.w, eye.res.h)
-      -- eye zoom entity counter
+
       setup_entity_counter(eye.res.w, eye.res.h)
-      -- eye zoom pie chart
+
       local pie_height = 320
       local dst_height = (1080 - counter_dst_size.h) / 2
       helpers.res_mirror({
@@ -159,16 +197,72 @@
         },
       }, eye.res.w, eye.res.h)
 
-      -- thin macro
+  -- ##############################################################################################
+  -- THIN
+
       local thin_res = {
         w = 300,
         h = 1080,
       }
-      -- thin entity counter
       setup_entity_counter(thin_res.w, thin_res.h)
 
+
+
+
+-- ################################################################################################
+-- CONFIG
+-- ################################################################################################
+
+
+  -- ##############################################################################################
+  -- REMAPS
+      -- Remaps are done using the qwerty layout - on both sides! 
+      -- If you want to remap the "o" key to the "g" key you need to map "S" to "U"!
+      -- 
+      -- when in doubt, do this:
+        -- execute sudo showkey
+        -- find keycode in https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h
+        -- (might be in decimal or in hex)
+      local game_remaps = {
+        -- use right shift to access pie chart without crouching
+        ["102ND"] = "RIGHTSHIFT",
+        -- easier F3
+        ["X"] = "F3",             --  Q -> F3
+        -- search crafting
+        ["T"] = "BackSpace",      --  Y -> Backspace
+        ["F"] = "SEMICOLON",      --  F -> S
+        ["S"] = "U",              --  O -> G
+        ["G"] = "L",              --  I -> N
+        ["D"] = "O",              --  E -> R
+        ["R"] = "D",              --  P -> E
+      }
+
+  -- ##############################################################################################
+  -- CHAT MODE
+      local chat_state = {
+        enabled = false,
+        text = nil,
+      }
+      local toggle_chat = function()
+        chat_state.enabled = not chat_state.enabled
+        if chat_state.enabled then
+          waywall.set_remaps({})
+          chat_state.text = waywall.text(
+            "CHAT MODE ENABLED",
+            { x = 0, y = 0, color = "#ff0000", size = 10 }
+          )
+        else
+          waywall.set_remaps(game_remaps)
+          chat_state.text:close()
+          chat_state.text = nil
+        end
+      end
+
+  -- ##############################################################################################
+  -- CONFIG OBJECT
       local config = {
         input = {
+          -- KEYBOARD CONFIG
           layout = "us,de",
           variant = "dvp",
           model = "pc105",
@@ -176,20 +270,12 @@
           repeat_rate = 40,
           repeat_delay = 200,
 
+          remaps = game_remaps,
+
+          -- MOUSE CONFIG
+          -- value obtained by trial and error (binary search)
           sensitivity = 8.25,
           confine_pointer = false,
-
-          -- get keycode like this:
-          -- execute sudo showkey
-          -- find keycode in https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h
-          -- (might be in decimal or in hex)
-          remaps = {
-            -- use right shift to access pie chart without crouching
-            ["102ND"] = "RIGHTSHIFT",
-            -- easier F3
-            ["X"] = "F3",
-            ["T"] = "BackSpace",
-          },
         },
         theme = {
           background = "#1b0e1fff",
@@ -197,28 +283,10 @@
           ninb_opacity = 0.9
         },
         actions = {
-          -- toggle ninjabrainbot
-          ["*-ctrl-S"] = function()
-            if not bg_images.initialized then
-              bg_images.initialized = true
-              bg_images.thin0 = waywall.image(
-                "${../../../assets/mcsr/bg.png}", 
-                {
-                  dst = { x = 0, y = 0, w = 823, h = 1080, }, 
-                  depth = -1,
-                }
-              )
-              bg_images.thin1 = waywall.image(
-                "${../../../assets/mcsr/bg.png}", 
-                {
-                  dst = { x = 1920 - 823, y = 0, w = 823, h = 1080, }, 
-                  depth = -1,
-                }
-              )
-              waywall.show_floating(true)
-            end
-          end,
           ["*-D"] = function()
+            if chat_state.enabled then
+              return false
+            end
             if is_process_running("ninjabrain") then
               os.execute("pkill -f ninjabrain")
             else
@@ -227,8 +295,22 @@
             end
             return false
           end,
-          -- resolution macros
-          ["m3"] = function()
+
+          ["ctrl-N"] = function()
+            toggle_chat()
+          end,
+
+          -- use to navigate pie chart with left hand only
+          -- can't be a regular rebind because of the way programmer dvorak handles number keys
+          ["*-apostrophe"] = function()
+            if chat_state.enabled then
+              return false
+            end
+            waywall.press_key("0")
+          end,
+
+          -- RESOLUTION MACROS
+          ["*-m3"] = function()
             (helpers.toggle_res(thin_res.w, thin_res.h))()
           end,
           ["*-ctrl-m4"] = function()
@@ -236,11 +318,6 @@
           end,
           ["*-ctrl-m5"] = function()
             (helpers.toggle_res(eye.res.w, eye.res.h, eye.sens))()
-          end,
-          -- use to navigate pie chart with left hand only
-          -- can't be a regular rebind because of the way programmer dvorak handles number keys
-          ["*-apostrophe"] = function()
-            waywall.press_key("0")
           end,
         },
       }
