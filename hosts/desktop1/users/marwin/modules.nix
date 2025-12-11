@@ -8,7 +8,6 @@
         mode "1920x1080@144"
         scale 1.0
         variable-refresh-rate
-        position x=1920 y=0
       }
 
       output "HDMI-A-2" {
