@@ -224,17 +224,20 @@
         -- find keycode in https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h
         -- (might be in decimal or in hex)
       local game_remaps = {
+        -- DO NOT REMAP: number row (messes up piechart), any F3 shortcut
         -- use right shift to access pie chart without crouching
         ["102ND"] = "RIGHTSHIFT",
         -- easier F3
         ["X"] = "F3",             --  Q -> F3
         -- search crafting
-        ["T"] = "BackSpace",      --  Y -> Backspace
-        ["F"] = "SEMICOLON",      --  F -> S
-        ["S"] = "U",              --  O -> G
-        ["G"] = "L",              --  I -> N
-        ["D"] = "O",              --  E -> R
-        ["R"] = "D",              --  P -> E
+        ["MB4"] = "BackSpace",    --  MB4 -> Backspace
+        ["W"] = "N",              --  , -> B
+        ["E"] = "D",              --  . -> E
+        ["D"] = "K",              --  E -> T
+        ["V"] = "COMMA",          --  K -> W
+        ["T"] = "O",              --  Y -> R
+        ["Q"] = "B",              --  ; -> X
+        ["R"] = "KP4",            --  P -> 4
       }
 
   -- ##############################################################################################
@@ -308,12 +311,11 @@
             end
             waywall.press_key("0")
           end,
-
           -- RESOLUTION MACROS
           ["*-m3"] = function()
             (helpers.toggle_res(thin_res.w, thin_res.h))()
           end,
-          ["*-ctrl-m4"] = function()
+          ["*-shift-m4"] = function()
             (helpers.toggle_res(1920, 300))()
           end,
           ["*-ctrl-m5"] = function()
