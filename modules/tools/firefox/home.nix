@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     (firefox.override {
       nativeMessagingHosts = [
-        inputs.pipewire-screenaudio.packages.${pkgs.system}.default
+        inputs.pipewire-screenaudio.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
     })
     (pkgs.makeDesktopItem {

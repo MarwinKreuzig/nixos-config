@@ -10,7 +10,8 @@
       automatic = true;
       dates = [ "weekly" ];
     };
-    settings.trusted-users = [ "@wheel" ];
+    # FIXME: @wheel should be all that is needed, but it doesn't seem to work?
+    settings.trusted-users = [ "@wheel marwin root" ];
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
