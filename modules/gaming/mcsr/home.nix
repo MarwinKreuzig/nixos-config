@@ -39,12 +39,12 @@
       (pkgs.callPackage ./packages/paceman/default.nix { })
       (pkgs.callPackage ./packages/lingle/default.nix { })
       (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
-        version = "0-unstable-2025-11-07";
+        version = "0-unstable-2025-12-20";
         src = pkgs.fetchFromGitHub {
           owner = "tesselslate";
           repo = "waywall";
-          rev = "ed76c2b605d19905617d9060536e980fd49410bf";
-          hash = "sha256-bLIoGLXnBrn46EVk0PkGePslKYL7V/h1mnI+s9GFSnY=";
+          rev = "81c864bf3f1a51cdd98baa3e1a0842a95cae09d8";
+          hash = "sha256-G8A08eXF68aO9AFTwdlK2jZJtx5+u0uKcs+ly6i88/Q=";
         };
         patches = [ ./0001-nvidia-fix.patch ];
       }))
