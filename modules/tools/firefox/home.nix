@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, osConfig, ... }:
 {
   home.packages = [
     (pkgs.makeDesktopItem {
@@ -19,7 +19,15 @@
         name = "Private";
         isDefault = true;
         id = 0;
+        settings = {
+          # might require to starting and closing the profile once to apply
+          "identity.fxaccounts.account.device.name" = "${osConfig.networking.hostName}/private";
+        };
         search = {
+          # without force home manager refuses to overwrite a file and you can't activate the configuration
+          force = true;
+          default = "ddg";
+          privateDefault = "ddg";
           engines = {
             "Nix Packages" = {
               urls = [
@@ -68,6 +76,9 @@
         name = "Work";
         isDefault = false;
         id = 1;
+        settings = {
+          "identity.fxaccounts.account.device.name" = "${osConfig.networking.hostName}/work";
+        };
       };
     };
     policies = {
@@ -90,8 +101,10 @@
         "places.semanticHistory.featureGate" = false;
         "sidebar.revamp" = false;
 
-        # enable middle mouse scrolling :D
+        # QOL
         "general.autoScroll" = true;
+        "mousebutton.4th.enabled" = false;
+        "mousebutton.5th.enabled" = false;
       };
     };
   };
