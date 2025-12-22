@@ -1,6 +1,6 @@
 { lib, osConfig, pkgs, graal-pkgs, ... }:
 {
-  config = lib.mkIf osConfig.modules.gaming.enable {
+  config = lib.mkIf osConfig.modules.gaming.mcsr.enable {
     home.packages = with pkgs; [
       xwayland
 
@@ -46,6 +46,7 @@
           rev = "81c864bf3f1a51cdd98baa3e1a0842a95cae09d8";
           hash = "sha256-G8A08eXF68aO9AFTwdlK2jZJtx5+u0uKcs+ly6i88/Q=";
         };
+      } // lib.optionalAttrs osConfig.modules.nvidia.enable {
         patches = [ ./0001-nvidia-fix.patch ];
       }))
     ];
