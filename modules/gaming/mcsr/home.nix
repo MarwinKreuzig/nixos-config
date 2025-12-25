@@ -47,6 +47,8 @@
           hash = "sha256-G8A08eXF68aO9AFTwdlK2jZJtx5+u0uKcs+ly6i88/Q=";
         };
       } // lib.optionalAttrs osConfig.modules.nvidia.enable {
+        # patch to solve the "freezing without input" issue on niri+nvidia
+        # this breaks waywall on any other configuration
         patches = [ ./0001-nvidia-fix.patch ];
       }))
     ];
