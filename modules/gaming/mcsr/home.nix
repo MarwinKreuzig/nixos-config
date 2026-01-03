@@ -7,17 +7,6 @@
       kdePackages.kdenlive
 
       (pkgs.prismlauncher.override (previous: {
-        glfw3-minecraft =
-          (pkgs.glfw.overrideAttrs (finalAttrs: previousAttrs: {
-            pname = "glfw-mcsr";
-            patches = previousAttrs.patches ++ [
-              (pkgs.fetchpatch
-                {
-                  url = "https://raw.githubusercontent.com/tesselslate/waywall/be3e018bb5f7c25610da73cc320233a26dfce948/contrib/glfw.patch";
-                  sha256 = "sha256-8Sho5Yoj/FpV7utWz3aCXNvJKwwJ3ZA3qf1m2WNxm5M=";
-                })
-            ];
-          }));
         jdks = [
           graal-pkgs.graalvm-ce
           jdk21
@@ -39,17 +28,13 @@
       (pkgs.callPackage ./packages/paceman/default.nix { })
       (pkgs.callPackage ./packages/lingle/default.nix { })
       (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
-        version = "0-unstable-2025-12-20";
+        version = "0-unstable-2026-01-02";
         src = pkgs.fetchFromGitHub {
           owner = "tesselslate";
           repo = "waywall";
-          rev = "81c864bf3f1a51cdd98baa3e1a0842a95cae09d8";
-          hash = "sha256-G8A08eXF68aO9AFTwdlK2jZJtx5+u0uKcs+ly6i88/Q=";
+          rev = "2e911de06a66d0b642e8d21c7a32bb8b3d957955";
+          hash = "sha256-9gXKyhiX5cdgGPTVGNY+mKUukcg78kDY0uh01pvSIWE=";
         };
-      } // lib.optionalAttrs osConfig.modules.nvidia.enable {
-        # patch to solve the "freezing without input" issue on niri+nvidia
-        # this breaks waywall on any other configuration
-        patches = [ ./0001-nvidia-fix.patch ];
       }))
     ];
     programs.obs-studio = {
@@ -80,21 +65,23 @@
 -- ################################################################################################
 -- WAYWALL STARTUP
 -- ################################################################################################
-      local ran_first_setup = false
-      local bg_images = {
+      local deco_objects = {
         thin1 = nil,
         thin2 = nil,
       }
-      local setup = function()
-        ran_first_setup = true
-        bg_images.thin0 = waywall.image(
+
+      waywall.listen("load", function()
+        if not is_process_running("ninjabrainbot") then
+          waywall.exec("ninjabrainbot")
+        end
+        deco_objects.thin0 = waywall.image(
           "${../../../assets/mcsr/bg.png}", 
           {
             dst = { x = 0, y = 0, w = 823, h = 1080, }, 
             depth = -1,
           }
         )
-        bg_images.thin1 = waywall.image(
+        deco_objects.thin1 = waywall.image(
           "${../../../assets/mcsr/bg.png}", 
           {
             dst = { x = 1920 - 823, y = 0, w = 823, h = 1080, }, 
@@ -102,12 +89,6 @@
           }
         )
         waywall.show_floating(true)
-      end
-
-      waywall.listen("state", function()
-        if not ran_first_setup then
-          setup()
-        end
       end)
 
 -- ################################################################################################
@@ -148,7 +129,7 @@
   -- EYE ZOOM
 
       local eye = {
-        sens = 0.56,
+        sens = 0.74,
         res = {
           w = 300,
           h = 16384,
@@ -279,13 +260,14 @@
           remaps = game_remaps,
 
           -- MOUSE CONFIG
-          -- value obtained by trial and error (binary search)
-          sensitivity = 8.25,
+          -- value obtained by trial and error (binary search) and https://github.com/Esensats/mcsr-calcsens
+          -- should correspond to 36cm/360
+          sensitivity = 11,
           confine_pointer = false,
         },
         theme = {
           background = "#1b0e1fff",
-          ninb_anchor = "topright",
+          ninb_anchor = "topleft",
           ninb_opacity = 0.9
         },
         actions = {
@@ -293,13 +275,12 @@
             if chat_state.enabled then
               return false
             end
-            if is_process_running("ninjabrain") then
-              os.execute("pkill -f ninjabrain")
-            else
-              waywall.show_floating(true)
+            if not is_process_running("ninjabrainbot") then
               waywall.exec("ninjabrainbot")
+              waywall.show_floating(true)
+            else
+              helpers.toggle_floating()
             end
-            return false
           end,
 
           ["ctrl-N"] = function()

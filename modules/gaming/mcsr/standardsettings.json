@@ -70,7 +70,7 @@
   "showSubtitles": true,
   "language": "en_us",
   "forceUnicodeFont": false,
-  "mouseSensitivity": 0.058765005,
+  "mouseSensitivity": 0.02291165,
   "invertYMouse": false,
   "mouseWheelSensitivity": 1.0,
   "discrete_mouse_scroll": false,
