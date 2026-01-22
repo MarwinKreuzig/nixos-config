@@ -26,7 +26,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvim-nix-config.url = "github:MarwinKreuzig/nvim-nix-config";
+    nvim-nix-config.url = "github:nix-community/kickstart-nix.nvim";
     pinned-graal-nixpkgs.url = "github:nixos/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269";
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
   };
