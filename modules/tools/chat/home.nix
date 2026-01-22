@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     discord-canary
-    vesktop
     signal-desktop-bin
   ];
 }
