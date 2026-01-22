@@ -28,12 +28,12 @@
       (pkgs.callPackage ./packages/paceman/default.nix { })
       (pkgs.callPackage ./packages/lingle/default.nix { })
       (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
-        version = "0-unstable-2026-01-02";
+        version = "0-unstable-2026-01-06";
         src = pkgs.fetchFromGitHub {
           owner = "tesselslate";
           repo = "waywall";
-          rev = "2e911de06a66d0b642e8d21c7a32bb8b3d957955";
-          hash = "sha256-9gXKyhiX5cdgGPTVGNY+mKUukcg78kDY0uh01pvSIWE=";
+          rev = "c6504f95f8d757a2e060c4df8bd3ed145ad59e8d";
+          hash = "sha256-kfBsppc+esz0Q6iIIKAeOMwkIWdN12AlH3Dji8bU32c=";
         };
       }))
     ];
@@ -267,7 +267,7 @@
         },
         theme = {
           background = "#1b0e1fff",
-          ninb_anchor = "topleft",
+          ninb_anchor = "topright",
           ninb_opacity = 0.9
         },
         actions = {
@@ -281,6 +281,16 @@
             else
               helpers.toggle_floating()
             end
+          end,
+          ["*-J"] = function()
+            if chat_state.enabled or not waywall.get_key("F3") then
+              return false
+            end
+            if not is_process_running("ninjabrainbot") then
+              waywall.exec("ninjabrainbot")
+            end
+            waywall.show_floating(true)
+            return false
           end,
 
           ["ctrl-N"] = function()
@@ -311,6 +321,9 @@
       return config
     '';
 
-    xdg.configFile."java/.java/.userPrefs/ninjabrainbot/prefs.xml".source = ./ninjabrainbot.xml;
+    xdg.configFile."java/.java/.userPrefs/ninjabrainbot/prefs.xml" = {
+      source = ./ninjabrainbot.xml;
+      force = true;
+    };
   };
 }

@@ -1,6 +1,6 @@
 {
-  ".apiVersion": "2.1+1.16.1",
-  ".modVersion": "2.3+1.16.1",
+  ".apiVersion": "2.1+1.16-1.16.1",
+  ".modVersion": "2.3+1.16-1.16.1",
   ".dataVersion": 0,
   "fov": 110.0,
   "realmsNotifications": false,
@@ -123,7 +123,7 @@
   "chatLineSpacing": 0.0,
   "chatWidth": 1.0,
   "chatHeightFocused": 1.0,
-  "chatHeightUnfocused": 0.44366195797920227,
+  "chatHeightUnfocused": 0.12723214285714285,
   "narrator": 0,
   "autoSuggestions": true,
   "reducedDebugInfo": false,
