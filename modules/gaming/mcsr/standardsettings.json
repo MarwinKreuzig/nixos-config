@@ -98,7 +98,7 @@
   "key_key.hotbar.8": "key.keyboard.c",
   "key_key.hotbar.9": "key.keyboard.comma",
   "key_key.inventory": "key.keyboard.keypad.4",
-  "key_key.swapOffhand": "key.mouse.5",
+  "key_key.swapOffhand": "key.keyboard.home",
   "key_key.loadToolbarActivator": "key.keyboard.l",
   "key_key.saveToolbarActivator": "key.keyboard.unknown",
   "key_key.playerlist": "key.keyboard.tab",

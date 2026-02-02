@@ -26,7 +26,6 @@
       (pkgs.callPackage ./packages/modcheck/default.nix { })
       (pkgs.callPackage ./packages/ninjabrainbot/default.nix { })
       (pkgs.callPackage ./packages/paceman/default.nix { })
-      (pkgs.callPackage ./packages/lingle/default.nix { })
       (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
         version = "0-unstable-2026-01-06";
         src = pkgs.fetchFromGitHub {
@@ -215,6 +214,7 @@
         ["X"] = "F3",             --  Q -> F3
         -- search crafting
         ["MB4"] = "BackSpace",    --  MB4 -> Backspace
+	["MB5"] = "Home",	  --  MB5 -> Home
         ["W"] = "N",              --  , -> B
         ["E"] = "D",              --  . -> E
         ["D"] = "K",              --  E -> T
@@ -306,11 +306,11 @@
             waywall.press_key("0")
           end,
           -- RESOLUTION MACROS
-          ["*-m3"] = function()
-            (helpers.toggle_res(thin_res.w, thin_res.h))()
-          end,
-          ["*-shift-m4"] = function()
+          ["*-ctrl-m3"] = function()
             (helpers.toggle_res(1920, 300))()
+          end,
+          ["m3"] = function()
+            (helpers.toggle_res(thin_res.w, thin_res.h))()
           end,
           ["*-ctrl-m5"] = function()
             (helpers.toggle_res(eye.res.w, eye.res.h, eye.sens))()
