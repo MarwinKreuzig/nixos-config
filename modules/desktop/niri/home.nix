@@ -355,8 +355,8 @@
             // `niri msg action do-something`.
 
             Mod+T { spawn "alacritty"; }
-            Mod+Space { spawn "fuzzel"; }
-            Mod+V { spawn "sh" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
+            Mod+Space { spawn-sh "vicinae toggle"; }
+            Mod+V { spawn "sh" "-c" "cliphist list | vicinae dmenu | cliphist decode | wl-copy"; }
 
             // You can also use a shell. Do this if you need pipes, multiple commands, etc.
             // Note: the entire command goes as a single argument in the end.

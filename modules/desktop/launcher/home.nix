@@ -1,19 +1,12 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  #xdg.configFile."tofi/config".text = (builtins.readFile ./tofi) + "\nfont=mono";
-  xdg.configFile."tofi/config".source = ./tofi;
-
-  programs.fuzzel = {
+  programs.vicinae = {
     enable = true;
+    systemd.enable = true;
     settings = {
-      main = {
-        include = "${./fuzzel.ini}";
+      theme = {
+        light.name = "catppuccin-latte";
       };
     };
   };
-
-  home.packages = with pkgs; [
-    fuzzel
-    tofi
-  ];
 }
