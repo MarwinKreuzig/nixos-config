@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.sessionVariables = {
     _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=\"$XDG_CONFIG_HOME\"/java";
@@ -36,6 +36,25 @@
 
   programs.helix = {
     enable = true;
+    extraPackages = with pkgs; [ rust-analyzer ];
+    languages = {
+      language-server.nil = {
+        command = lib.getExe pkgs.nil;
+        config.nil = {
+          nix.flake = {
+            autoArchive = true;
+            autoEvalInputs = true;
+          };
+        };
+      };
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = lib.getExe pkgs.nixpkgs-fmt;
+        }
+      ];
+    };
   };
 
   # create a path to global install npm binaries to
