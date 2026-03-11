@@ -25,4 +25,8 @@
     enableFishIntegration = true;
     enableBashIntegration = true;
   };
+
+  security.sudo.extraConfig = ''
+    Defaults env_reset,pwfeedback
+  '';
 }
