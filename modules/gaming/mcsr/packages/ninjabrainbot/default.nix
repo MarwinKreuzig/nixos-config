@@ -36,11 +36,11 @@ pkgs.maven.buildMavenPackage rec {
     makeWrapper ${pkgs.jre}/bin/java $out/bin/ninjabrainbot \
       --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath (with pkgs; [ 
         libxkbcommon 
-        xorg.libX11 
-        xorg.libXt 
-        xorg.libXtst
-        xorg.libXinerama
-        xorg.libxcb
+        libX11 
+        libXt 
+        libXtst
+        libXinerama
+        libxcb
       ])}" \
       --add-flags "-DSwing.aatext=TRUE -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dawt.useSystemAAFontSettings=on -jar $out/share/ninjabrainbot/ninjabrainbot-${version}-jar-with-dependencies.jar -Djava.util.prefs.userRoot=$HOME/.config/ninjabrainbot"
 

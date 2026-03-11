@@ -16,10 +16,10 @@
         # runtime dependencies necessary for mcsr fairplay mod
         additionalLibs = [
           openssl
-          xorg.libXtst
-          xorg.libXt
-          xorg.libxcb
-          xorg.libXinerama
+          libXtst
+          libXt
+          libxcb
+          libXinerama
           libxkbcommon
         ];
       }))
@@ -233,10 +233,10 @@
               -- use right shift to access pie chart without crouching
               ["102ND"] = "RIGHTSHIFT",
               -- easier F3
-              ["X"] = "F3",             --  Q -> F3
+              ["X"] = "Home",             --  Q -> F3
               -- search crafting
-              ["MB4"] = "BackSpace",    --  MB4 -> Backspace
-      	["MB5"] = "Home",	  --  MB5 -> Home
+              ["MB4"] = "F3",    --  MB4 -> Backspace
+            	["MB5"] = "BackSpace",	        --  MB5 -> Home
               ["W"] = "N",              --  , -> B
               ["E"] = "D",              --  . -> E
               ["D"] = "K",              --  E -> T

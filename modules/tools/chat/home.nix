@@ -2,6 +2,6 @@
 {
   home.packages = with pkgs; [
     discord-canary
-    signal-desktop-bin
+    signal-desktop
   ];
 }
