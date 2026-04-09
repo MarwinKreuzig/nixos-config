@@ -10,7 +10,7 @@
 
   config = lib.mkIf config.modules.desktops.niri.enable {
     home.packages = with pkgs; [
-      swww
+      awww
       cliphist
       wl-clipboard
 
@@ -101,6 +101,7 @@
             match app-id=r#"^thunderbird$"#
             match app-id=r#"^signal$"#
             match app-id=r#"^discord$"#
+            match app-id=r#"^Element$"#
             match title=r#"^.*Private Browsing.*$"#
 
             block-out-from "screencast"
@@ -278,9 +279,11 @@
         spawn-at-startup "waybar"
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-        spawn-at-startup "sh" "-c" "swww-daemon; swww img ${../../../assets/ViktoriaLuiseWallpaper.jpg}"
+        spawn-at-startup "sh" "-c" "awww-daemon; awww img ${../../../assets/ViktoriaLuiseWallpaper.jpg}"
         spawn-at-startup "discord-canary"
         spawn-at-startup "signal-desktop"
+        spawn-at-startup "element-desktop"
+        spawn-at-startup "thunderbird"
         spawn-at-startup "uwsm" "finalize"
         // spawn-at-startup "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"
 
