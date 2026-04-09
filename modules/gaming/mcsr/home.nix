@@ -55,6 +55,39 @@
             local waywall = require("waywall")
             local helpers = require("waywall.helpers")
 
+            function color_key(color)
+              return {
+                input = color,
+                output = color,
+              }
+            end
+
+            local const = {
+              colors = {
+                text = {
+                  input = "#DDDDDD",
+                  output = "#FFFFFF"
+                },
+                pie_chart = {
+                  color_key("#EC6D50"),
+                  color_key("#45CF6A"),
+                  color_key("#E446BF")
+                }
+              },
+              mirrors = {
+                pie_chart = {
+                  w = 320, h = 160, left = 330, top = 400, bottom = 220,
+                }
+              },
+              res = {
+                default = {
+                  w = 1920,
+                  h = 1080,
+                },
+              }
+            }
+
+
  
       -- ################################################################################################
       -- HELPERS
@@ -79,16 +112,16 @@
                 waywall.exec("ninjabrainbot")
               end
               deco_objects.thin0 = waywall.image(
-                "${../../../assets/mcsr/bg.png}", 
+                "${./waywall/assets/bg.png}", 
                 {
-                  dst = { x = 0, y = 0, w = 823, h = 1080, }, 
+                  dst = { x = 0, y = 0, w = 823, h = const.res.default.h, }, 
                   depth = -1,
                 }
               )
               deco_objects.thin1 = waywall.image(
-                "${../../../assets/mcsr/bg.png}", 
+                "${./waywall/assets/bg.png}", 
                 {
-                  dst = { x = 1920 - 823, y = 0, w = 823, h = 1080, }, 
+                  dst = { x = const.res.default.w - 823, y = 0, w = 823, h = const.res.default.h, }, 
                   depth = -1,
                 }
               )
@@ -109,24 +142,56 @@
               w = counter_src.w * (40 / counter_src.h),
               h = 40,
             }
-            local function setup_entity_counter(width, height)
-              return helpers.res_mirror(
-                {
-                  src = counter_src,
+            local function setup_mirrors(width, height)
+              local offset = 40
+              return {
+                helpers.res_mirror(
+                  {
+                    src = counter_src,
+                    dst = {
+                      x = (const.res.default.w + width) / 2 + const.mirrors.pie_chart.w + offset * 2,
+                      y = (const.res.default.h - counter_dst_size.h) / 2,
+                      w = counter_dst_size.w,
+                      h = counter_dst_size.h,
+                    },
+                    color_key = const.colors.text,
+                  },
+                  width,
+                  height
+                ),
+
+                helpers.res_mirror({
+                  src = {
+                    x = width  - const.mirrors.pie_chart.left,
+                    y = height - const.mirrors.pie_chart.top,
+                    w = const.mirrors.pie_chart.w,
+                    h = const.mirrors.pie_chart.h,
+                  },
                   dst = {
-                    x = (1920 + width) / 2,
-                    y = (1080 - counter_dst_size.h) / 2,
-                    w = counter_dst_size.w,
-                    h = counter_dst_size.h,
+                    x = (const.res.default.w + width) / 2 + offset,
+                    y = (const.res.default.h - const.mirrors.pie_chart.w) / 2,
+                    w = const.mirrors.pie_chart.w,
+                    h = const.mirrors.pie_chart.w,
                   },
-                  color_key = {
-                    input = "#dddddd",
-                    output = "#ffffff",
+                  shader = "pie_chart"
+                }, width, height),
+
+                helpers.res_mirror({
+                  src = {
+                    x = width  - const.mirrors.pie_chart.left,
+                    y = height - const.mirrors.pie_chart.bottom,
+                    w = const.mirrors.pie_chart.w,
+                    h = const.mirrors.pie_chart.bottom,
                   },
-                },
-                width,
-                height
-              )
+                  dst = {
+                    x = (const.res.default.w + width) / 2 + offset,
+                    y = (const.res.default.h + const.mirrors.pie_chart.w) / 2,
+                    w = const.mirrors.pie_chart.w,
+                    h = const.mirrors.pie_chart.bottom,
+                  },
+                  shader = "pie_chart"
+                }, width, height)
+              }
             end
 
         -- ##############################################################################################
@@ -135,24 +200,24 @@
             local eye = {
               sens = 0.74,
               res = {
-                w = 300,
+                w = 384,
                 h = 16384,
               },
-              proj = {
-                x = 0,
-                y = 312,
-                w = 810,
-                h = 456,
-              },
               src = {
-                w = 60,
-                h = 580,
+                w = 30,
+                h = const.res.default.h,
               },
+            }
+
+            local proj_dst = {
+              x = 0, y = 0,
+              w = (const.res.default.w - eye.res.w) / 2,
+              h = const.res.default.h
             }
 
             helpers.res_mirror(
               {
-                dst = eye.proj,
+                dst = proj_dst,
                 src = {
                   x = (eye.res.w - eye.src.w) / 2,
                   y = (eye.res.h - eye.src.h) / 2,
@@ -164,38 +229,34 @@
               eye.res.h
             )
 
-            helpers.res_image("${../../../assets/mcsr/overlay.png}", { dst = eye.proj }, eye.res.w, eye.res.h)
+            local overlay_img = { w = 1920, h = 1080 }
+            local overlay_h =  overlay_img.h * proj_dst.w / overlay_img.w
 
-            setup_entity_counter(eye.res.w, eye.res.h)
+            helpers.res_image("${./waywall/assets/overlay_thin.png}",
+              {
+                dst = {
+                  x = 0,
+                  y = (const.res.default.h - overlay_h) / 2,
+                  w = proj_dst.w,
+                  h = overlay_h,
+                }
+              },
+              eye.res.w, eye.res.h
+            )
 
-            local pie_height = 320
-            local dst_height = (1080 - counter_dst_size.h) / 2
-            helpers.res_mirror({
-              src = {
-                x = 0,
-                y = eye.res.h - 420,
-                w = eye.res.w,
-                h = pie_height,
-              },
-              dst = {
-                x = (1920 + eye.res.w) / 2,
-                y = (1080 + counter_dst_size.h) / 2,
-                w = (dst_height / pie_height) * eye.res.w,
-                h = dst_height,
-              },
-            }, eye.res.w, eye.res.h)
+            setup_mirrors(eye.res.w, eye.res.h)
 
         -- ##############################################################################################
         -- THIN
 
             local thin_res = {
-              w = 300,
-              h = 1080,
+              w = const.mirrors.pie_chart.left,
+              h = const.res.default.h,
             }
-            setup_entity_counter(thin_res.w, thin_res.h)
+            setup_mirrors(thin_res.w, thin_res.h)
 
         -- ##############################################################################################
-        -- TALL
+        -- WIDE
             helpers.res_mirror({
               src = {
                 x = 0,
@@ -236,6 +297,9 @@
               ["X"] = "Home",             --  Q -> Home
               ["MB4"] = "F3",             
             	["MB5"] = "BackSpace",	    
+            	["F"] = "J",
+            	["G"] = "F",
+            	["H"] = "G"
             }
 
         -- ##############################################################################################
@@ -250,7 +314,7 @@
                 waywall.set_remaps({})
                 waywall.set_keymap({ layout = "us,de", variant = "dvp" })
                 chat_state.text = waywall.text(
-                  "CHAT MODE ENABLED",
+                  "KEYBINDS DISABLED",
                   { x = 0, y = 0, color = "#ff0000", size = 10 }
                 )
               else
@@ -286,7 +350,7 @@
                 ninb_opacity = 0.9
               },
               actions = {
-                ["*-D"] = function()
+                ["*-F"] = function()
                   if chat_state.enabled then
                     return false
                   end
@@ -296,6 +360,10 @@
                   else
                     helpers.toggle_floating()
                   end
+                end,
+                ["*-Delete"] = function()
+                  waywall.show_floating(false)
+                  return false
                 end,
                 ["*-J"] = function()
                   if chat_state.enabled or not waywall.get_key("F3") then
@@ -331,6 +399,11 @@
                   (helpers.toggle_res(eye.res.w, eye.res.h, eye.sens))()
                 end,
               },
+              shaders = {
+                ["pie_chart"] = {
+                  fragment = [[${builtins.readFile ./waywall/shaders/pie_chart.frag}]],
+                }
+              }
             }
 
             return config

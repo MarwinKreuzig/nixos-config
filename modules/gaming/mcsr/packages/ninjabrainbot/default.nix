@@ -1,12 +1,12 @@
 { pkgs }:
 pkgs.maven.buildMavenPackage rec {
   pname = "ninjabrainbot";
-  version = "1.5.1";
+  version = "1.5.2";
   src = pkgs.fetchFromGitHub {
     owner = "Ninjabrain1";
     repo = "Ninjabrain-Bot";
     rev = version;
-    hash = "sha256-r8TpL3VLf2QHwFS+DdjxgxyuZu167fP6/lN7a8e9opM=";
+    hash = "sha256-uOUPho4UCZxeTtCU4XHJsTR6HuXAnKXd3jk/tSRd4Yc=";
   };
   mvnHash = "sha256-2+p4ReD1M3VuyTu4TmCx9xrFf2QFm/FFBgs7a2eIpZY=";
 

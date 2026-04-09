@@ -10,8 +10,8 @@ xkb_symbols "basic" {
     key <AC01> { [ a, A, VoidSymbol, VoidSymbol ] };
     key <AC02> { [ o, O, VoidSymbol, VoidSymbol ] };
     key <AC03> { [ s, S, VoidSymbol, VoidSymbol ] };
-    key <AC04> { [ n, N, VoidSymbol, VoidSymbol ] };
-    key <AC05> { [ i, I, VoidSymbol, VoidSymbol ] };
+    key <AC04> { [ i, I, VoidSymbol, VoidSymbol ] };
+    key <AC07> { [ n, N, VoidSymbol, VoidSymbol ] };
     key <AB03> { [ t, T, VoidSymbol, VoidSymbol ] };
     key <AB04> { [ w, W, VoidSymbol, VoidSymbol ] };
     key <AB05> { [ c, C, VoidSymbol, VoidSymbol ] };
