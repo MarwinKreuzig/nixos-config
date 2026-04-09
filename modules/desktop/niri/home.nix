@@ -46,6 +46,8 @@
       };
     };
 
+    services.awww.enable = true;
+
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       QT_QPA_PLATFORM = "wayland;xcb";
@@ -279,7 +281,7 @@
         spawn-at-startup "waybar"
         spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-        spawn-at-startup "sh" "-c" "awww-daemon; awww img ${../../../assets/ViktoriaLuiseWallpaper.jpg}"
+        spawn-at-startup "sh" "-c" "awww img ${../../../assets/ViktoriaLuiseWallpaper.jpg}"
         spawn-at-startup "discord-canary"
         spawn-at-startup "signal-desktop"
         spawn-at-startup "element-desktop"
