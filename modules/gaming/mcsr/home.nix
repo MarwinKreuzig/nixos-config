@@ -50,6 +50,7 @@
         input-overlay
       ];
     };
+    xdg.configFile."xkb/symbols/mc_remaps".source = ./mc_remaps;
     xdg.configFile."waywall/init.lua".text = ''
             local waywall = require("waywall")
             local helpers = require("waywall.helpers")
@@ -232,17 +233,9 @@
               -- DO NOT REMAP: number row (messes up piechart), any F3 shortcut
               -- use right shift to access pie chart without crouching
               ["102ND"] = "RIGHTSHIFT",
-              -- easier F3
-              ["X"] = "Home",             --  Q -> F3
-              -- search crafting
-              ["MB4"] = "F3",    --  MB4 -> Backspace
-            	["MB5"] = "BackSpace",	        --  MB5 -> Home
-              ["W"] = "N",              --  , -> B
-              ["E"] = "D",              --  . -> E
-              ["D"] = "K",              --  E -> T
-              ["V"] = "COMMA",          --  K -> W
-              ["T"] = "O",              --  Y -> R
-              ["R"] = "KP4",            --  P -> 4
+              ["X"] = "Home",             --  Q -> Home
+              ["MB4"] = "F3",             
+            	["MB5"] = "BackSpace",	    
             }
 
         -- ##############################################################################################
@@ -255,12 +248,14 @@
               chat_state.enabled = not chat_state.enabled
               if chat_state.enabled then
                 waywall.set_remaps({})
+                waywall.set_keymap({ layout = "us,de", variant = "dvp" })
                 chat_state.text = waywall.text(
                   "CHAT MODE ENABLED",
                   { x = 0, y = 0, color = "#ff0000", size = 10 }
                 )
               else
                 waywall.set_remaps(game_remaps)
+                waywall.set_keymap({ layout = "mc_remaps" })
                 chat_state.text:close()
                 chat_state.text = nil
               end
@@ -271,8 +266,7 @@
             local config = {
               input = {
                 -- KEYBOARD CONFIG
-                layout = "us,de",
-                variant = "dvp",
+                layout = "mc_remaps",
                 model = "pc105",
                 options = "lv3:ralt_switch",
                 repeat_rate = 40,
