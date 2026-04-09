@@ -1,11 +1,12 @@
 { pkgs, ... }:
 {
-  gtk = {
+  gtk = rec {
     enable = true;
     theme = {
       package = pkgs.flat-remix-gtk;
       name = "Flat-Remix-GTK-Red-Light";
     };
+    gtk4.theme = theme;
 
     iconTheme = {
       package = pkgs.flat-remix-icon-theme;

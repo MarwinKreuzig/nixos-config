@@ -29,10 +29,14 @@
     nvim-nix-config.url = "github:nix-community/kickstart-nix.nvim";
     pinned-graal-nixpkgs.url = "github:nixos/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269";
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, stylix, ... }@inputs:
     let
       mkSystem = { users, host, }:
         let
@@ -46,6 +50,7 @@
           modules = [
             ./modules/host-modules.nix
             home-manager.nixosModules.home-manager
+            stylix.nixosModules.stylix
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -77,7 +82,6 @@
     in
     {
       nixosConfigurations = {
-        "desktop0" = mkSystem { };
         "desktop1" = mkSystem {
           users.marwin = ./hosts/desktop1/users/marwin;
           host = ./hosts/desktop1;

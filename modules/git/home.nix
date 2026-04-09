@@ -8,6 +8,7 @@
         condition = "gitdir:~/Projects/CProSoft";
       }
     ];
+    signing.format = "openpgp";
     settings = {
       user = {
         name = "Marwin Kreuzig";
