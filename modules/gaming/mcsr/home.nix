@@ -63,17 +63,6 @@
             end
 
             local const = {
-              colors = {
-                text = {
-                  input = "#DDDDDD",
-                  output = "#FFFFFF"
-                },
-                pie_chart = {
-                  color_key("#EC6D50"),
-                  color_key("#45CF6A"),
-                  color_key("#E446BF")
-                }
-              },
               mirrors = {
                 pie_chart = {
                   w = 320, h = 160, left = 330, top = 400, bottom = 220,
@@ -144,22 +133,30 @@
             }
             local function setup_mirrors(width, height)
               local offset = 40
+              local x = 1160
+              local pie_chart_dst = {
+                  x = x,
+                  y = (const.res.default.h - const.mirrors.pie_chart.w) / 2,
+                  w = const.mirrors.pie_chart.w,
+                  h = const.mirrors.pie_chart.w,
+              }
               return {
+                -- e counter mirror
                 helpers.res_mirror(
                   {
                     src = counter_src,
                     dst = {
-                      x = (const.res.default.w + width) / 2 + const.mirrors.pie_chart.w + offset * 2,
+                      x = x + const.mirrors.pie_chart.w + offset,
                       y = (const.res.default.h - counter_dst_size.h) / 2,
                       w = counter_dst_size.w,
                       h = counter_dst_size.h,
                     },
-                    color_key = const.colors.text,
                   },
                   width,
                   height
                 ),
 
+                -- pie chart mirror and mask
                 helpers.res_mirror({
                   src = {
                     x = width  - const.mirrors.pie_chart.left,
@@ -167,15 +164,15 @@
                     w = const.mirrors.pie_chart.w,
                     h = const.mirrors.pie_chart.h,
                   },
-                  dst = {
-                    x = (const.res.default.w + width) / 2 + offset,
-                    y = (const.res.default.h - const.mirrors.pie_chart.w) / 2,
-                    w = const.mirrors.pie_chart.w,
-                    h = const.mirrors.pie_chart.w,
-                  },
-                  shader = "pie_chart"
+                  dst = pie_chart_dst,
                 }, width, height),
+                helpers.res_image(
+                  "${./waywall/assets/piechart_mask.png}",
+                  { dst = pie_chart_dst, },
+                  width, height
+                ),
 
+                -- pie chart numbers mirror
                 helpers.res_mirror({
                   src = {
                     x = width  - const.mirrors.pie_chart.left,
@@ -184,12 +181,11 @@
                     h = const.mirrors.pie_chart.bottom,
                   },
                   dst = {
-                    x = (const.res.default.w + width) / 2 + offset,
+                    x = x,
                     y = (const.res.default.h + const.mirrors.pie_chart.w) / 2,
                     w = const.mirrors.pie_chart.w,
                     h = const.mirrors.pie_chart.bottom,
                   },
-                  shader = "pie_chart"
                 }, width, height)
               }
             end
