@@ -311,6 +311,38 @@
         "type": "github"
       }
     },
+    "nixpkgs-glfw-mcsr": {
+      "locked": {
+        "lastModified": 1706367331,
+        "narHash": "sha256-AqgkGHRrI6h/8FWuVbnkfFmXr4Bqsr4fV23aISqj/xg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "160b762eda6d139ac10ae081f8f78d640dd523eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "160b762eda6d139ac10ae081f8f78d640dd523eb",
+        "type": "github"
+      }
+    },
+    "nixpkgs-graal": {
+      "locked": {
+        "lastModified": 1725980463,
+        "narHash": "sha256-3ruEhwpLlccjwYTvLCyFAtPndcRxAs3XazL2lhOXucI=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5ed627539ac84809c78b2dd6d26a5cebeb5ae269",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5ed627539ac84809c78b2dd6d26a5cebeb5ae269",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1717284937,
@@ -432,22 +464,6 @@
         "type": "github"
       }
     },
-    "pinned-graal-nixpkgs": {
-      "locked": {
-        "lastModified": 1725980463,
-        "narHash": "sha256-3ruEhwpLlccjwYTvLCyFAtPndcRxAs3XazL2lhOXucI=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "5ed627539ac84809c78b2dd6d26a5cebeb5ae269",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "5ed627539ac84809c78b2dd6d26a5cebeb5ae269",
-        "type": "github"
-      }
-    },
     "pipewire-screenaudio": {
       "inputs": {
         "nixpkgs": "nixpkgs_4"
@@ -470,8 +486,9 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-glfw-mcsr": "nixpkgs-glfw-mcsr",
+        "nixpkgs-graal": "nixpkgs-graal",
         "nvim-nix-config": "nvim-nix-config",
-        "pinned-graal-nixpkgs": "pinned-graal-nixpkgs",
         "pipewire-screenaudio": "pipewire-screenaudio",
         "stylix": "stylix"
       }

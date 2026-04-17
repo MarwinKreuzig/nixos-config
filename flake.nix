@@ -20,6 +20,8 @@
   inputs = {
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-glfw-mcsr.url = "github:NixOS/nixpkgs/160b762eda6d139ac10ae081f8f78d640dd523eb";
+    nixpkgs-graal.url = "github:nixos/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269";
     home-manager = {
       # use the line with the branch when you are getting an error because of a version mismatch
       # url = "github:nix-community/home-manager/release-25.11";
@@ -27,7 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvim-nix-config.url = "github:nix-community/kickstart-nix.nvim";
-    pinned-graal-nixpkgs.url = "github:nixos/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269";
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
     stylix = {
       url = "github:nix-community/stylix";
@@ -42,7 +43,8 @@
         let
           specialArgs = {
             inherit inputs;
-            graal-pkgs = import inputs.pinned-graal-nixpkgs { system = "x86_64-linux"; };
+            pkgs-graal = import inputs.nixpkgs-graal { system = "x86_64-linux"; };
+            pkgs-glfw-mcsr = import inputs.nixpkgs-glfw-mcsr { system = "x86_64-linux"; };
           };
         in
         nixpkgs.lib.nixosSystem {

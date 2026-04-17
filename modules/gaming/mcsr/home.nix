@@ -1,4 +1,4 @@
-{ lib, osConfig, pkgs, graal-pkgs, ... }:
+{ lib, osConfig, pkgs, pkgs-graal, pkgs-glfw-mcsr, ... }:
 {
   config = lib.mkIf osConfig.modules.gaming.mcsr.enable {
     home.packages = with pkgs; [
@@ -7,8 +7,19 @@
       kdePackages.kdenlive
 
       (pkgs.prismlauncher.override (previous: {
+        glfw3-minecraft =
+          (pkgs.glfw.overrideAttrs (finalAttrs: previousAttrs: {
+            pname = "glfw-mcsr";
+            patches = previousAttrs.patches ++ [
+              (pkgs.fetchpatch
+                {
+                  url = "https://raw.githubusercontent.com/tesselslate/waywall/ad569de1ddae6b034c7095795a42f044746a55a7/contrib/glfw.patch";
+                  sha256 = "sha256-8Sho5Yoj/FpV7utWz3aCXNvJKwwJ3ZA3qf1m2WNxm5M=";
+                })
+            ];
+          }));
         jdks = [
-          graal-pkgs.graalvm-ce
+          pkgs-graal.graalvm-ce
           jdk21
           jdk17
           jdk8
