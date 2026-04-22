@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     mpv
-    feh
+    kdePackages.gwenview
     krita
   ];
 }

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   browser = [ "firefox" ];
-  image-viewer = [ "feh" ];
+  image-viewer = [ "gwenview" ];
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) {
     "image/gif" = image-viewer;
     "image/jpeg" = image-viewer;
