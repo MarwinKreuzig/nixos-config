@@ -205,7 +205,7 @@
         -- EYE ZOOM
 
             local eye = {
-              sens = 0.74,
+              sens = 0.37,
               res = {
                 w = 384,
                 h = 16384,
@@ -302,7 +302,9 @@
               -- use right shift to access pie chart without crouching
               ["102ND"] = "RIGHTSHIFT",
               ["X"] = "Home",             --  Q -> Home
-              ["MB4"] = "F3",             
+              ["LEFTALT"] = "F3",             
+              ["F1"] = "F20",
+              ["F10"] = "F1",
             	["MB5"] = "BackSpace",	    
             	["F"] = "J",
             	["G"] = "F",
