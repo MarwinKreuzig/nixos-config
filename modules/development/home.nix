@@ -60,6 +60,17 @@
     };
   };
 
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    profiles.default.extensions = with pkgs.vscode-extensions; [
+      vscodevim.vim
+      arrterian.nix-env-selector
+      leanprover.lean4
+      tamasfe.even-better-toml
+    ];
+  };
+
   # create a path to global install npm binaries to
   # use with `npm set prefix ~/.npm-global`
   # see also https://nixos.wiki/wiki/Node.js
