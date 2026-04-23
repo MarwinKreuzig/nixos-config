@@ -205,7 +205,7 @@
         -- EYE ZOOM
 
             local eye = {
-              sens = 0.37,
+              sens = 0.1,
               res = {
                 w = 384,
                 h = 16384,
