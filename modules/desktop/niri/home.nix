@@ -103,7 +103,7 @@
             match app-id=r#"^thunderbird$"#
             match app-id=r#"^signal$"#
             match app-id=r#"^discord$"#
-            match app-id=r#"^Element$"#
+            match title=r#"^Element.*$"#
             match title=r#"^.*Private Browsing.*$"#
 
             block-out-from "screencast"
