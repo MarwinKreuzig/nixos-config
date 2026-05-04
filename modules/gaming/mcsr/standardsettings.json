@@ -79,7 +79,7 @@
   "autoJump": false,
   "key_key.jump": "key.keyboard.space",
   "key_key.sneak": "key.keyboard.left.shift",
-  "key_key.sprint": "key.keyboard.left.alt",
+  "key_key.sprint": "key.keyboard.right.alt",
   "key_key.left": "key.keyboard.s",
   "key_key.right": "key.keyboard.j",
   "key_key.back": "key.keyboard.d",

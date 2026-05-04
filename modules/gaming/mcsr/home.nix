@@ -6,9 +6,9 @@
 
       kdePackages.kdenlive
 
-      (pkgs.prismlauncher.override (previous: {
+      (prismlauncher.override (previous: {
         glfw3-minecraft =
-          (pkgs.glfw.overrideAttrs (finalAttrs: previousAttrs: {
+          (glfw.overrideAttrs (finalAttrs: previousAttrs: {
             pname = "glfw-mcsr";
             patches = previousAttrs.patches ++ [
               (pkgs.fetchpatch
@@ -302,7 +302,7 @@
               -- use right shift to access pie chart without crouching
               ["102ND"] = "RIGHTSHIFT",
               ["X"] = "Home",             --  Q -> Home
-              ["LEFTALT"] = "F3",             
+              ["MMB"] = "F3",             
               ["F1"] = "F20",
               ["F10"] = "F1",
             	["MB5"] = "BackSpace",	    
@@ -398,10 +398,10 @@
                   waywall.press_key("0")
                 end,
                 -- RESOLUTION MACROS
-                ["*-ctrl-m3"] = function()
+                ["*-ctrl-m4"] = function()
                   (helpers.toggle_res(1920, 300))()
                 end,
-                ["m3"] = function()
+                ["m4"] = function()
                   (helpers.toggle_res(thin_res.w, thin_res.h))()
                 end,
                 ["*-ctrl-m5"] = function()
