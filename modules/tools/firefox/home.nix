@@ -1,4 +1,4 @@
-{ pkgs, inputs, osConfig, ... }:
+{ pkgs, inputs, osConfig, config, ... }:
 {
   home.packages = [
     (pkgs.makeDesktopItem {
@@ -13,6 +13,7 @@
     nativeMessagingHosts = [
       inputs.pipewire-screenaudio.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     languagePacks = [ "de-DE" "en-US" ];
     profiles = {
       private = {
@@ -20,7 +21,7 @@
         isDefault = true;
         id = 0;
         settings = {
-          # might require to starting and closing the profile once to apply
+          # might require starting and closing the profile once to apply
           "identity.fxaccounts.account.device.name" = "${osConfig.networking.hostName}/private";
         };
         search = {

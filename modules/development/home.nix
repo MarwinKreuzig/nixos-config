@@ -40,6 +40,12 @@
   programs.helix = {
     enable = true;
     extraPackages = with pkgs; [ rust-analyzer ];
+    settings = {
+      editor = {
+        lsp.display-inlay-hints = true;
+        soft-wrap.enable = true;
+      };
+    };
     languages = {
       language-server.nil = {
         command = lib.getExe pkgs.nil;
@@ -56,13 +62,16 @@
           auto-format = true;
           formatter.command = lib.getExe pkgs.nixpkgs-fmt;
         }
+        {
+          name = "rust";
+          auto-format = true;
+        }
       ];
     };
   };
 
-  programs.vscode = {
+  programs.vscodium = {
     enable = true;
-    package = pkgs.vscodium;
     profiles.default.extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
       arrterian.nix-env-selector
