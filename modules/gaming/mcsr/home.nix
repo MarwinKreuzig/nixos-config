@@ -108,9 +108,6 @@
             }
 
             waywall.listen("load", function()
-              if not is_process_running("ninjabrainbot") then
-                waywall.exec("ninjabrainbot")
-              end
               deco_objects.thin0 = waywall.image(
                 "${./waywall/assets/bg.png}", 
                 {
