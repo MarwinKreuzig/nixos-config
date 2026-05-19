@@ -9,5 +9,7 @@
         ModelBouncingKeys=1
       '';
     };
+
+    programs.ydotool.enable = true;
   };
 }

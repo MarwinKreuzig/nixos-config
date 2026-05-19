@@ -9,7 +9,7 @@
   users.users.marwin = {
     isNormalUser = true;
     description = "Marwin Kreuzig";
-    extraGroups = [ "networkmanager" "wheel" "tty" "audio" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "tty" "audio" "video" "ydotool" ];
     packages = [ ];
     shell = pkgs.fish;
   };

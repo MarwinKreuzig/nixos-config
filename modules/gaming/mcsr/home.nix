@@ -125,6 +125,19 @@
               waywall.show_floating(true)
             end)
 
+            local last_state = ""
+            waywall.listen("state", function()
+                local state = waywall.state().screen
+                if state == last_state then
+                  return
+                end
+                last_state = state
+                if state == "generating" then
+                  waywall.exec("ydotool key F4")
+                  waywall.show_floating(true)
+                end
+            end)
+
       -- ################################################################################################
       -- PROJECTOR SETUP
       -- ################################################################################################
@@ -298,14 +311,17 @@
               -- DO NOT REMAP: number row (messes up piechart), any F3 shortcut
               -- use right shift to access pie chart without crouching
               ["102ND"] = "RIGHTSHIFT",
+              ["Z"] = "0",
               ["X"] = "Home",             --  Q -> Home
-              ["MMB"] = "F3",             
+              ["LEFTALT"] = "F3",             
               ["F1"] = "F20",
               ["F10"] = "F1",
             	["MB5"] = "BackSpace",	    
             	["F"] = "J",
             	["G"] = "F",
-            	["H"] = "G"
+            	["H"] = "G",
+            	-- Every game input can only be mapped to one key, so we need to rebind these keys to be compliant
+            	["F3"] = "F20",
             }
 
         -- ##############################################################################################
@@ -386,14 +402,6 @@
                   toggle_chat()
                 end,
 
-                -- use to navigate pie chart with left hand only
-                -- can't be a regular rebind because of the way programmer dvorak handles number keys
-                ["*-apostrophe"] = function()
-                  if chat_state.enabled then
-                    return false
-                  end
-                  waywall.press_key("0")
-                end,
                 -- RESOLUTION MACROS
                 ["*-ctrl-m4"] = function()
                   (helpers.toggle_res(1920, 300))()
@@ -403,6 +411,14 @@
                 end,
                 ["*-ctrl-m5"] = function()
                   (helpers.toggle_res(eye.res.w, eye.res.h, eye.sens))()
+                end,
+                ["*-mmb"] = function()
+                  (helpers.toggle_res(eye.res.w, eye.res.h))()
+                end,
+                ["*-D"] = function()
+                  waywall.set_resolution(0, 0)
+                  waywall.set_sensitivity(0)
+                  return false
                 end,
               },
               shaders = {
