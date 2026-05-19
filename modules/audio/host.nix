@@ -27,7 +27,7 @@
               nodes = [
                 {
                   type = "ladspa";
-                  name = "rnnoise";
+                  name = "DeepFilter Mono";
                   plugin = "libdeep_filter_ladspa";
                   label = "deep_filter_mono";
                   control = {
