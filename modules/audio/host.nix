@@ -15,7 +15,7 @@
       pkgs.rnnoise-plugin
     ];
 
-    extraConfig.pipewire."99-deepfilter.conf" = {
+    extraConfig.pipewire."99-deepfilter" = {
       "context.modules" = [
         {
           name = "libpipewire-module-filter-chain";
@@ -52,7 +52,7 @@
         }
       ];
     };
-    extraConfig.pipewire."98-rnnoise.conf" = {
+    extraConfig.pipewire."98-rnnoise" = {
       "context.modules" = [
         {
           name = "libpipewire-module-filter-chain";
