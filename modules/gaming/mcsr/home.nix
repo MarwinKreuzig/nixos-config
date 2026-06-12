@@ -131,11 +131,18 @@
                 if state == last_state then
                   return
                 end
-                last_state = state
-                if state == "generating" then
-                  waywall.exec("ydotool key F4")
+                if last_state == "inworld" then
                   waywall.show_floating(true)
+                  -- this doesn't work. why?
+                  waywall.exec("ydotool key DELETE:1")
+                  waywall.exec("ydotool key DELETE:0")
                 end
+                if state == "generating" then
+                  waywall.exec("ydotool key DELETE:1")
+                  waywall.exec("ydotool key DELETE:0")
+                  waywall.show_floating(false)
+                end
+                last_state = state
             end)
 
       -- ################################################################################################
@@ -312,7 +319,7 @@
               -- use right shift to access pie chart without crouching
               ["102ND"] = "RIGHTSHIFT",
               ["Z"] = "0",
-              ["X"] = "Home",             --  Q -> Home
+              ["MB4"] = "Home",
               ["LEFTALT"] = "F3",             
               ["F1"] = "F20",
               ["F10"] = "F1",
@@ -403,13 +410,13 @@
                 end,
 
                 -- RESOLUTION MACROS
-                ["*-ctrl-m4"] = function()
+                ["*-ctrl-m5"] = function()
                   (helpers.toggle_res(1920, 300))()
                 end,
-                ["m4"] = function()
+                ["m5"] = function()
                   (helpers.toggle_res(thin_res.w, thin_res.h))()
                 end,
-                ["*-ctrl-m5"] = function()
+                ["*-ctrl-mmb"] = function()
                   (helpers.toggle_res(eye.res.w, eye.res.h, eye.sens))()
                 end,
                 ["*-mmb"] = function()
@@ -425,7 +432,10 @@
                 ["pie_chart"] = {
                   fragment = [[${builtins.readFile ./waywall/shaders/pie_chart.frag}]],
                 }
-              }
+              },
+              experimental = {
+                tearing = true,
+              },
             }
 
             return config
