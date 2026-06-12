@@ -99,6 +99,13 @@
         }
 
         window-rule {
+          match app-id=r#"^waywall$"#
+
+          allow-tearing true
+          variable-refresh-rate true
+        }
+
+        window-rule {
             match app-id=r#"^Bitwarden$"#
             match app-id=r#"^thunderbird$"#
             match app-id=r#"^signal$"#

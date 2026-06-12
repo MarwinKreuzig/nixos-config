@@ -34,6 +34,10 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri-tearing = {
+      url = "github:urayde/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 

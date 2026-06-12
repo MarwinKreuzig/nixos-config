@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   # make swaylock work
   security.pam.services.swaylock = { };
@@ -16,13 +16,15 @@
 
   services.greetd = {
     enable = true;
+    useTextGreeter = true;
     settings.default_session = {
-      command =
-        "${pkgs.tuigreet}/bin/tuigreet " +
-        "--time --remember --user-menu " +
-        "--power-shutdown 'systemctl poweroff'" +
-        "--power-reboot 'systemctl reboot' " +
-        "--cmd \"uwsm start niri-uwsm.desktop\"";
+      # command = "${pkgs.greetd}/bin/agreety --cmd /run/current-system/sw/bin/niri-session";
+      command = "${lib.getExe pkgs.tuigreet} --time --remember --user-menu --power-shutdown 'systemctl poweroff' --power-reboot 'systemctl reboot' --cmd /run/current-system/sw/bin/niri-session";
+      # "${pkgs.tuigreet}/bin/tuigreet " +
+      # "--time --remember --user-menu " +
+      # "--power-shutdown 'systemctl poweroff'" +
+      # "--power-reboot 'systemctl reboot' " +
+      # "--cmd \"uwsm start niri-uwsm.desktop\"";
       user = "marwin";
     };
   };
