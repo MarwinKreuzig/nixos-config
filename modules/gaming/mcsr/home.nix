@@ -371,7 +371,7 @@
                 -- value obtained by trial and error (binary search) and https://github.com/Esensats/mcsr-calcsens
                 -- should correspond to 36cm/360
                 sensitivity = 11,
-                confine_pointer = false,
+                confine_pointer = true,
               },
               theme = {
                 background = "#1b0e1fff",
