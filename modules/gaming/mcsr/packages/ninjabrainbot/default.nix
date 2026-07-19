@@ -8,7 +8,7 @@ pkgs.maven.buildMavenPackage rec {
     rev = version;
     hash = "sha256-uOUPho4UCZxeTtCU4XHJsTR6HuXAnKXd3jk/tSRd4Yc=";
   };
-  mvnHash = "sha256-2+p4ReD1M3VuyTu4TmCx9xrFf2QFm/FFBgs7a2eIpZY=";
+  mvnHash = "sha256-a2eXoDRdEH6SBovhvUM5FMN16NjOrOS5wTXFxeYU4i0=";
 
   desktopItems = [
     (pkgs.makeDesktopItem {
