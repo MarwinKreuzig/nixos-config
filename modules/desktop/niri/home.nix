@@ -10,7 +10,6 @@
 
   config = lib.mkIf config.modules.desktops.niri.enable {
     home.packages = with pkgs; [
-      awww
       cliphist
       wl-clipboard
 
@@ -22,6 +21,7 @@
       niri
     ];
 
+    # niri manages xwayland-satellite automatically
     modules.xwayland.xwayland-satellite = false;
 
     services.gnome-keyring.enable = true;
@@ -46,6 +46,7 @@
       };
     };
 
+    # wallpaper daemon
     services.awww.enable = true;
 
     home.sessionVariables = {
@@ -355,6 +356,10 @@
           open-on-output "DP-2"
         }
 
+        workspace "music" {
+          open-on-output "DP-2"
+        }
+
         binds {
             // Keys consist of modifiers separated by + signs, followed by an XKB key name
             // in the end. To find an XKB name for a particular key, you may use a program
@@ -395,9 +400,12 @@
             Mod+I     { focus-monitor-right; }
 
             Mod+Period { focus-workspace "scratch"; }
+            Mod+P      { focus-workspace "music"; }
 
             Mod+Ctrl+J { focus-workspace-down; }
             Mod+Ctrl+K { focus-workspace-up; }
+            Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+            Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
 
             // move commands
             Mod+Shift+E { consume-or-expel-window-left; }
@@ -409,8 +417,9 @@
             Mod+Shift+I { move-window-to-monitor-right; }
 
             Mod+Shift+Period { move-window-to-workspace "scratch"; }
+            Mod+Shift+P      { move-window-to-workspace "music"; }
             // Mod+Comma  { consume-window-into-column; }
-            Mod+Comma { expel-window-from-column; }
+            // Mod+Comma { expel-window-from-column; }
 
             Mod+Shift+Ctrl+J { move-window-to-workspace-down; }
             Mod+Shift+Ctrl+K { move-window-to-workspace-up; }
