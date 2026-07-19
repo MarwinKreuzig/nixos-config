@@ -39,15 +39,15 @@
       (pkgs.callPackage ./packages/paceman/default.nix { })
       (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs:
         let
-          rev = "ea6aa0cde7759071186a2213abdd53138389d638";
+          rev = "02e7dcf4efdd51393cef68e95098b40743650956";
         in
         {
           version = "0-unstable-${rev}";
           src = pkgs.fetchFromGitHub {
             inherit rev;
-            owner = "tesselslate";
+            owner = "MarwinKreuzig";
             repo = "waywall";
-            hash = "sha256-900UA/ZRI6NmUZw3KyAXDL9SEH2i/d9kDRkeqlFQGrA=";
+            hash = "sha256-X+zBFtCKe7gg9zozcCvtjTa8bSAArYRptbKPgMkzFq8=";
           };
         }))
     ];
@@ -65,13 +65,6 @@
     xdg.configFile."waywall/init.lua".text = ''
             local waywall = require("waywall")
             local helpers = require("waywall.helpers")
-
-            function color_key(color)
-              return {
-                input = color,
-                output = color,
-              }
-            end
 
             local const = {
               mirrors = {
@@ -103,8 +96,10 @@
       -- WAYWALL STARTUP
       -- ################################################################################################
             local deco_objects = {
+              thin0 = nil,
               thin1 = nil,
-              thin2 = nil,
+              crosshair = nil,
+              pride = nil,
             }
 
             waywall.listen("load", function()
@@ -112,17 +107,32 @@
                 "${./waywall/assets/bg.png}", 
                 {
                   dst = { x = 0, y = 0, w = 823, h = const.res.default.h, }, 
-                  depth = -1,
+                  depth = -2,
                 }
               )
               deco_objects.thin1 = waywall.image(
                 "${./waywall/assets/bg.png}", 
                 {
                   dst = { x = const.res.default.w - 823, y = 0, w = 823, h = const.res.default.h, }, 
+                  depth = -2,
+                }
+              )
+              deco_objects.pride = waywall.image(
+                "${./waywall/assets/pride.png}", 
+                {
+                  dst = { x = const.res.default.w - 205, y = 0, w = 205, h = 127, }, 
                   depth = -1,
                 }
               )
-              waywall.show_floating(true)
+              local ch_w = 11
+              local ch_h = 11
+              deco_objects.crosshair = waywall.image(
+                "${./waywall/assets/crosshair.png}",
+                {
+                  dst = { x = (const.res.default.w - ch_w) / 2, y = (const.res.default.h - ch_h) / 2, w = ch_w, h = ch_h},
+                  depth = 1,
+                }
+              )
             end)
 
             local last_state = ""
@@ -362,7 +372,7 @@
                 layout = "mc_remaps",
                 model = "pc105",
                 options = "lv3:ralt_switch",
-                repeat_rate = 40,
+                repeat_rate = 60,
                 repeat_delay = 200,
 
                 remaps = game_remaps,
