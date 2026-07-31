@@ -294,8 +294,6 @@
         spawn-at-startup "signal-desktop"
         spawn-at-startup "element-desktop"
         spawn-at-startup "thunderbird"
-        spawn-at-startup "uwsm" "finalize"
-        // spawn-at-startup "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"
 
         // Uncomment this line to ask the clients to omit their client-side decorations if possible.
         // If the client will specifically ask for CSD, the request will be honored.
