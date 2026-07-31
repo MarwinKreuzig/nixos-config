@@ -353,7 +353,7 @@
                 waywall.set_remaps({})
                 waywall.set_keymap({ layout = "us,de", variant = "dvp" })
                 chat_state.text = waywall.text(
-                  "KEYBINDS DISABLED",
+                  "REBINDS DISABLED",
                   { x = 0, y = 0, color = "#ff0000", size = 10 }
                 )
               else
