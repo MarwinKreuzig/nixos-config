@@ -7,10 +7,8 @@
       Unit = {
         Description = "Xwayland outside your Wayland";
         Restart = "on-failure";
-        BindsTo = "graphical-session.target";
-        PartOf = "graphical-session.target";
-        After = "graphical-session.target";
-        Requisite = "graphical-session.target";
+        After = [ config.wayland.systemd.target ];
+        PartOf = [ config.wayland.systemd.target ];
       };
       Service = {
         Type = "notify";
@@ -19,7 +17,7 @@
         StandardOutput = "journal";
       };
       Install = {
-        WantedBy = [ "graphical-session.target" ];
+        WantedBy = [ config.wayland.systemd.target ];
       };
     };
   };

@@ -28,20 +28,18 @@
     systemd.user.services."polkit-kde-agent" = {
       Unit = {
         Description = "Polkit Agent";
-        Restart = "on-failure";
-        BindsTo = "graphical-session.target";
-        PartOf = "graphical-session.target";
-        After = "graphical-session.target";
-        Requisite = "graphical-session.target";
+        After = [ config.wayland.systemd.target ];
+        PartOf = [ config.wayland.systemd.target ];
       };
       Service = {
         Type = "simple";
+        Restart = "on-failure";
         NotifyAccess = "all";
         ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
         StandardOutput = "journal";
       };
       Install = {
-        WantedBy = [ "graphical-session.target" ];
+        WantedBy = [ config.wayland.systemd.target ];
       };
     };
 
