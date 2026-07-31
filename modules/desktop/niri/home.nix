@@ -45,6 +45,18 @@
 
     # wallpaper daemon
     services.awww.enable = true;
+    systemd.user.services.wallpaper = {
+      Unit = {
+        Description = "set wallpaper";
+        After = [ "awww.service" ];
+        Requires = [ "awww.service" ];
+      };
+
+      Service = {
+        Type = "oneshot";
+        ExecStart = pkgs.writeShellScriptBin "set-wallpaper" "${lib.getExe config.services.awww.package} img ${../../../assets/ViktoriaLuiseWallpaper.jpg}";
+      };
+    };
 
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
@@ -283,7 +295,6 @@
         // Note that running niri as a session supports xdg-desktop-autostart,
         // which may be more convenient to use.
         // See the binds section below for more spawn examples.
-        spawn-at-startup "sh" "-c" "awww img ${../../../assets/ViktoriaLuiseWallpaper.jpg}"
         spawn-at-startup "discord-canary"
         spawn-at-startup "signal-desktop"
         spawn-at-startup "element-desktop"
