@@ -1,19 +1,17 @@
-{ ... }:
+{ lib, config, ... }:
 {
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     settings.mainbar =
       {
         modules-center = [ "clock" ];
-        modules-left = [ "custom/media" "niri/workspaces" ];
-        modules-right = [ "pulseaudio" "network" "tray" "battery" "custom/notification" ];
+        modules-left = [ "niri/workspaces" ];
+        modules-right = [ "pulseaudio" "network" "tray" "battery" "idle_inhibitor" "custom/notification" ];
         layer = "top";
         position = "top";
         height = 30;
         spacing = 4;
-        "hyprland/workspaces" = {
-          "sort-by" = "id";
-        };
         "custom/notification" = {
           tooltip = false;
           format = " {icon} ";
@@ -60,20 +58,6 @@
         cpu = {
           format = "{usage}% ";
           tooltip = false;
-        };
-        "custom/media" = {
-          escape = true;
-          exec = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null";
-          format = "{icon} {}";
-          format-icons = {
-            default = "🎜";
-            spotify = "";
-          };
-          max-length = 40;
-          return-type = "json";
-        };
-        "hyprland/window" = {
-          separate-outputs = true;
         };
         idle_inhibitor = {
           format = "{icon}";
