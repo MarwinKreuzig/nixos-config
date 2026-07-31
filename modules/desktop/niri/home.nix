@@ -10,7 +10,6 @@
 
   config = lib.mkIf config.modules.desktops.niri.enable {
     home.packages = with pkgs; [
-      cliphist
       wl-clipboard
 
       networkmanagerapplet
@@ -286,8 +285,6 @@
         // Note that running niri as a session supports xdg-desktop-autostart,
         // which may be more convenient to use.
         // See the binds section below for more spawn examples.
-        spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
-        spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
         spawn-at-startup "sh" "-c" "awww img ${../../../assets/ViktoriaLuiseWallpaper.jpg}"
         spawn-at-startup "discord-canary"
         spawn-at-startup "signal-desktop"
