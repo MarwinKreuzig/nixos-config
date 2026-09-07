@@ -119,7 +119,7 @@
             match app-id=r#"^Bitwarden$"#
             match app-id=r#"^thunderbird$"#
             match app-id=r#"^signal$"#
-            match app-id=r#"^discord$"#
+            match app-id=r#"^.*discord.*$"#
             match title=r#"^Element.*$"#
             match title=r#"^.*Private Browsing.*$"#
 
