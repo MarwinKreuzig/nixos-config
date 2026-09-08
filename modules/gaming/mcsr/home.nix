@@ -5,6 +5,7 @@
       xwayland
 
       kdePackages.kdenlive
+      vidcutter
 
       (prismlauncher.override (previous: {
         glfw3-minecraft =
