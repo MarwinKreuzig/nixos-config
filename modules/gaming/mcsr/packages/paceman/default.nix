@@ -2,11 +2,11 @@
 with pkgs; (
   stdenv.mkDerivation (finalAttrs: rec {
     pname = "paceman-tracker";
-    version = "0.7.1";
+    version = "0.7.3";
 
     src = fetchurl {
-      url = "https://github.com/PaceMan-MCSR/PaceMan-Tracker/releases/download/v${version}/paceman-tracker-0.7.1.jar";
-      hash = "sha256-xsdDvFoBpBqOEVwadQjuFpImh+6TH8XEUELAqUJvb2I=";
+      url = "https://github.com/PaceMan-MCSR/PaceMan-Tracker/releases/download/v${version}/paceman-tracker-${version}.jar";
+      hash = "sha256-djrWOxfqtDJjbCJ7vQBfwQh4rU9Vnv25NEmVd7wtPRo=";
     };
     dontUnpack = true;
 
