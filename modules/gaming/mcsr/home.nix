@@ -21,6 +21,7 @@
           }));
         jdks = [
           pkgs-graal.graalvm-ce
+          jdk25
           jdk21
           jdk17
           jdk8
@@ -40,15 +41,15 @@
       (pkgs.callPackage ./packages/paceman/default.nix { })
       (pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs:
         let
-          rev = "02e7dcf4efdd51393cef68e95098b40743650956";
+          rev = "3457608cec573603f5ef82caa360b083b3729f90";
         in
         {
           version = "0-unstable-${rev}";
           src = pkgs.fetchFromGitHub {
             inherit rev;
-            owner = "MarwinKreuzig";
+            owner = "tesselslate";
             repo = "waywall";
-            hash = "sha256-X+zBFtCKe7gg9zozcCvtjTa8bSAArYRptbKPgMkzFq8=";
+            hash = "sha256-b+CV9W699FCgzwErq1hUFAczWKIJtku/G+ib4cAHf3g=";
           };
         }))
     ];
@@ -357,6 +358,7 @@
             	["F5"] = "5",
             	["F6"] = "6",
             	["F7"] = "7",
+            	["N"] = "F4", -- for F3 + F4
             }
 
         -- ##############################################################################################
