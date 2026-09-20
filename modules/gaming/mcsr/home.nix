@@ -135,6 +135,11 @@
                   depth = 1,
                 }
               )
+
+              -- ninbot starts faster than minecraft, making waywall think we're running MC under X11 if we don't delay the start
+              waywall.sleep(10000)
+              waywall.exec("ninjabrainbot")
+              waywall.show_floating(true)
             end)
 
             local last_state = ""
