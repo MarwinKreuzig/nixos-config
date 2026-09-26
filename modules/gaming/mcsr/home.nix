@@ -102,6 +102,7 @@
               thin1 = nil,
               crosshair = nil,
               pride = nil,
+              meme = nil,
             }
 
             waywall.listen("load", function()
@@ -123,6 +124,13 @@
                 "${./waywall/assets/pride.png}", 
                 {
                   dst = { x = const.res.default.w - 205, y = 0, w = 205, h = 127, }, 
+                  depth = -1,
+                }
+              )
+              deco_objects.meme = waywall.image(
+                "${./waywall/assets/meme.png}", 
+                {
+                  dst = { x = 0, y = 0, w = 230, h = 375, }, 
                   depth = -1,
                 }
               )
