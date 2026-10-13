@@ -124,6 +124,13 @@
             match title=r#"^.*Private Browsing.*$"#
 
             block-out-from "screencast"
+
+            
+            focus-ring {
+                width 3
+                active-color "#ff00ff"
+                inactive-color "#ff00ff"
+            }
         }
 
         layer-rule {
