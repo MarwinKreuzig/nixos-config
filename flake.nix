@@ -56,7 +56,6 @@
           modules = [
             ./modules/host-modules.nix
             home-manager.nixosModules.home-manager
-            stylix.nixosModules.stylix
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -68,6 +67,7 @@
                     {
                       imports = [
                         ./modules/home-modules.nix
+                        stylix.homeModules.stylix
                         userConfig
                       ];
                       config = {

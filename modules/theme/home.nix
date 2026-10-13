@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 {
   gtk = {
     enable = true;
@@ -6,27 +6,25 @@
       package = pkgs.flat-remix-icon-theme;
       name = "Flat-Remix-Red-Light";
     };
-
-    font = {
-      name = "Sans";
-      size = 11;
-    };
   };
 
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
-    style.name = "adwaita";
-    style.package = pkgs.adwaita-qt;
   };
 
   home.pointerCursor = {
+    enable = true;
     name = "phinger-cursors-dark";
     package = pkgs.phinger-cursors;
     size = 32;
     gtk.enable = true;
   };
 
-  xdg.configFile."alacritty/alacritty.toml".source = "${pkgs.alacritty-theme}/share/alacritty-theme/github_light_high_contrast.toml";
+  stylix = {
+    enable = true;
+    polarity = "light";
 
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/atelier-cave-light.yaml";
+    image = ../../assets/ViktoriaLuiseWallpaper.jpg;
+  };
 }

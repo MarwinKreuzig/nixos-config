@@ -75,8 +75,5 @@
     themes = {
       catppuccin_latte = builtins.readFile ./catppuccin_latte.theme;
     };
-    settings = {
-      color_theme = "catppuccin_latte";
-    };
   };
 }
