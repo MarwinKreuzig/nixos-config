@@ -14,25 +14,15 @@
     withPython3 = true;
   };
 
-  programs.zed-editor = {
+  programs.gram = {
     enable = true;
-    userSettings = {
+    settings = {
       vim_mode = true;
       load_direnv = "shell_hook";
       soft_wrap = "editor_width";
-      relative_line_numbers = true;
+      relative_line_numbers = "enabled";
       inlay_hints = {
         enabled = true;
-      };
-      features = {
-        copilot = false;
-      };
-      show_copilot_suggestions = false;
-      agent = {
-        enabled = false;
-      };
-      telemetry = {
-        metrics = false;
       };
     };
   };
