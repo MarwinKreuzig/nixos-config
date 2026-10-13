@@ -109,4 +109,6 @@
       };
     };
   };
+
+  stylix.targets.firefox.profileNames = [ "private" "work" ];
 }
