@@ -38,7 +38,6 @@
       url = "github:urayde/niri";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-libdisplay-info.url = "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17";
   };
 
 
@@ -50,7 +49,6 @@
             inherit inputs;
             pkgs-graal = import inputs.nixpkgs-graal { system = "x86_64-linux"; };
             pkgs-glfw-mcsr = import inputs.nixpkgs-glfw-mcsr { system = "x86_64-linux"; };
-            pkgs-libdisplay-info = import inputs.nixpkgs-libdisplay-info { system = "x86_64-linux"; };
           };
         in
         nixpkgs.lib.nixosSystem {
