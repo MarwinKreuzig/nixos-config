@@ -128,7 +128,7 @@
                 }
               )
               deco_objects.meme = waywall.image(
-                "${./waywall/assets/meme.png}", 
+                "${./waywall/assets/meme_corrected.png}", 
                 {
                   dst = { x = 0, y = 0, w = 230, h = 375, }, 
                   depth = -1,
@@ -158,6 +158,8 @@
                 end
                 if last_state == "inworld" then
                   waywall.show_floating(true)
+                  waywall.set_resolution(0, 0)
+                  waywall.set_sensitivity(0)
                   -- this doesn't work. why?
                   waywall.exec("ydotool key DELETE:1")
                   waywall.exec("ydotool key DELETE:0")
@@ -278,17 +280,9 @@
               eye.res.h
             )
 
-            local overlay_img = { w = 1920, h = 1080 }
-            local overlay_h =  overlay_img.h * proj_dst.w / overlay_img.w
-
-            helpers.res_image("${./waywall/assets/overlay_thin.png}",
+            helpers.res_image("${./waywall/assets/overlay_thin_2.png}",
               {
-                dst = {
-                  x = 0,
-                  y = (const.res.default.h - overlay_h) / 2,
-                  w = proj_dst.w,
-                  h = overlay_h,
-                }
+                dst = proj_dst,
               },
               eye.res.w, eye.res.h
             )
