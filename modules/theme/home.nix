@@ -24,7 +24,7 @@
     enable = true;
     polarity = "light";
 
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/atelier-cave-light.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
     image = ../../assets/ViktoriaLuiseWallpaper.jpg;
   };
 }
