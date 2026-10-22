@@ -22,6 +22,7 @@
 
   stylix = {
     enable = true;
+    overlays.enable = false; # see https://github.com/nix-community/stylix/issues/1832
     polarity = "light";
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
