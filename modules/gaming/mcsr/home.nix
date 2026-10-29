@@ -1,4 +1,4 @@
-{ lib, osConfig, pkgs, pkgs-graal, pkgs-glfw-mcsr, ... }:
+{ lib, osConfig, pkgs, pkgs-graal, ... }:
 {
   config = lib.mkIf osConfig.modules.gaming.mcsr.enable {
     home.packages = with pkgs; [
@@ -8,17 +8,20 @@
       vidcutter
 
       (prismlauncher.override (previous: {
-        glfw3-minecraft =
-          (glfw.overrideAttrs (finalAttrs: previousAttrs: {
-            pname = "glfw-mcsr";
-            patches = previousAttrs.patches ++ [
-              (pkgs.fetchpatch
-                {
-                  url = "https://raw.githubusercontent.com/tesselslate/waywall/ad569de1ddae6b034c7095795a42f044746a55a7/contrib/glfw.patch";
-                  sha256 = "sha256-8Sho5Yoj/FpV7utWz3aCXNvJKwwJ3ZA3qf1m2WNxm5M=";
-                })
-            ];
-          }));
+        glfw3-minecraft = stdenv.mkDerivation {
+          pname = "glfw-mcsr";
+          version = "3.4";
+          src =
+            pkgs.fetchurl {
+              name = "libglfw.so";
+              url = "https://femboy.beauty/c7IHWg";
+              sha512 = "5aa9dc21354770202efd01180c6925fd9bdbe6f1fdddd0b4c23fd7a65de3c287a96d290862094ecdbff3061c7d3d341b3891ea7ced402d4957247882828c6278";
+            };
+          dontUnpack = true;
+          installPhase = ''
+            install -D $src $out/lib/libglfw.so
+          '';
+        };
         jdks = [
           pkgs-graal.graalvm-ce
           jdk25

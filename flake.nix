@@ -20,7 +20,6 @@
   inputs = {
     # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-glfw-mcsr.url = "github:NixOS/nixpkgs/160b762eda6d139ac10ae081f8f78d640dd523eb";
     nixpkgs-graal.url = "github:nixos/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269";
     home-manager = {
       # use the line with the branch when you are getting an error because of a version mismatch
@@ -48,7 +47,6 @@
           specialArgs = {
             inherit inputs;
             pkgs-graal = import inputs.nixpkgs-graal { system = "x86_64-linux"; };
-            pkgs-glfw-mcsr = import inputs.nixpkgs-glfw-mcsr { system = "x86_64-linux"; };
           };
         in
         nixpkgs.lib.nixosSystem {
