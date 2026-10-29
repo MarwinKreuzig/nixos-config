@@ -38,6 +38,7 @@
           libXinerama
           libxkbcommon
         ];
+        textToSpeechSupport = false;
       }))
       (pkgs.callPackage ./packages/modcheck/default.nix { })
       (pkgs.callPackage ./packages/ninjabrainbot/default.nix { })
