@@ -33,7 +33,6 @@
       gdk-pixbuf
       fontconfig
       freetype
-      gtk2-x11
       libnotify
       libgbm
       libxkbcommon

@@ -8,4 +8,8 @@
 
   nixpkgs.config.permittedInsecurePackages = [
   ];
+
+  nixpkgs.config.problems.handlers = {
+    "gtk+".broken = "warn"; # or "ignore"
+  };
 }
