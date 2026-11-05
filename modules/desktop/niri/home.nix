@@ -122,6 +122,7 @@
             match app-id=r#"^.*discord.*$"#
             match title=r#"^Element.*$"#
             match title=r#"^.*Private Browsing.*$"#
+            match title=r#"^.*Privater Modus.*$"#
 
             block-out-from "screencast"
 
